@@ -12,14 +12,13 @@ permissions:
 
 jobs:
   deploy:
+    environment:
+      name: github-pages
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-
-      - name: Setup pages action
-        uses: actions/configure-pages@v4
 
       - name: Upload artifact for GitHub Pages
         uses: actions/upload-pages-artifact@v5
@@ -27,6 +26,7 @@ jobs:
           path: .
 
       - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          artifact_name: github-pages
