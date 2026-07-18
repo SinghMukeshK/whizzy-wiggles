@@ -1,0 +1,1578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Whizzy Wiggles 🌈 – The Happiest Place for Kids to Learn, Play & Imagine!</title>
+  <meta name="description" content="Welcome to Whizzy Wiggles – fun rhymes, animated storybooks, ABC & 123s, and kids gameplays! Subscribe for fun kids content. The happiest place for toddlers to learn, play, and imagine!" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+<!-- AVATAR SELECTOR OVERLAY -->
+  <div id="avatar-overlay">
+    <h1>🌈 Welcome to Whizzy Wiggles!</h1>
+    <p>Choose your Whizzy Guide to explore the site with you! 🎉</p>
+    <div class="av-grid">
+      <div class="av-card" onclick="selectAvatar('🧸','Teddy Bear')">
+        <span class="av-emoji">🧸</span>
+        <span class="av-name">Teddy Bear</span>
+      </div>
+      <div class="av-card" onclick="selectAvatar('🦖','Dino')">
+        <span class="av-emoji">🦖</span>
+        <span class="av-name">Dino Roar</span>
+      </div>
+      <div class="av-card" onclick="selectAvatar('🦄','Unicorn')">
+        <span class="av-emoji">🦄</span>
+        <span class="av-name">Unicorn</span>
+      </div>
+      <div class="av-card" onclick="selectAvatar('🐼','Panda')">
+        <span class="av-emoji">🐼</span>
+        <span class="av-name">Panda Pal</span>
+      </div>
+      <div class="av-card" onclick="selectAvatar('⭐','Star')">
+        <span class="av-emoji">⭐</span>
+        <span class="av-name">Shooting Star</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- AVATAR GUIDE BUBBLE -->
+  <div id="avatar-guide-bubble">Hi! I'm your Whizzy Guide! 🌟 Tap me anytime!</div>
+  <div id="avatar-guide" onclick="toggleAvatarBubble()" title="Your Whizzy Guide">🧸</div>
+
+  <!-- RAINBOW PROGRESS BAR -->
+  <div id="rainbow-bar"></div>
+  <!-- ACHIEVEMENT TOAST -->
+  <div id="achievement-toast">
+    <div class="toast-icon" id="toast-icon">🏆</div>
+    <div class="toast-text">
+      <h4 id="toast-title">Achievement Unlocked!</h4>
+      <p id="toast-desc">You did it!</p>
+    </div>
+  </div>
+  <!-- STAR COUNTER WIDGET -->
+  <div id="star-counter" onclick="document.getElementById('badge-wall').scrollIntoView({behavior:'smooth'})"
+    title="Your stars! Click to see badges">
+    ⭐ <span id="star-counter-num">0</span>
+  </div>
+
+  <div class="floating-shapes" aria-hidden="true">
+    <div class="shape"></div>
+    <div class="shape"></div>
+    <div class="shape"></div>
+    <div class="shape"></div>
+    <div class="shape"></div>
+    <div class="shape"></div>
+  </div>
+
+  <div class="site-topbar">
+    <div class="topbar-inner">
+      <div class="topbar-note">
+        <span aria-hidden="true">🌟</span>
+        <span>New song and story every week — join the fun in Whizzy Wiggles!</span>
+      </div>
+      <div>
+        <a href="#videos" class="topbar-link">Watch latest video</a>
+        <a href="#parents" class="topbar-link">Parent safety tips</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAVBAR -->
+  <nav id="navbar">
+    <a href="#hero" class="nav-logo">
+      <img src="images/real-logo.jpg" class="nav-logo-icon" alt="Whizzy Wiggles Logo"
+        style="border-radius: 50%; object-fit: cover;">
+      <span class="nav-logo-text">Whizzy Wiggles</span>
+    </a>
+    <ul class="nav-links" style="flex-wrap: wrap; justify-content: center; gap: 15px;">
+      <li><a href="#about">About</a></li>
+      <li><a href="#playlists">🎵 Playlists</a></li>
+      <li><a href="#videos">📺 Videos</a></li>
+      <li><a href="#games">🎮 Games</a></li>
+      <li><a href="#stories">📖 Stories</a></li>
+      <li><a href="#rhymes">🎶 Rhymes</a></li>
+      <li><a href="#flashcards">🔤 Flashcards</a></li>
+      <li><a href="#learn-shapes">🌈 Shapes</a></li>
+      <li><a href="#printables">🖨️ Printables</a></li>
+      <li><a href="#badge-wall">🏆 Badges</a></li>
+      <li><a href="#boardgame-generator">🎲 Board Game</a></li>
+      <li><a href="#emoji-maker">😃 Emoji Maker</a></li>
+      <li><a href="#secret-decoder">🕵️ Decoder</a></li>
+      <li><a href="#origami-crafts">🦢 Origami</a></li>
+      <li><a href="#whizzy-teddy">🧸 Whizzy Bear</a></li>
+      <li><a href="#soundboard">🔊 Soundboard</a></li>
+      <li><a href="#fanzone">🌟 Friends Zone</a></li>
+      <li><a href="#parents">👪 Parents</a></li>
+      <li><a href="https://youtube.com/@whizzywigglesofficial" target="_blank" rel="noopener" class="nav-cta">▶ Subscribe</a></li>
+      <li><button class="night-toggle" id="nightToggle" onclick="toggleNightMode()" title="Sleepy Mode">🌙</button></li>
+    </ul>
+    <button class="hamburger" id="hamburger" onclick="toggleMobileMenu()" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu" style="overflow-y: auto; max-height: 80vh;">
+    <a href="#about" onclick="toggleMobileMenu()">About</a>
+    <a href="#playlists" onclick="toggleMobileMenu()">🎵 Playlists</a>
+    <a href="#videos" onclick="toggleMobileMenu()">📺 Videos</a>
+    <a href="#games" onclick="toggleMobileMenu()">🎮 Games</a>
+    <a href="#stories" onclick="toggleMobileMenu()">📖 Stories</a>
+    <a href="#rhymes" onclick="toggleMobileMenu()">🎶 Rhymes</a>
+    <a href="#flashcards" onclick="toggleMobileMenu()">🔤 Flashcards</a>
+    <a href="#learn-shapes" onclick="toggleMobileMenu()">🌈 Colors &amp; Shapes</a>
+    <a href="#printables" onclick="toggleMobileMenu()">🖨️ Printables</a>
+    <a href="#badge-wall" onclick="toggleMobileMenu()">🏆 My Badges</a>
+    <a href="#boardgame-generator" onclick="toggleMobileMenu()">🎲 Board Game</a>
+    <a href="#emoji-maker" onclick="toggleMobileMenu()">😃 Emoji Maker</a>
+    <a href="#secret-decoder" onclick="toggleMobileMenu()">🕵️ Secret Decoder</a>
+    <a href="#origami-crafts" onclick="toggleMobileMenu()">🦢 Origami Crafts</a>
+    <a href="#whizzy-teddy" onclick="toggleMobileMenu()">🧸 Whizzy Bear</a>
+    <a href="#soundboard" onclick="toggleMobileMenu()">🔊 Soundboard</a>
+    <a href="#fanzone" onclick="toggleMobileMenu()">🌟 Friends Zone</a>
+    <a href="#parents" onclick="toggleMobileMenu()">👪 Parent Corner</a>
+    <a href="https://youtube.com/@whizzywigglesofficial" target="_blank" rel="noopener" class="mob-cta">▶ Subscribe Now</a>
+    <button class="night-toggle" style="width:100%;margin-top:8px;" onclick="toggleNightMode();toggleMobileMenu()">🌙 Sleepy Mode</button>
+  </div>
+
+  <!-- PROGRESS TRACKER -->
+  <div id="progress-tracker">
+    <div class="pt-row">🎮 <span id="pt-games">0</span> games played</div>
+    <div class="pt-row">⭐ <span id="pt-stars">0</span> stars earned</div>
+  </div>
+
+  <!-- HERO -->
+  <section id="hero" class="hero">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="hero-content">
+      <div class="hero-text">
+        <div class="hero-badge">
+          <span class="dot" aria-hidden="true"></span>
+          New Video Every Week! 🎉
+        </div>
+        <h1 class="hero-title">
+          <span class="color-1">Whizzy</span><span class="color-2"> Wiggles</span><br>
+          <span class="color-3">🌈 The </span><span class="color-4">Happiest</span><br>
+          Place for Kids!
+        </h1>
+        <p class="hero-tagline">✨ Let the Magic Begin ✨</p>
+        <p class="hero-desc">
+          Welcome to a colorful world of fun and learning! 🧸 We bring rhymes, storybooks, gameplays, ABCs &amp; 123s,
+          and magical adventures — perfect for toddlers and young kids!
+        </p>
+        <div class="hero-features">
+          <span class="hero-feature-tag tag-1">🎵 Rhymes</span>
+          <span class="hero-feature-tag tag-2">📖 Storybooks</span>
+          <span class="hero-feature-tag tag-3">🎮 Gameplays</span>
+          <span class="hero-feature-tag tag-4">🔤 ABCs &amp; 123s</span>
+          <span class="hero-feature-tag tag-5">🦄 Adventures</span>
+        </div>
+        <div class="hero-buttons">
+          <a href="https://youtube.com/@whizzywigglesofficial" target="_blank" rel="noopener" class="btn-primary"
+            id="hero-subscribe-btn">▶ Subscribe on YouTube</a>
+          <a href="#videos" class="btn-secondary" id="hero-watch-btn">🎬 Watch Videos</a>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="hero-img-wrapper">
+          <img src="images/real-logo.jpg" alt="Whizzy Wiggles – colorful cartoon world for kids" />
+        </div>
+        <div class="hero-img-badge badge-subs">
+          <span class="badge-icon" aria-hidden="true">👥</span>
+          <div><strong>28</strong><br><span style="font-size:0.75rem;font-weight:700;color:#888;">Subscribers</span>
+          </div>
+        </div>
+        <div class="hero-img-badge badge-vids">
+          <span class="badge-icon" aria-hidden="true">🎬</span>
+          <div><strong>70+</strong><br><span style="font-size:0.75rem;font-weight:700;color:#888;">Videos</span></div>
+        </div>
+        <div class="hero-img-badge badge-daily">
+          <span class="badge-icon" aria-hidden="true">🌟</span>
+          <div><strong>New</strong><br><span style="font-size:0.75rem;font-weight:700;color:#888;">Videos</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS BAR -->
+  <div class="stats-bar">
+    <div class="stats-inner">
+      <div class="stat-item"><span class="stat-num">🌈</span><span class="stat-label">From India</span></div>
+      <div class="stat-divider" aria-hidden="true"></div>
+      <div class="stat-item"><span class="stat-num">70+</span><span class="stat-label">Videos</span></div>
+      <div class="stat-divider" aria-hidden="true"></div>
+      <div class="stat-item"><span class="stat-num">9</span><span class="stat-label">Playlists</span></div>
+      <div class="stat-divider" aria-hidden="true"></div>
+      <div class="stat-item"><span class="stat-num">Regular</span><span class="stat-label">New Content</span></div>
+      <div class="stat-divider" aria-hidden="true"></div>
+      <div class="stat-item"><span class="stat-num">💖</span><span class="stat-label">Kids Content</span></div>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section id="about" aria-labelledby="about-heading">
+    <div class="section-header">
+      <span class="section-eyebrow">What We Do</span>
+      <h2 class="section-title" id="about-heading">Everything Kids <em>Love &amp; Learn</em></h2>
+      <p class="section-subtitle">Our videos are designed to delight, educate, and inspire little minds in a safe,
+        colorful world 💖</p>
+    </div>
+    <div class="about-grid reveal">
+      <div class="about-card">
+        <span class="about-icon" aria-hidden="true">🎵</span>
+        <h3>Rhymes &amp; Songs</h3>
+        <p>Catchy nursery rhymes and sing-along songs in Hindi &amp; English that kids absolutely love!</p>
+      </div>
+      <div class="about-card">
+        <span class="about-icon" aria-hidden="true">📖</span>
+        <h3>Story Book Adventures</h3>
+        <p>Magical animated storybooks with colorful characters and exciting moral tales for little ones.</p>
+      </div>
+      <div class="about-card">
+        <span class="about-icon" aria-hidden="true">🎮</span>
+        <h3>Fun Gameplays</h3>
+        <p>Kid-friendly game adventures featuring Paw Patrol, Thomas &amp; Friends, Hot Wheels, and more!</p>
+      </div>
+      <div class="about-card">
+        <span class="about-icon" aria-hidden="true">🔤</span>
+        <h3>ABCs &amp; 123s</h3>
+        <p>Educational videos that make learning alphabets, numbers, and colors fun and engaging!</p>
+      </div>
+      <div class="about-card">
+        <span class="about-icon" aria-hidden="true">🦄</span>
+        <h3>Characters &amp; Adventures</h3>
+        <p>Meet wonderful animated friends and go on thrilling adventures together!</p>
+      </div>
+      <div class="about-card">
+        <span class="about-icon" aria-hidden="true">🧸</span>
+        <h3>Whizzy Bear Teddy</h3>
+        <p>Meet Whizzy Bear Teddy, our cuddly and smartest friend! Always ready for fun games, learning, and magical
+          hugs!</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PLAYLISTS -->
+  <section id="playlists" aria-labelledby="playlists-heading">
+    <div class="section-header">
+      <span class="section-eyebrow">Browse Collections</span>
+      <h2 class="section-title" id="playlists-heading">Our <em>Fun Playlists</em> 🎉</h2>
+      <p class="section-subtitle">Pick a playlist and dive into hours of fun, learning, and laughter!</p>
+    </div>
+    <div class="playlists-grid reveal">
+      <a href="https://youtube.com/@whizzywigglesofficial" target="_blank" rel="noopener" class="playlist-card"
+        id="playlist-shorts">
+        <div class="playlist-thumb">
+          <div class="playlist-thumb-bg pg-1">⚡</div><span class="playlist-count">13 videos</span>
+        </div>
+        <div class="playlist-info">
+          <h3>All Shorts of Whizzy Wiggles</h3>
+          <p>Quick, fun clips perfect for little attention spans!</p><span class="playlist-tag pt-music">🎵
+            Shorts</span>
+        </div>
+      </a>
+      <a href="https://youtube.com/@whizzywigglesofficial" target="_blank" rel="noopener" class="playlist-card"
+        id="playlist-rhymes">
+        <div class="playlist-thumb">
+          <div class="playlist-thumb-bg pg-2">🎵</div><span class="playlist-count">13 videos</span>
+        </div>
+        <div class="playlist-info">
+          <h3>🌈 Ultimate Hindi-English Rhyme Collection 📚</h3>
+          <p>Sing-along rhymes in Hindi &amp; English!</p><span class="playlist-tag pt-music">🎶 Rhymes</span>
+        </div>
+      </a>
+      <a href="https://youtube.com/@whizzywigglesofficial" target="_blank" rel="noopener" class="playlist-card"
+        id="playlist-stories">
+        <div class="playlist-thumb">
+          <div class="playlist-thumb-bg pg-9">📚</div><span class="playlist-count">10 videos</span>
+        </div>
+        <div class="playlist-info">
+          <h3>📚 Story Book Adventures &amp; Read-Alouds for Kids 🌈</h3>
+          <p>Magical animated tales your kids will love!</p><span class="playlist-tag pt-stories">📖 Stories</span>
+        </div>
+      </a>
+      <a href="https://youtube.com/@whizzywigglesofficial" target="_blank" rel="noopener" class="playlist-card"
+        id="playlist-pawpatrol">
+        <div class="playlist-thumb">
+          <div class="playlist-thumb-bg pg-3">🐾</div><span class="playlist-count">3 videos</span>
+        </div>
+        <div class="playlist-info">
+          <h3>PAW Patrol Video Game Adventures 🎮</h3>
+          <p>Join the pups on exciting rescue missions!</p><span class="playlist-tag pt-gaming">🎮 Gaming</span>
+        </div>
+      </a>
+      <a href="https://youtube.com/@whizzywigglesofficial" target="_blank" rel="noopener" class="playlist-card"
+        id="playlist-hotwheels">
+        <div class="playlist-thumb">
+          <div class="playlist-thumb-bg pg-6">🏎️</div><span class="playlist-count">5 videos</span>
+        </div>
+        <div class="playlist-info">
+          <h3>Hot Wheels Epic Stunts &amp; Race Challenges! 🏁</h3>
+          <p>High-speed thrills and crazy stunts!</p><span class="playlist-tag pt-gaming">🚗 Racing</span>
+        </div>
+      </a>
+      <a href="https://youtube.com/@whizzywigglesofficial" target="_blank" rel="noopener" class="playlist-card"
+        id="playlist-thomas">
+        <div class="playlist-thumb">
+          <div class="playlist-thumb-bg pg-7">🚂</div><span class="playlist-count">4 videos</span>
+        </div>
+        <div class="playlist-info">
+          <h3>Thomas &amp; Friends: Complete Game Guides</h3>
+          <p>Choo choo adventures with Thomas and pals!</p><span class="playlist-tag pt-gaming">🚂 Trains</span>
+        </div>
+      </a>
+      <a href="https://youtube.com/@whizzywigglesofficial" target="_blank" rel="noopener" class="playlist-card"
+        id="playlist-lego">
+        <div class="playlist-thumb">
+          <div class="playlist-thumb-bg pg-4">🧱</div><span class="playlist-count">4 videos</span>
+        </div>
+        <div class="playlist-info">
+          <h3>LEGO DUPLO World &amp; Educational Games</h3>
+          <p>Build, create and learn with LEGO!</p><span class="playlist-tag pt-learning">🧩 Learning</span>
+        </div>
+      </a>
+      <a href="https://youtube.com/@whizzywigglesofficial" target="_blank" rel="noopener" class="playlist-card"
+        id="playlist-diwali">
+        <div class="playlist-thumb">
+          <div class="playlist-thumb-bg pg-8">🪔</div><span class="playlist-count">3 videos</span>
+        </div>
+        <div class="playlist-info">
+          <h3>Diwali 2025 Song for Kids 🎉</h3>
+          <p>Happy Diwali dance &amp; sing-along fun!</p><span class="playlist-tag pt-music">✨ Festival</span>
+        </div>
+      </a>
+      <a href="https://youtube.com/@whizzywigglesofficial" target="_blank" rel="noopener" class="playlist-card"
+        id="playlist-robocar">
+        <div class="playlist-thumb">
+          <div class="playlist-thumb-bg pg-5">🚑</div><span class="playlist-count">1 video</span>
+        </div>
+        <div class="playlist-info">
+          <h3>🚑 Robocar Gameplays 🚓</h3>
+          <p>Emergency rescue adventures with Robocar!</p><span class="playlist-tag pt-gaming">🚓 Rescue</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- DIGITAL GAMES -->
+  <section id="games" aria-labelledby="games-heading">
+    <div class="section-header">
+      <span class="section-eyebrow">Play Right Now</span>
+      <h2 class="section-title" id="games-heading">Fun <em>Digital Games</em> 🎮</h2>
+      <p class="section-subtitle">Play these free mini-games right here in your browser — no download needed! 🌟</p>
+    </div>
+    <div class="games-grid reveal">
+
+      <!-- GAME 1: Memory Match -->
+      <div class="game-card" id="game-memory" onclick="openGame('memory')">
+        <div class="game-thumb">
+          <div class="game-thumb-inner gg-1">
+            <span class="game-big-emoji">🧠</span>
+            <span class="game-label-mini">Memory Match</span>
+          </div>
+        </div>
+        <div class="game-info">
+          <h3>🧠 Memory Match</h3>
+          <p>Flip cards and find matching pairs of cute animals! Train your memory and beat your score!</p>
+          <button class="btn-play bp-green" onclick="event.stopPropagation();openGame('memory')">▶ Play Now</button>
+        </div>
+      </div>
+
+      <!-- GAME 2: ABC Bubbles Pop -->
+      <div class="game-card" id="game-abc" onclick="openGame('abc')">
+        <div class="game-thumb">
+          <div class="game-thumb-inner gg-2">
+            <span class="game-big-emoji">🔤</span>
+            <span class="game-label-mini">ABC Bubbles Pop</span>
+          </div>
+        </div>
+        <div class="game-info">
+          <h3>🔤 ABC Bubbles Pop</h3>
+          <p>Pop bubbles in alphabetical order A→Z as fast as you can! Learn the alphabet while you play!</p>
+          <button class="btn-play bp-blue" onclick="event.stopPropagation();openGame('abc')">▶ Play Now</button>
+        </div>
+      </div>
+
+      <!-- GAME 3: Color Sorter -->
+      <div class="game-card" id="game-colors" onclick="openGame('colors')">
+        <div class="game-thumb">
+          <div class="game-thumb-inner gg-3">
+            <span class="game-big-emoji">🎨</span>
+            <span class="game-label-mini">Color Sorter</span>
+          </div>
+        </div>
+        <div class="game-info">
+          <h3>🎨 Color Sorter</h3>
+          <p>Drag colorful shapes into the matching buckets! Learn colors and sorting skills!</p>
+          <button class="btn-play bp-orange" onclick="event.stopPropagation();openGame('colors')">▶ Play Now</button>
+        </div>
+      </div>
+
+      <!-- GAME 4: Counting Stars -->
+      <div class="game-card" id="game-count" onclick="openGame('count')">
+        <div class="game-thumb">
+          <div class="game-thumb-inner gg-4">
+            <span class="game-big-emoji">⭐</span>
+            <span class="game-label-mini">Counting Stars</span>
+          </div>
+        </div>
+        <div class="game-info">
+          <h3>⭐ Counting Stars</h3>
+          <p>Count the falling stars and tap the right number! A fun way to learn counting 1–20!</p>
+          <button class="btn-play bp-purple" onclick="event.stopPropagation();openGame('count')">▶ Play Now</button>
+        </div>
+      </div>
+
+      <!-- GAME 5: Drawing Canvas -->
+      <div class="game-card" id="game-draw" onclick="openGame('draw')">
+        <div class="game-thumb">
+          <div class="game-thumb-inner gg-1">
+            <span class="game-big-emoji">🎨</span>
+            <span class="game-label-mini">Drawing Canvas</span>
+          </div>
+        </div>
+        <div class="game-info">
+          <h3>🎨 Drawing Canvas</h3>
+          <p>Draw colorful masterworks with sizes, stickers & brushes! Clear and save your art!</p>
+          <button class="btn-play bp-green" onclick="event.stopPropagation();openGame('draw')">▶ Play Now</button>
+        </div>
+      </div>
+
+      <!-- GAME 6: Word Builder -->
+      <div class="game-card" id="game-word" onclick="openGame('word')">
+        <div class="game-thumb">
+          <div class="game-thumb-inner gg-2">
+            <span class="game-big-emoji">🔤</span>
+            <span class="game-label-mini">Word Builder</span>
+          </div>
+        </div>
+        <div class="game-info">
+          <h3>🔤 Word Builder</h3>
+          <p>Arrange letters to construct simple 3-letter animal and object words correctly!</p>
+          <button class="btn-play bp-blue" onclick="event.stopPropagation();openGame('word')">▶ Play Now</button>
+        </div>
+      </div>
+
+      <!-- GAME 7: Whizzy Match (3-Level Memory) -->
+      <div class="game-card" id="game-wzymatch" onclick="openGame('wzymatch')">
+        <div class="game-thumb">
+          <div class="game-thumb-inner gg-3">
+            <span class="game-big-emoji">🧩</span>
+            <span class="game-label-mini">Whizzy Match</span>
+          </div>
+        </div>
+        <div class="game-info">
+          <h3>🧩 Whizzy Match</h3>
+          <p>Flip cards and match pairs! 3 fun levels: Animals 🐶, Shapes 🔴, and Tracks 🚂!</p>
+          <button class="btn-play bp-orange" onclick="event.stopPropagation();openGame('wzymatch')">▶ Play Now</button>
+        </div>
+      </div>
+
+      <!-- GAME 8: Balloon Pop -->
+      <div class="game-card" id="game-balloon" onclick="openGame('balloon')">
+        <div class="game-thumb">
+          <div class="game-thumb-inner gg-4">
+            <span class="game-big-emoji">🎈</span>
+            <span class="game-label-mini">Balloon Pop!</span>
+          </div>
+        </div>
+        <div class="game-info">
+          <h3>🎈 Balloon Pop!</h3>
+          <p>Pop colorful balloons rising up! 3 levels: Colors 🔴, Alphabet A-Z 🔠, Whizzy Characters ✨!</p>
+          <button class="btn-play bp-purple" onclick="event.stopPropagation();openGame('balloon')">▶ Play Now</button>
+        </div>
+      </div>
+
+      <!-- GAME 9: Music Maker -->
+      <div class="game-card" id="game-music" onclick="openGame('music')">
+        <div class="game-thumb">
+          <div class="game-thumb-inner gg-1">
+            <span class="game-big-emoji">🎵</span>
+            <span class="game-label-mini">Music Maker</span>
+          </div>
+        </div>
+        <div class="game-info">
+          <h3>🎵 Music Maker</h3>
+          <p>Play cute sounds of animals and musical instruments with colorful piano keys!</p>
+          <button class="btn-play bp-green" onclick="event.stopPropagation();openGame('music')">▶ Play Now</button>
+        </div>
+      </div>
+
+      <!-- GAME 10: Spelling Game -->
+      <div class="game-card" id="game-spelling" onclick="openGame('spelling')">
+        <div class="game-thumb">
+          <div class="game-thumb-inner gg-2">
+            <span class="game-big-emoji">🔡</span>
+            <span class="game-label-mini">Spelling Game</span>
+          </div>
+        </div>
+        <div class="game-info">
+          <h3>🔡 Spelling Game</h3>
+          <p>Spell animals and vehicles letter by letter! Tap the letters in the right order!</p>
+          <button class="btn-play bp-blue" onclick="event.stopPropagation();openGame('spelling')">▶ Play Now</button>
+        </div>
+      </div>
+
+      <!-- GAME 11: Puzzle Slide -->
+      <div class="game-card" id="game-puzzle" onclick="openGame('puzzle')">
+        <div class="game-thumb">
+          <div class="game-thumb-inner gg-3">
+            <span class="game-big-emoji">🧩</span>
+            <span class="game-label-mini">Puzzle Slide</span>
+          </div>
+        </div>
+        <div class="game-info">
+          <h3>🧩 Puzzle Slide</h3>
+          <p>Slide the tiles to complete the cute animal picture! 3×3 grid puzzle fun!</p>
+          <button class="btn-play bp-orange" onclick="event.stopPropagation();openGame('puzzle')">▶ Play Now</button>
+        </div>
+      </div>
+
+      <!-- GAME 12: Whack-a-Mole -->
+      <div class="game-card" id="game-whack" onclick="openGame('whack')">
+        <div class="game-thumb">
+          <div class="game-thumb-inner gg-4">
+            <span class="game-big-emoji">🐹</span>
+            <span class="game-label-mini">Whack-a-Mole</span>
+          </div>
+        </div>
+        <div class="game-info">
+          <h3>🐹 Whack-a-Mole!</h3>
+          <p>Tap the cute animals as they pop up from their holes! How many can you catch?</p>
+          <button class="btn-play bp-purple" onclick="event.stopPropagation();openGame('whack')">▶ Play Now</button>
+        </div>
+      </div>
+
+      <!-- GAME 13: Math Magic -->
+      <div class="game-card" id="game-math" onclick="openGame('math')">
+        <div class="game-thumb">
+          <div class="game-thumb-inner gg-1">
+            <span class="game-big-emoji">🔢</span>
+            <span class="game-label-mini">Math Magic</span>
+          </div>
+        </div>
+        <div class="game-info">
+          <h3>🔢 Math Magic</h3>
+          <p>Simple addition and subtraction problems for little learners! Ages 3–6!</p>
+          <button class="btn-play bp-green" onclick="event.stopPropagation();openGame('math')">▶ Play Now</button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- GAME MODAL -->
+  <div class="game-modal-overlay" id="gameModal" onclick="closeGameModal(event)">
+    <div class="game-modal">
+      <div class="game-modal-header">
+        <span class="game-modal-title" id="gameModalTitle">🎮 Game</span>
+        <button class="game-modal-close" onclick="closeGameModal()" aria-label="Close game">✕</button>
+      </div>
+      <div class="game-modal-body" id="gameModalBody"></div>
+    </div>
+  </div>
+
+  <!-- PRINTABLE GAMES -->
+  <section id="printables" aria-labelledby="printables-heading">
+    <div class="section-header">
+      <span class="section-eyebrow">Print &amp; Play</span>
+      <h2 class="section-title" id="printables-heading">Free <em>Printable Activity</em> Sheets 🖨️</h2>
+      <p class="section-subtitle">Download and print fun activity sheets for your kids — coloring, tracing, matching
+        &amp; more! 100% free!</p>
+    </div>
+    <div class="printables-grid reveal">
+
+      <div class="print-card" id="printable-abc">
+        <div class="print-thumb">
+          <div class="print-thumb-inner pg-print-1">
+            <span class="print-big-emoji">🔤</span>
+            <span class="print-sub-emojis">A B C</span>
+          </div>
+        </div>
+        <div class="print-info">
+          <span class="print-age">Ages 2–5</span>
+          <h3>ABC Tracing Sheet</h3>
+          <p>Trace every letter of the alphabet with fun animal illustrations. Perfect for early learners!</p>
+          <button class="btn-download-big" onclick="printActivity('abc')">📥 Click to Print (Free)</button>
+        </div>
+      </div>
+
+      <div class="print-card" id="printable-numbers">
+        <div class="print-thumb">
+          <div class="print-thumb-inner pg-print-2">
+            <span class="print-big-emoji">🔢</span>
+            <span class="print-sub-emojis">1 2 3</span>
+          </div>
+        </div>
+        <div class="print-info">
+          <span class="print-age">Ages 2–5</span>
+          <h3>Number Tracing 1–20</h3>
+          <p>Trace and count numbers 1 to 20 with colorful star decorations. Great for counting practice!</p>
+          <button class="btn-download-big" onclick="printActivity('numbers')">📥 Click to Print (Free)</button>
+        </div>
+      </div>
+
+      <div class="print-card" id="printable-animals">
+        <div class="print-thumb" style="padding-top:100%;">
+          <div class="print-thumb-inner" style="background:#fff;border-bottom:2px solid #F3E8FF;">
+            <img src="coloring-pages/safari.png" alt="Animal Coloring Book preview"
+              style="width:100%;height:100%;object-fit:cover;object-position:top;" />
+          </div>
+        </div>
+        <div class="print-info">
+          <span class="print-age">Ages 3–7 • 5 Pages</span>
+          <h3>🎨 Animal Coloring Book</h3>
+          <p>5 stunning coloring pages: safari animals, zoo, farm, cute characters &amp; space adventure!</p>
+          <button class="btn-download-big" onclick="printActivity('animals')">📥 Click to Print (Free)</button>
+        </div>
+      </div>
+
+      <div class="print-card" id="printable-maze">
+        <div class="print-thumb" style="padding-top:100%;">
+          <div class="print-thumb-inner" style="background:#fff;border-bottom:2px solid #E8F5E9;">
+            <img src="images/maze-easy.png" alt="Maze Puzzles preview"
+              style="width:100%;height:100%;object-fit:cover;object-position:top;" />
+          </div>
+        </div>
+        <div class="print-info">
+          <span class="print-age">Ages 4–7 • 3 Mazes</span>
+          <h3>Maze Puzzles</h3>
+          <p>Help the puppy, bunny, and bee find their way! 3 fun mazes (Easy, Medium, Hard).</p>
+          <button class="btn-download-big" onclick="printActivity('maze')">📥 Click to Print (Free)</button>
+        </div>
+      </div>
+
+      <!-- Ludo Whizzy Wiggles Edition -->
+      <div class="print-card" id="printable-ludo" style="border:2px solid rgba(168,85,247,0.25);">
+        <div class="print-thumb" style="padding-top:100%;">
+          <div class="print-thumb-inner"
+            style="background:#fff;border-bottom:3px solid rgba(168,85,247,0.2);overflow:hidden;">
+            <img src="coloring-pages/ww-ludo.png" alt="Whizzy Wiggles Ludo Board"
+              style="width:100%;height:100%;object-fit:cover;object-position:center;" />
+          </div>
+        </div>
+        <div class="print-info">
+          <span class="print-age"
+            style="background:linear-gradient(135deg,#A855F7,#38BDF8);color:white;border:none;">&#x1F308; Whizzy Wiggles
+            Edition</span>
+          <h3>&#x1F3B2; Ludo &mdash; WW Edition!</h3>
+          <p>Our super rainbow Whizzy Wiggles Ludo board! Print &amp; play with family! &#x1F31F;</p>
+          <button class="btn-download-big" onclick="printActivity('ludo')">&#x1F4E5; Click to Print (Free)</button>
+        </div>
+      </div>
+
+      <!-- Snakes & Ladders Whizzy Wiggles Edition -->
+      <div class="print-card" id="printable-snakes" style="border:2px solid rgba(168,85,247,0.25);">
+        <div class="print-thumb" style="padding-top:100%;">
+          <div class="print-thumb-inner"
+            style="background:#fff;border-bottom:3px solid rgba(168,85,247,0.2);overflow:hidden;">
+            <img src="coloring-pages/ww-snakes-ladders.png" alt="Whizzy Wiggles Snakes and Ladders Board"
+              style="width:100%;height:100%;object-fit:cover;object-position:center;" />
+          </div>
+        </div>
+        <div class="print-info">
+          <span class="print-age"
+            style="background:linear-gradient(135deg,#FF70B8,#A855F7);color:white;border:none;">&#x1F308; Whizzy Wiggles
+            Edition</span>
+          <h3>&#x1F40D; Snakes &amp; Ladders &mdash; WW Edition!</h3>
+          <p>Rainbow snakes &amp; magical ladders in our Whizzy Wiggles edition! 100 exciting squares! &#x1F308;</p>
+          <button class="btn-download-big" onclick="printActivity('snakes')">&#x1F4E5; Click to Print (Free)</button>
+        </div>
+      </div>
+
+      <!-- NEW: Vehicle Coloring Book -->
+      <div class="print-card" id="printable-vehicles">
+        <div class="print-thumb">
+          <div class="print-thumb-inner" style="background:linear-gradient(135deg,#EEF4FF,#FFF9E6);">
+            <span class="print-big-emoji">🚗</span>
+            <span class="print-sub-emojis">🚂 ✈️ 🚀</span>
+          </div>
+        </div>
+        <div class="print-info">
+          <span class="print-age">Ages 3–7 • 5 Pages</span>
+          <h3>🚗 Vehicle Coloring Book</h3>
+          <p>Color cars, trains, rockets, planes & boats! 5 amazing vehicle coloring pages!</p>
+          <button class="btn-download-big" onclick="printActivity('vehicles')">📥 Click to Print (Free)</button>
+        </div>
+      </div>
+
+      <!-- NEW: Alphabet Tracing A-Z -->
+      <div class="print-card" id="printable-alpha-tracing">
+        <div class="print-thumb">
+          <div class="print-thumb-inner" style="background:linear-gradient(135deg,#FFF5FA,#F3E8FF);">
+            <span class="print-big-emoji">✏️</span>
+            <span class="print-sub-emojis">A a B b C c</span>
+          </div>
+        </div>
+        <div class="print-info">
+          <span class="print-age">Ages 3–6 • 26 Letters</span>
+          <h3>✏️ Alphabet Tracing A–Z</h3>
+          <p>Trace dotted letters A to Z, uppercase & lowercase, with picture cues for every letter!</p>
+          <button class="btn-download-big" onclick="printActivity('alpha-tracing')">📥 Click to Print (Free)</button>
+        </div>
+      </div>
+
+      <!-- NEW: Number Tracing 1-10 -->
+      <div class="print-card" id="printable-num-tracing">
+        <div class="print-thumb">
+          <div class="print-thumb-inner pg-print-2">
+            <span class="print-big-emoji">🖊️</span>
+            <span class="print-sub-emojis">1 2 3 4 5</span>
+          </div>
+        </div>
+        <div class="print-info">
+          <span class="print-age">Ages 2–5 • Beginner</span>
+          <h3>🖊️ Number Tracing 1–10</h3>
+          <p>Simple dotted number tracing 1–10 with big fun illustrations. Perfect for tiny hands!</p>
+          <button class="btn-download-big" onclick="printActivity('num-tracing')">📥 Click to Print (Free)</button>
+        </div>
+      </div>
+
+      <!-- NEW: Dot-to-Dot -->
+      <div class="print-card" id="printable-dotdot">
+        <div class="print-thumb">
+          <div class="print-thumb-inner" style="background:linear-gradient(135deg,#F0FFF4,#EEF4FF);">
+            <span class="print-big-emoji">🔵</span>
+            <span class="print-sub-emojis">• • • 🐬</span>
+          </div>
+        </div>
+        <div class="print-info">
+          <span class="print-age">Ages 4–7 • 4 Puzzles</span>
+          <h3>🔵 Dot-to-Dot Fun</h3>
+          <p>Connect the dots to reveal cute animal pictures! 4 puzzles: dolphin, bunny, star & elephant!</p>
+          <button class="btn-download-big" onclick="printActivity('dotdot')">📥 Click to Print (Free)</button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= NEW CREATIVE ZONES ================= -->
+
+  <!-- DESIGN YOUR OWN BOARD GAME -->
+  <section id="boardgame-generator" aria-labelledby="boardgame-heading"
+    style="padding: 80px 20px; background: linear-gradient(180deg, #EEF4FF 0%, #F3E8FF 100%);">
+    <div class="section-header">
+      <span class="section-eyebrow">Creative Fun</span>
+      <h2 class="section-title" id="boardgame-heading">Design your own <em>Board Game</em> 🎲</h2>
+      <p class="section-subtitle">Pick a layout, add some stickers, and print your very own custom board game!</p>
+    </div>
+
+    <div
+      style="max-width: 900px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; text-align: center;">
+      <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+        <button class="fc-btn" style="background:#A855F7; color:white;" onclick="changeBgLayout('snake')">🐍 Snake
+          Path</button>
+        <button class="fc-btn" style="background:#38BDF8; color:white;" onclick="changeBgLayout('spiral')">🌀 Spiral
+          Path</button>
+        <button class="fc-btn" style="background:#4ADE80; color:white;" onclick="addStickerToBg('⭐')">⭐ Add
+          Star</button>
+        <button class="fc-btn" style="background:#FF8C00; color:white;" onclick="addStickerToBg('🔥')">🔥 Add
+          Trap</button>
+        <button class="fc-btn" style="background:#FF4455; color:white;" onclick="clearBgStickers()">🗑️ Clear
+          Stickers</button>
+      </div>
+      <div id="bg-canvas"
+        style="width: 100%; max-width: 700px; height: 500px; background: white; border: 4px dashed #A855F7; border-radius: 20px; margin: 0 auto; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; cursor: crosshair;">
+        <div id="bg-path"
+          style="width: 80%; height: 80%; background: repeating-linear-gradient(45deg, #f0f0f0, #f0f0f0 20px, #ffffff 20px, #ffffff 40px); border-radius: 40px; border: 6px solid #e0e0e0; position: relative; transition: all 0.3s;">
+          <div
+            style="position:absolute; top:-20px; left:20px; background:#4ADE80; color:white; padding:10px 20px; border-radius:50px; font-weight:bold; font-size:1.2rem;">
+            START</div>
+          <div
+            style="position:absolute; bottom:-20px; right:20px; background:#FF4455; color:white; padding:10px 20px; border-radius:50px; font-weight:bold; font-size:1.2rem;">
+            FINISH</div>
+        </div>
+        <div id="bg-stickers-layer" style="position: absolute; inset: 0;"></div>
+      </div>
+      <div>
+        <button class="btn-download-big" style="max-width:300px; margin:0 auto;" onclick="printCustomBoardGame()">🖨️
+          Print My Game!</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- EMOJI MAKER -->
+  <section id="emoji-maker" aria-labelledby="emoji-heading"
+    style="padding: 80px 20px; background: linear-gradient(180deg, #F3E8FF 0%, #FFF9E6 100%);">
+    <div class="section-header">
+      <span class="section-eyebrow">Interactive Art</span>
+      <h2 class="section-title" id="emoji-heading">Whizzy <em>Emoji Maker</em> 😄</h2>
+      <p class="section-subtitle">Create your own super fun emojis!</p>
+    </div>
+
+    <div
+      style="max-width: 800px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 40px; justify-content: center; align-items: center;">
+      <div id="emoji-canvas"
+        style="width: 300px; height: 300px; background: #FFD700; border-radius: 50%; position: relative; box-shadow: inset -10px -20px 0 rgba(0,0,0,0.1), 0 10px 30px rgba(255, 215, 0, 0.4);">
+        <div id="em-eyes"
+          style="position: absolute; top: 30%; left: 0; right: 0; text-align: center; font-size: 4rem; pointer-events: none;">
+          👀</div>
+        <div id="em-mouth"
+          style="position: absolute; bottom: 20%; left: 0; right: 0; text-align: center; font-size: 4rem; pointer-events: none;">
+          👄</div>
+        <div id="em-acc"
+          style="position: absolute; top: -5%; left: 0; right: 0; text-align: center; font-size: 5rem; pointer-events: none;">
+        </div>
+      </div>
+      <div
+        style="display: flex; flex-direction: column; gap: 20px; flex: 1; min-width: 300px; background: white; padding: 24px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05);">
+        <div>
+          <h4 style="font-family: 'Fredoka One', cursive; margin-bottom: 10px;">Eyes</h4>
+          <div style="display: flex; gap: 10px; font-size: 1.5rem;">
+            <button class="fc-btn" onclick="updateEmoji('eyes', '👀')">👀</button>
+            <button class="fc-btn" onclick="updateEmoji('eyes', '😍😍')">😍</button>
+            <button class="fc-btn" onclick="updateEmoji('eyes', '😎')">😎</button>
+            <button class="fc-btn" onclick="updateEmoji('eyes', '✨✨')">✨</button>
+          </div>
+        </div>
+        <div>
+          <h4 style="font-family: 'Fredoka One', cursive; margin-bottom: 10px;">Mouth</h4>
+          <div style="display: flex; gap: 10px; font-size: 1.5rem;">
+            <button class="fc-btn" onclick="updateEmoji('mouth', '👄')">👄</button>
+            <button class="fc-btn" onclick="updateEmoji('mouth', '👅')">👅</button>
+            <button class="fc-btn" onclick="updateEmoji('mouth', '😁')">😁</button>
+            <button class="fc-btn" onclick="updateEmoji('mouth', '😯')">😯</button>
+          </div>
+        </div>
+        <div>
+          <h4 style="font-family: 'Fredoka One', cursive; margin-bottom: 10px;">Accessory</h4>
+          <div style="display: flex; gap: 10px; font-size: 1.5rem;">
+            <button class="fc-btn" onclick="updateEmoji('acc', '')">❌</button>
+            <button class="fc-btn" onclick="updateEmoji('acc', '🎩')">🎩</button>
+            <button class="fc-btn" onclick="updateEmoji('acc', '🎀')">🎀</button>
+            <button class="fc-btn" onclick="updateEmoji('acc', '👑')">👑</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECRET DECODER -->
+  <section id="secret-decoder" aria-labelledby="decoder-heading"
+    style="padding: 80px 20px; background: linear-gradient(180deg, #FFF9E6 0%, #E8F5E9 100%);">
+    <div class="section-header">
+      <span class="section-eyebrow">Spy Games</span>
+      <h2 class="section-title" id="decoder-heading">Top <em>Secret Decoder</em> 🕵️</h2>
+      <p class="section-subtitle">Write a secret message and turn it into emojis!</p>
+    </div>
+
+    <div
+      style="max-width: 800px; margin: 0 auto; background: white; padding: 40px; border-radius: 24px; box-shadow: 0 10px 40px rgba(0,0,0,0.08); text-align: center;">
+      <textarea id="decoder-input" class="fz-input fz-textarea"
+        style="width: 100%; font-size: 1.2rem; margin-bottom: 20px; font-family: inherit; padding: 15px;"
+        placeholder="Type your secret message here..."></textarea>
+
+      <div style="display: flex; gap: 15px; justify-content: center; margin-bottom: 30px;">
+        <button class="btn-fz-submit" onclick="encodeMessage()">🔒 Encode (Text to Emoji)</button>
+        <button class="btn-fz-submit" style="background: linear-gradient(135deg, #4ADE80, #38BDF8);"
+          onclick="decodeMessage()">🔓 Decode (Emoji to Text)</button>
+      </div>
+
+      <div id="decoder-output"
+        style="min-height: 100px; background: #F3E8FF; border-radius: 16px; padding: 20px; font-size: 2rem; display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 10px;">
+        Result will appear here!
+      </div>
+    </div>
+  </section>
+
+  <!-- ORIGAMI & PAPER CRAFTS -->
+  <section id="origami-crafts" aria-labelledby="origami-heading"
+    style="padding: 80px 20px; background: linear-gradient(180deg, #E8F5E9 0%, white 100%);">
+    <div class="section-header">
+      <span class="section-eyebrow">Paper Magic</span>
+      <h2 class="section-title" id="origami-heading">Origami &amp; <em>Paper Crafts</em> ✂️</h2>
+      <p class="section-subtitle">Follow these steps to make your own paper friends!</p>
+    </div>
+
+    <div class="fz-wall" style="max-width: 1200px; margin: 0 auto;">
+      <div class="fz-card" style="text-align: center;">
+        <h3 style="font-family: 'Fredoka One', cursive; margin-bottom: 15px; color: var(--purple);">Turtle 🐢</h3>
+        <img src="./origami_turtle_1784368766892.png" alt="Origami Turtle Steps"
+          style="width: 100%; border-radius: 12px; margin-bottom: 15px;" />
+        <button class="btn-download-big" style="padding: 10px 20px; font-size: 0.9rem;"
+          onclick="printOrigami('./origami_turtle_1784368766892.png')">🖨️ Print</button>
+      </div>
+      <div class="fz-card" style="text-align: center;">
+        <h3 style="font-family: 'Fredoka One', cursive; margin-bottom: 15px; color: var(--blue);">Whizzy Bear 🐻</h3>
+        <img src="./origami_bear_1784368778054.png" alt="Origami Bear Steps"
+          style="width: 100%; border-radius: 12px; margin-bottom: 15px;" />
+        <button class="btn-download-big" style="padding: 10px 20px; font-size: 0.9rem;"
+          onclick="printOrigami('./origami_bear_1784368778054.png')">🖨️ Print</button>
+      </div>
+      <div class="fz-card" style="text-align: center;">
+        <h3 style="font-family: 'Fredoka One', cursive; margin-bottom: 15px; color: var(--pink);">Whale 🐳</h3>
+        <img src="./origami_whale_1784368787956.png" alt="Origami Whale Steps"
+          style="width: 100%; border-radius: 12px; margin-bottom: 15px;" />
+        <button class="btn-download-big" style="padding: 10px 20px; font-size: 0.9rem;"
+          onclick="printOrigami('./origami_whale_1784368787956.png')">🖨️ Print</button>
+      </div>
+      <div class="fz-card" style="text-align: center;">
+        <h3 style="font-family: 'Fredoka One', cursive; margin-bottom: 15px; color: var(--orange);">Paper Boat ⛵</h3>
+        <img src="./origami_boat_1784368848878.png" alt="Origami Boat Steps"
+          style="width: 100%; border-radius: 12px; margin-bottom: 15px;" />
+        <button class="btn-download-big" style="padding: 10px 20px; font-size: 0.9rem;"
+          onclick="printOrigami('./origami_boat_1784368848878.png')">🖨️ Print</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABC FLASHCARDS -->
+  <section id="flashcards" aria-labelledby="flashcards-heading">
+    <div class="section-header">
+      <span class="section-eyebrow">Play &amp; Learn</span>
+      <h2 class="section-title" id="flashcards-heading">Interactive <em>ABC Flashcards</em> 🔤</h2>
+      <p class="section-subtitle">Tap the card to flip it and see the matching word. Let's learn the alphabet together!
+      </p>
+    </div>
+    <div class="flashcards-controls">
+      <button class="fc-btn fc-btn-prev" onclick="fcPrev()">◀ Prev Card</button>
+      <button class="fc-btn fc-btn-shuffle" onclick="fcShuffle()">🔀 Shuffle</button>
+      <button class="fc-btn fc-btn-next" onclick="fcNext()">Next Card ▶</button>
+    </div>
+    <div class="flashcard-scene" onclick="fcFlip()">
+      <div class="flashcard" id="flashcard">
+        <div class="fc-front">
+          <div class="fc-letter" id="fc-front-letter">A</div>
+          <div class="fc-hint">Tap to flip! 💫</div>
+        </div>
+        <div class="fc-back">
+          <div class="fc-back-emoji" id="fc-back-emoji">🍎</div>
+          <div class="fc-back-word" id="fc-back-word">Apple</div>
+          <div class="fc-back-label" id="fc-back-label">A is for Apple!</div>
+        </div>
+      </div>
+    </div>
+    <div class="fc-progress" id="fcProgress">Card 1 of 26</div>
+    <div class="fc-dots" id="fcDots"></div>
+  </section>
+
+  <!-- COLORS & SHAPES QUIZ -->
+  <section id="learn-shapes" aria-labelledby="shapes-heading">
+    <div class="section-header">
+      <span class="section-eyebrow">Brain Games</span>
+      <h2 class="section-title" id="shapes-heading">Colors &amp; Shapes <em>Quiz</em> 🌈</h2>
+      <p class="section-subtitle">Look at the preview and select the correct matching answer!</p>
+    </div>
+    <div class="shapes-tabs">
+      <button class="shape-tab active" id="tab-colors" onclick="sqSetMode('colors')">🎨 Colors</button>
+      <button class="shape-tab" id="tab-shapes" onclick="sqSetMode('shapes')">📐 Shapes</button>
+    </div>
+    <div class="shapes-quiz-area">
+      <div class="sq-score" id="sqScore">Score: 0 &nbsp;|&nbsp; Best: 0</div>
+      <div class="sq-visual" id="sqVisual">🔴</div>
+      <div class="sq-question" id="sqQuestion">What color is this?</div>
+      <div class="sq-options" id="sqOptions"></div>
+    </div>
+  </section>
+
+  <!-- BADGE WALL -->
+  <section id="badge-wall" aria-labelledby="badge-heading">
+    <div class="section-header">
+      <span class="section-eyebrow">My Achievements</span>
+      <h2 class="section-title" id="badge-heading">My Whizzy <em>Badges</em> 🏆</h2>
+      <p class="section-subtitle">Earn badges by completing challenges! Can you unlock all of them? 🌟</p>
+    </div>
+    <div class="badges-grid" id="badgeGrid"></div>
+    <div style="text-align:center; margin-top:36px;">
+      <button onclick="resetBadges()"
+        style="background:rgba(255,68,85,0.08);color:var(--red);border:2px dashed var(--red);padding:8px 18px;border-radius:50px;font-family:'Fredoka One',cursive;font-size:0.8rem;cursor:pointer;">Reset
+        Badges &amp; Stars</button>
+    </div>
+  </section>
+
+  <!-- FEATURED VIDEOS -->
+  <section id="videos" aria-labelledby="videos-heading">
+    <div class="section-header">
+      <span class="section-eyebrow">Watch Now</span>
+      <h2 class="section-title" id="videos-heading">Recent <em>Adventures</em> 🎬</h2>
+      <p class="section-subtitle">Check out our latest videos — click to watch on YouTube!</p>
+    </div>
+    <div class="videos-grid reveal">
+      <a href="https://www.youtube.com/watch?v=DD4fvWL3BMw" target="_blank" rel="noopener" class="video-card"
+        id="video-asphalt8">
+        <div class="video-thumb"><img class="video-thumb-img" src="https://img.youtube.com/vi/DD4fvWL3BMw/hqdefault.jpg"
+            alt="BEST Steve's Lava Chicken Song for Kids! | Fun Minecraft Dance" loading="lazy">
+          <div class="play-overlay">
+            <div class="play-btn">▶</div>
+          </div><span class="video-duration">0:40</span>
+        </div>
+        <div class="video-info">
+          <h3>🔥 BEST Steve's Lava Chicken Song for Kids! | Fun Minecraft Dance</h3>
+          <div class="video-meta"><span>Recent</span></div><span class="views-badge">🎵 Minecraft</span>
+        </div>
+      </a>
+      <a href="https://www.youtube.com/watch?v=XbqRl6X5UV8" target="_blank" rel="noopener" class="video-card"
+        id="video-asphalt9">
+        <div class="video-thumb"><img class="video-thumb-img" src="https://img.youtube.com/vi/XbqRl6X5UV8/hqdefault.jpg"
+            alt="The Dancing in Colours | Songs For Kids" loading="lazy">
+          <div class="play-overlay">
+            <div class="play-btn">▶</div>
+          </div><span class="video-duration">—</span>
+        </div>
+        <div class="video-info">
+          <h3>🌈 The Dancing in Colours 🍩 | Songs For Kids | Whizzy Wiggles</h3>
+          <div class="video-meta"><span>Recent</span></div><span class="views-badge">🎵 Songs</span>
+        </div>
+      </a>
+      <a href="https://www.youtube.com/watch?v=0sDD3tysyr0" target="_blank" rel="noopener" class="video-card"
+        id="video-sf-race">
+        <div class="video-thumb"><img class="video-thumb-img" src="https://img.youtube.com/vi/0sDD3tysyr0/hqdefault.jpg"
+            alt="Sing Along with Jumbo! The Gentle Elephant Parade Song" loading="lazy">
+          <div class="play-overlay">
+            <div class="play-btn">▶</div>
+          </div><span class="video-duration">—</span>
+        </div>
+        <div class="video-info">
+          <h3>🐘🌈 Sing Along with Jumbo! The Gentle Elephant Parade Song 🎵</h3>
+          <div class="video-meta"><span>Recent</span></div><span class="views-badge">🐘 Animals</span>
+        </div>
+      </a>
+      <a href="https://www.youtube.com/watch?v=VK7fjnUjb8g" target="_blank" rel="noopener" class="video-card"
+        id="video-lamborghini">
+        <div class="video-thumb"><img class="video-thumb-img" src="https://img.youtube.com/vi/VK7fjnUjb8g/hqdefault.jpg"
+            alt="Hot Wheels Epic Theme Song: FULL THROTTLE RUSH" loading="lazy">
+          <div class="play-overlay">
+            <div class="play-btn">▶</div>
+          </div><span class="video-duration">0:40</span>
+        </div>
+        <div class="video-info">
+          <h3>🔥 Hot Wheels Epic Theme Song 🚙 | FULL THROTTLE RUSH</h3>
+          <div class="video-meta"><span>Recent</span></div><span class="views-badge">🚙 Hot Wheels</span>
+        </div>
+      </a>
+      <a href="https://www.youtube.com/watch?v=QKRX7fnVreg" target="_blank" rel="noopener" class="video-card"
+        id="video-banyan">
+        <div class="video-thumb"><img class="video-thumb-img" src="https://img.youtube.com/vi/QKRX7fnVreg/hqdefault.jpg"
+            alt="खुशियों वाली एकादशी | Ekadashi Special For Kids" loading="lazy">
+          <div class="play-overlay">
+            <div class="play-btn">▶</div>
+          </div><span class="video-duration">—</span>
+        </div>
+        <div class="video-info">
+          <h3>🎶 🌸 "खुशियों वाली एकादशी" 🌸 | Ekadashi Special For Kids</h3>
+          <div class="video-meta"><span>Recent</span></div><span class="views-badge">🎵 Songs</span>
+        </div>
+      </a>
+      <a href="https://www.youtube.com/watch?v=cMqQryhSG4w" target="_blank" rel="noopener" class="video-card"
+        id="video-cafe">
+        <div class="video-thumb"><img class="video-thumb-img" src="https://img.youtube.com/vi/cMqQryhSG4w/hqdefault.jpg"
+            alt="Many Adventures Of Winnie The Pooh Theme Song" loading="lazy">
+          <div class="play-overlay">
+            <div class="play-btn">▶</div>
+          </div><span class="video-duration">0:50</span>
+        </div>
+        <div class="video-info">
+          <h3>🐻 Many Adventures Of Winnie The Pooh Theme Song 🍯 | Whizzy Wiggles</h3>
+          <div class="video-meta"><span>Recent</span></div><span class="views-badge">🐻 Winnie</span>
+        </div>
+      </a>
+      <a href="https://www.youtube.com/watch?v=PkFeAIZpgUg" target="_blank" rel="noopener" class="video-card"
+        id="video-hindi-story">
+        <div class="video-thumb"><img class="video-thumb-img" src="https://img.youtube.com/vi/PkFeAIZpgUg/hqdefault.jpg"
+            alt="चार दोस्तों का संघर्ष | Hindi Kahaniya For Kids" loading="lazy">
+          <div class="play-overlay">
+            <div class="play-btn">▶</div>
+          </div><span class="video-duration">2:31</span>
+        </div>
+        <div class="video-info">
+          <h3>🦉 चार दोस्तों का संघर्ष 🌈 | Hindi Kahaniya For Kids</h3>
+          <div class="video-meta"><span>Recent</span></div><span class="views-badge">📚 Hindi</span>
+        </div>
+      </a>
+      <a href="https://www.youtube.com/watch?v=aoYrIbVuyec" target="_blank" rel="noopener" class="video-card"
+        id="video-mickey">
+        <div class="video-thumb"><img class="video-thumb-img" src="https://img.youtube.com/vi/aoYrIbVuyec/hqdefault.jpg"
+            alt="Good Habits Helper: Mickey Cleans Up!" loading="lazy">
+          <div class="play-overlay">
+            <div class="play-btn">▶</div>
+          </div><span class="video-duration">0:52</span>
+        </div>
+        <div class="video-info">
+          <h3>🐹 Good Habits Helper: Mickey Cleans Up! Mickey's Tidy-Up Time! 🌈</h3>
+          <div class="video-meta"><span>Recent</span></div><span class="views-badge">🐹 Mickey</span>
+        </div>
+      </a>
+      <a href="https://www.youtube.com/watch?v=qt0n8l98SJA" target="_blank" rel="noopener" class="video-card"
+        id="video-animals">
+        <div class="video-thumb"><img class="video-thumb-img" src="https://img.youtube.com/vi/qt0n8l98SJA/hqdefault.jpg"
+            alt="Animal Names And Sounds | Learn with Whizzy Wiggles" loading="lazy">
+          <div class="play-overlay">
+            <div class="play-btn">▶</div>
+          </div><span class="video-duration">0:57</span>
+        </div>
+        <div class="video-info">
+          <h3>🦁 Animal Names And Sounds 🦒🦕🐈 | Learn with Whizzy Wiggles</h3>
+          <div class="video-meta"><span>Recent</span></div><span class="views-badge">🦁 Animals</span>
+        </div>
+      </a>
+      <a href="https://www.youtube.com/watch?v=bXdSmxdqKqI" target="_blank" rel="noopener" class="video-card"
+        id="video-train">
+        <div class="video-thumb"><img class="video-thumb-img" src="https://img.youtube.com/vi/bXdSmxdqKqI/hqdefault.jpg"
+            alt="Driving a Real Indian Passenger Train! Indian Train Simulator" loading="lazy">
+          <div class="play-overlay">
+            <div class="play-btn">▶</div>
+          </div><span class="video-duration">7:29</span>
+        </div>
+        <div class="video-info">
+          <h3>🚂 Driving a Real Indian Passenger Train! Train Simulator Adventure! 🇮🇳</h3>
+          <div class="video-meta"><span>Recent</span></div><span class="views-badge">🚂 Trains</span>
+        </div>
+      </a>
+    </div>
+    <div style="text-align:center; margin-top:52px;">
+      <a href="https://youtube.com/@whizzywigglesofficial" target="_blank" rel="noopener" class="btn-primary"
+        id="view-all-btn">🎬 View All 70+ Videos on YouTube</a>
+    </div>
+  </section>
+
+
+  <!-- ===== STORIES SECTION ===== -->
+  <section id="stories" aria-labelledby="stories-heading">
+    <div class="section-header">
+      <span class="section-eyebrow">Read Together</span>
+      <h2 class="section-title" id="stories-heading">Interactive <em>Storybooks</em> 📖</h2>
+      <p class="section-subtitle">Tap through the pages of these magical mini-stories! Perfect for bedtime or playtime!
+        🌙✨</p>
+    </div>
+    <div class="stories-container reveal">
+      <div class="story-selector">
+        <button class="story-btn active" onclick="selectStory('lion')">🦁 The Brave Lion</button>
+        <button class="story-btn" onclick="selectStory('rainbow')">🌈 Rainbow Valley</button>
+        <button class="story-btn" onclick="selectStory('rocket')">🚀 Rocket Adventure</button>
+      </div>
+      <div class="story-book" id="storyBook">
+        <!-- Lion Story -->
+        <div id="story-lion-1" class="story-page active" data-story="lion" data-page="1">
+          <div class="story-page-emoji">🦁</div>
+          <div class="story-page-title">The Brave Little Lion</div>
+          <div class="story-page-text">Once upon a time, deep in a sunny jungle, lived a little lion named Leo. Leo
+            wanted to roar like his mama, but every time he tried, only a tiny squeak came out! 🐾</div>
+        </div>
+        <div id="story-lion-2" class="story-page" data-story="lion" data-page="2">
+          <div class="story-page-emoji">🐘🦒🦓</div>
+          <div class="story-page-title">The Jungle Friends</div>
+          <div class="story-page-text">Leo's friends — Ella the Elephant, Gerry the Giraffe, and Zara the Zebra — all
+            tried to help him find his roar. They cheered and cheered: "You can do it, Leo! 🎉"</div>
+        </div>
+        <div id="story-lion-3" class="story-page" data-story="lion" data-page="3">
+          <div class="story-page-emoji">🌟</div>
+          <div class="story-page-title">The Big Roar!</div>
+          <div class="story-page-text">One morning, Leo saw a little bird fall from its nest. Without thinking, he took
+            a deep breath and — ROARRR! 🦁 The whole jungle shook! Leo had found his roar by being brave for someone
+            else. 💛</div>
+        </div>
+        <!-- Rainbow Story -->
+        <div id="story-rainbow-1" class="story-page" data-story="rainbow" data-page="1">
+          <div class="story-page-emoji">🌧️</div>
+          <div class="story-page-title">A Grey Grey Day</div>
+          <div class="story-page-text">In Rainbow Valley, all the colors had gone missing! The sky was grey, the flowers
+            were white, and all the animals looked the same. Whizzy the bear was very sad. 😢</div>
+        </div>
+        <div id="story-rainbow-2" class="story-page" data-story="rainbow" data-page="2">
+          <div class="story-page-emoji">🎨</div>
+          <div class="story-page-title">Finding the Colors</div>
+          <div class="story-page-text">Whizzy found a magic paintbrush! Every stroke left a trail of color — red on the
+            roses 🌹, blue in the river 💙, yellow on the sunflowers 🌻! The valley sparkled again!</div>
+        </div>
+        <div id="story-rainbow-3" class="story-page" data-story="rainbow" data-page="3">
+          <div class="story-page-emoji">🌈✨</div>
+          <div class="story-page-title">The Rainbow Returns!</div>
+          <div class="story-page-text">After a gentle rain, the most beautiful rainbow stretched across the sky. All the
+            animals danced and sang! "Colors make the world happy," said Whizzy. And everyone agreed! 🎉💖</div>
+        </div>
+        <!-- Rocket Story -->
+        <div id="story-rocket-1" class="story-page" data-story="rocket" data-page="1">
+          <div class="story-page-emoji">🚀</div>
+          <div class="story-page-title">Blast Off!</div>
+          <div class="story-page-text">Aarav was only 5 years old, but he dreamed of going to space. One night, a tiny
+            glowing rocket landed in his garden. "Want to explore the stars?" it asked! 🌟</div>
+        </div>
+        <div id="story-rocket-2" class="story-page" data-story="rocket" data-page="2">
+          <div class="story-page-emoji">🪐⭐🌙</div>
+          <div class="story-page-title">Stars & Planets!</div>
+          <div class="story-page-text">Aarav zoomed past the moon 🌙, waved at Saturn's rings 🪐, and played catch with
+            shooting stars ⭐! He met friendly aliens who gave him space cookies! 🍪👽</div>
+        </div>
+        <div id="story-rocket-3" class="story-page" data-story="rocket" data-page="3">
+          <div class="story-page-emoji">🏠💛</div>
+          <div class="story-page-title">Home Sweet Home</div>
+          <div class="story-page-text">As dawn broke, the rocket gently brought Aarav back home. "Space is wonderful,"
+            he thought, "but home is the most magical place of all!" He hugged Mama tight. 🤗💛</div>
+        </div>
+      </div>
+      <div class="story-nav">
+        <button class="story-nav-btn story-prev" onclick="storyPrev()" id="storyPrevBtn">◀ Prev</button>
+        <span class="story-page-num" id="storyPageNum">Page 1 of 3</span>
+        <button class="story-nav-btn story-next" onclick="storyNext()" id="storyNextBtn">Next ▶</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== RHYMES SECTION ===== -->
+  <section id="rhymes" aria-labelledby="rhymes-heading">
+    <div class="section-header">
+      <span class="section-eyebrow">Read Along!</span>
+      <h2 class="section-title" id="rhymes-heading">🎶 Nursery <em>Rhymes</em> Corner!</h2>
+      <p class="section-subtitle">Read the lyrics of your favourite rhymes together! 📖🌟</p>
+    </div>
+    <div class="rhymes-grid reveal">
+
+      <!-- English Rhyme 1 -->
+      <div class="rhyme-card">
+        <div class="rhyme-thumb" style="background:linear-gradient(135deg,#FFF9E6,#EEF4FF);">⭐</div>
+        <div class="rhyme-body">
+          <h3>⭐ Twinkle Twinkle</h3>
+          <p>The classic star rhyme all kids adore!</p>
+          <div class="rhyme-lyrics" style="max-height: none; display: block;">Twinkle twinkle little star 🌟<br>How I wonder what you are 🤔<br>Up above the world so high 🌍<br>Like a diamond in the sky 💎<br>Twinkle twinkle little star ⭐<br>How I wonder what you are 🌙</div>
+        </div>
+      </div>
+
+      <!-- English Rhyme 2 -->
+      <div class="rhyme-card">
+        <div class="rhyme-thumb" style="background:linear-gradient(135deg,#FFF5FA,#F3E8FF);">🚌</div>
+        <div class="rhyme-body">
+          <h3>🚌 Wheels on the Bus</h3>
+          <p>Everyone's favourite bus ride song!</p>
+          <div class="rhyme-lyrics" style="max-height: none; display: block;">The wheels on the bus go round and round 🔄<br>Round and round, round and round 🌀<br>The wheels on the bus go round and round 🚌<br>All through the town! 🏙️<br>The horn on the bus goes beep beep beep 📯<br>All through the town! 🏘️</div>
+        </div>
+      </div>
+
+      <!-- English Rhyme 3 -->
+      <div class="rhyme-card">
+        <div class="rhyme-thumb" style="background:linear-gradient(135deg,#F0FFF4,#EEF4FF);">👶</div>
+        <div class="rhyme-body">
+          <h3>👶 Johny Johny Yes Papa</h3>
+          <p>The most popular kids rhyme ever!</p>
+          <div class="rhyme-lyrics" style="max-height: none; display: block;">Johny Johny, Yes Papa 👶<br>Eating sugar? No Papa 🍬<br>Telling lies? No Papa ❌<br>Open your mouth! Ha ha ha! 😄<br>Johny Johny, Yes Papa 🌟<br>Eating sugar? No Papa 💛</div>
+        </div>
+      </div>
+
+      <!-- Hindi Rhyme 1 -->
+      <div class="rhyme-card">
+        <div class="rhyme-thumb" style="background:linear-gradient(135deg,#FFF9E6,#FFF5FA);">🐎</div>
+        <div class="rhyme-body">
+          <h3>🐎 Lakdi Ki Kathi</h3>
+          <p>A fun Hindi rhyme for everyone!</p>
+          <div class="rhyme-lyrics" style="max-height: none; display: block;">Lakdi ki kathi, kathi pe ghoda 🐎<br>Ghode ki dum pe jo mara hathoda 🔨<br>Dauda dauda dauda ghoda 🏃<br>Dum uthake dauda! 🌟</div>
+        </div>
+      </div>
+
+      <!-- Hindi Rhyme 2 -->
+      <div class="rhyme-card">
+        <div class="rhyme-thumb" style="background:linear-gradient(135deg,#EEF4FF,#F3E8FF);">🦚</div>
+        <div class="rhyme-body">
+          <h3>🦚 Nani Teri Morni</h3>
+          <p>Sing along with Nani's favourite peacock!</p>
+          <div class="rhyme-lyrics" style="max-height: none; display: block;">Nani teri morni ko mor le gaye 🦚<br>Baki jo bacha tha kaale chor le gaye 🏃‍♂️<br>Khaake peeke mote hoke 🍎<br>Chor baithe rail mein! 🚂</div>
+        </div>
+      </div>
+
+      <!-- Hindi Rhyme 3 -->
+      <div class="rhyme-card">
+        <div class="rhyme-thumb" style="background:linear-gradient(135deg,#FFF9E6,#F0FFF4);">🐟</div>
+        <div class="rhyme-body">
+          <h3>🐟 Machli Jal Ki Rani</h3>
+          <p>The most famous Hindi fish rhyme!</p>
+          <div class="rhyme-lyrics" style="max-height: none; display: block;">Machli jal ki rani hai 🐟<br>Jeevan uska pani hai 💧<br>Haath lagao dar jayegi 👐<br>Bahar nikalo mar jayegi 🌊</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== WHIZZY TEDDY SECTION ===== -->
+  <section id="whizzy-teddy" aria-labelledby="teddy-heading">
+    <div class="section-header">
+      <span class="section-eyebrow">Meet Our Mascot</span>
+      <h2 class="section-title" id="teddy-heading">🧸 Meet <em>Whizzy Bear Teddy</em>!</h2>
+      <p class="section-subtitle">Our fluffy, magical, rainbow-loving bear friend who goes on adventures with every
+        episode! 💛🌈</p>
+    </div>
+    <div class="teddy-container reveal">
+      <div class="teddy-hero">
+        <div class="teddy-emoji-big">🧸</div>
+        <div class="teddy-intro">
+          <h2>Hello, I'm Whizzy!</h2>
+          <p>I'm Whizzy Bear Teddy — the silliest, fluffiest, most curious bear you'll ever meet! I love rainbows 🌈,
+            learning new things 📚, making friends 🤝, and going on adventures every single week on the Whizzy Wiggles
+            channel!</p>
+          <p>I believe every child is SUPER SPECIAL ✨ and that learning is the best adventure of all! Come join me —
+            let's explore, play, and grow together!</p>
+          <div>
+            <span class="teddy-badge">🌈 Rainbow Lover</span>
+            <span class="teddy-badge">📚 Lifelong Learner</span>
+            <span class="teddy-badge">🎵 Music Fan</span>
+            <span class="teddy-badge">🚀 Adventurer</span>
+            <span class="teddy-badge">💛 Friend to All</span>
+          </div>
+        </div>
+      </div>
+      <div class="teddy-facts">
+        <div class="teddy-card">
+          <span class="teddy-card-emoji">🎂</span>
+          <h4>Birthday</h4>
+          <p>Born on a rainbow day! Whizzy celebrates with all his friends every year! 🎉</p>
+        </div>
+        <div class="teddy-card">
+          <span class="teddy-card-emoji">🍯</span>
+          <h4>Favourite Food</h4>
+          <p>Honey on toast 🍞 and rainbow lollipops! Don't tell mama! 🤫</p>
+        </div>
+        <div class="teddy-card">
+          <span class="teddy-card-emoji">🌈</span>
+          <h4>Favourite Colour</h4>
+          <p>ALL OF THEM! Whizzy can't choose — every colour makes the world more beautiful! 🎨</p>
+        </div>
+        <div class="teddy-card">
+          <span class="teddy-card-emoji">🎮</span>
+          <h4>Hobby</h4>
+          <p>Playing games with friends, reading storybooks, and making up silly songs! 🎵</p>
+        </div>
+        <div class="teddy-card">
+          <span class="teddy-card-emoji">🏆</span>
+          <h4>Superpower</h4>
+          <p>Whizzy can make anyone smile! One hug from Whizzy and all sadness disappears! 💛</p>
+        </div>
+        <div class="teddy-card">
+          <span class="teddy-card-emoji">💌</span>
+          <h4>Message to Kids</h4>
+          <p>"You are amazing, wonderful, and capable of anything! Keep learning & smiling!" 🌟</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOUNDBOARD SECTION -->
+  <section id="soundboard" aria-labelledby="sb-heading">
+    <div class="section-header">
+      <span class="section-eyebrow">Click & Play</span>
+      <h2 class="section-title" id="sb-heading">🔊 <em>Click & Play</em> Soundboard!</h2>
+      <p class="section-subtitle">Click on any animal or vehicle to hear its real sound! 🦁🚂🐘</p>
+    </div>
+    <div class="sb-tabs">
+      <button class="sb-tab active" id="sb-tab-animals" onclick="sbSetTab('animals')">🐾 Animals</button>
+      <button class="sb-tab" id="sb-tab-birds" onclick="sbSetTab('birds')">🐦 Birds</button>
+      <button class="sb-tab" id="sb-tab-vehicles" onclick="sbSetTab('vehicles')">🚗 Vehicles</button>
+    </div>
+    <div class="sb-grid reveal" id="sbGrid"></div>
+  </section>
+
+  <!-- FRIENDS ZONE -->
+  <section id="fanzone" aria-labelledby="fanzone-heading">
+    <div class="section-header">
+      <span class="section-eyebrow">Community Wall</span>
+      <h2 class="section-title" id="fanzone-heading">🌟 Whizzy <em>Friends Zone</em>!</h2>
+      <p class="section-subtitle">Share your friends-art, messages & love for Whizzy Wiggles! Best friends-art gets
+        highlighted
+        every month! 💖</p>
+    </div>
+
+    <!-- Monthly Spotlight -->
+    <div class="fz-spotlight reveal">
+      <div class="fz-spotlight-badge">🏆</div>
+      <div class="fz-spotlight-text">
+        <h3>⭐ July Friends-Art Spotlight!</h3>
+        <p>This month's winner is <strong>Aarav (Age 5)</strong> for his amazing Whizzy dinosaur drawing! Keep creating,
+          little artists — you could be next month's star! 🎨✨</p>
+      </div>
+    </div>
+
+    <!-- Friend Wall Cards -->
+    <div class="fz-wall reveal">
+      <div class="fz-card">
+        <div class="fz-card-header">
+          <div class="fz-avatar" style="background:linear-gradient(135deg,#FFD700,#FF8C00);">🧸</div>
+          <div>
+            <div class="fz-username">Priya (Age 4)</div>
+            <div class="fz-date">July 2026</div>
+          </div>
+        </div>
+        <div class="fz-art-box">🦁🌈⭐🎨</div>
+        <p class="fz-msg">I drew a rainbow lion for Whizzy Wiggles! I love the songs so much! 💖</p>
+        <div class="fz-likes">❤️ 48 Likes</div>
+      </div>
+      <div class="fz-card">
+        <div class="fz-card-header">
+          <div class="fz-avatar" style="background:linear-gradient(135deg,#38BDF8,#A855F7);">🦖</div>
+          <div>
+            <div class="fz-username">Rohan (Age 6)</div>
+            <div class="fz-date">July 2026</div>
+          </div>
+        </div>
+        <div class="fz-art-box">🚂🌟💫🎉</div>
+        <p class="fz-msg">I love the train videos! Whizzy Wiggles is the best channel ever! 🚂🌟</p>
+        <div class="fz-likes">❤️ 35 Likes</div>
+      </div>
+      <div class="fz-card">
+        <div class="fz-card-header">
+          <div class="fz-avatar" style="background:linear-gradient(135deg,#FF70B8,#FF4455);">🦄</div>
+          <div>
+            <div class="fz-username">For Example : Ananya (Age 5)</div>
+            <div class="fz-date">June 2026</div>
+          </div>
+        </div>
+        <div class="fz-art-box">🦄🌸🎀🌈</div>
+        <p class="fz-msg">My unicorn drawing! Please make more unicorn songs, Whizzy! 🦄💖</p>
+        <div class="fz-likes">❤️ 62 Likes</div>
+      </div>
+    </div>
+
+    <!-- Submit Form -->
+    <div class="fz-submit-box reveal">
+      <h3>📨 Share Your Friends-Art or Message!</h3>
+      <p>Send us your drawing, message, or feedback. We read every single one! 💌</p>
+      <div class="fz-form">
+        <input class="fz-input" id="fz-name" type="text" placeholder="Your name & age (e.g. Aarav, Age 5)" />
+        <textarea class="fz-input fz-textarea" id="fz-msg"
+          placeholder="Your message or feedback for Whizzy Wiggles..."></textarea>
+        <div>
+          <div style="font-weight:800;color:var(--dark);margin-bottom:8px;font-size:0.9rem;">Pick your Friend Art emoji:
+            🎨
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+            <div class="fz-emoji-pick" id="fzEmojiPick" style="flex:1;">
+              <button class="fz-ep-btn selected" data-em="🦁">🦁</button>
+              <button class="fz-ep-btn" data-em="🚂">🚂</button>
+              <button class="fz-ep-btn" data-em="🦕">🦕</button>
+              <button class="fz-ep-btn" data-em="🌈">🌈</button>
+              <button class="fz-ep-btn" data-em="⭐">⭐</button>
+              <button class="fz-ep-btn" data-em="🎨">🎨</button>
+              <button class="fz-ep-btn" data-em="🐘">🐘</button>
+              <button class="fz-ep-btn" data-em="🦄">🦄</button>
+            </div>
+            <div style="text-align: right;">
+              <input type="file" id="fz-photo-input" accept="image/*" style="display:none"
+                onchange="handleFriendPhoto(event)">
+              <button type="button" class="btn-fz-submit"
+                style="padding: 10px 15px; font-size: 1.2rem; background: var(--pink); box-shadow: 0 4px 0 #D81B60;"
+                onclick="triggerFriendPhoto()" title="Attach Photo/Drawing">📸</button>
+              <div id="fz-photo-name"
+                style="font-size: 0.75rem; color: var(--purple); font-weight: bold; margin-top: 5px;"></div>
+            </div>
+          </div>
+        </div>
+        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+          <button class="btn-fz-submit" id="fz-submit-btn" style="flex: 1;" onclick="submitFriendPost()">🌟 Share on Wall!</button>
+          <button class="btn-fz-submit" style="flex: 1; background: linear-gradient(135deg, #EA4335, #D32F2F); box-shadow: 0 4px 0 #B71C1C;" onclick="sendWithGmail()">📧 Send with Gmail!</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===== PARENT CORNER SECTION ===== -->
+  <section id="parents" aria-labelledby="parents-heading">
+    <div class="section-header">
+      <span class="section-eyebrow">For Moms & Dads</span>
+      <h2 class="section-title" id="parents-heading">👪 <em>Parent Corner</em> — You Matter Too!</h2>
+      <p class="section-subtitle">Everything parents need to know about Whizzy Wiggles — safe, educational, and made
+        with love! 💛</p>
+    </div>
+    <div class="parents-grid reveal">
+      <div class="parent-card">
+        <span class="parent-card-icon">🛡️</span>
+        <h3>100% Safe Content</h3>
+        <p>All Whizzy Wiggles content is carefully designed to be age-appropriate, ad-free in spirit, and free from any
+          harmful themes. Your child's safety is our top priority! ✅</p>
+      </div>
+      <div class="parent-card">
+        <span class="parent-card-icon">📚</span>
+        <h3>Educational Focus</h3>
+        <p>Every video, game, and activity on our website is designed to help children learn ABCs, 123s, colours,
+          shapes, animals, and life skills through play! 🌟</p>
+      </div>
+      <div class="parent-card">
+        <span class="parent-card-icon">👶</span>
+        <h3>Age Groups</h3>
+        <p>Our content is perfect for toddlers and children aged <strong>1–7 years</strong>. Rhymes for babies, games
+          for preschoolers, and stories for all ages! 🎂</p>
+      </div>
+      <div class="parent-card">
+        <span class="parent-card-icon">⏱️</span>
+        <h3>Screen Time Tips</h3>
+        <p>We recommend watching with your child! Use our games and printables as screen-free alternatives. Every
+          printable sheet is free and keeps little hands busy! 🖨️</p>
+      </div>
+      <div class="parent-card">
+        <span class="parent-card-icon">🎨</span>
+        <h3>Creative Learning</h3>
+        <p>Our coloring books, tracing sheets, and dot-to-dot activities encourage creativity, fine motor skills, and
+          focus. Print them anytime — totally free! ✏️</p>
+      </div>
+      <div class="parent-card">
+        <span class="parent-card-icon">🌐</span>
+        <h3>Available Everywhere</h3>
+        <p>Access Whizzy Wiggles on any device — phone, tablet, or computer. Our website works offline too! Bookmark it
+          for easy access at <strong>whizzywiggles.in</strong> 📱</p>
+      </div>
+    </div>
+    <div class="parent-contact-box">
+      <h3>💬 Get in Touch!</h3>
+      <p>Have questions, suggestions, or want to collaborate? We love hearing from families! Reach out to us on YouTube
+        or send us a message!</p>
+      <div class="parent-contact-links">
+        <a href="https://youtube.com/@whizzywigglesofficial" target="_blank" rel="noopener" class="parent-link-btn"
+          id="parent-youtube-btn">▶ YouTube Channel</a>
+        <a href="#fanzone" class="parent-link-btn" id="parent-community-btn">💌 Friends Zone</a>
+        <a href="#subscribe" class="parent-link-btn" id="parent-subscribe-btn">🔔 Subscribe Free</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SUBSCRIBE CTA -->
+  <section id="subscribe" aria-labelledby="subscribe-heading">
+    <div class="subscribe-inner">
+      <span class="confetti" aria-hidden="true">🌟</span>
+      <span class="confetti" aria-hidden="true">🎉</span>
+      <span class="confetti" aria-hidden="true">🌈</span>
+      <span class="confetti" aria-hidden="true">⭐</span>
+      <span class="confetti" aria-hidden="true">🎊</span>
+      <span class="subscribe-emoji" aria-hidden="true">🔔</span>
+      <h2 id="subscribe-heading">Join the Whizzy Wiggles Family!</h2>
+      <p>Subscribe now and don't miss a single week of fun, learning, and magical adventures! New videos posted
+        <strong>regularly</strong> 🪷
+      </p>
+      <div class="subscribe-buttons">
+        <a href="https://youtube.com/@whizzywigglesofficial" target="_blank" rel="noopener" class="btn-subscribe"
+          id="footer-subscribe-btn">▶ Subscribe Now — It's Free!</a>
+        <a href="https://youtube.com/@whizzywigglesofficial" target="_blank" rel="noopener" class="btn-watch"
+          id="footer-watch-btn">🎬 Visit Channel</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">Whizzy Wiggles 🌈</div>
+    <p class="footer-tagline">The happiest place for kids to learn, play, and imagine! ✨</p>
+    <div class="footer-emoji-row" aria-hidden="true">🎵 📖 🎮 🔤 🦄 🌈 ⭐</div>
+    <div class="footer-links">
+      <a href="https://youtube.com/@whizzywigglesofficial" target="_blank" rel="noopener"
+        id="footer-youtube-link">YouTube Channel</a>
+      <a href="#about" id="footer-about-link">About</a>
+      <a href="#playlists" id="footer-playlists-link">Playlists</a>
+      <a href="#games" id="footer-games-link">🎮 Games</a>
+
+      <a href="#videos" id="footer-videos-link">Videos</a>
+      <a href="#subscribe" id="footer-cta-link">Subscribe</a>
+    </div>
+    <div class="footer-divider" aria-hidden="true"></div>
+    <p class="footer-copy">Made with 💖 for kids everywhere &nbsp;|&nbsp; #colourfulworld #kids #animation #cartoons
+      #WhizzyWigglesOfficial</p>
+  </footer>
+
+  
+
+  <!-- Firebase Integration -->
+
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

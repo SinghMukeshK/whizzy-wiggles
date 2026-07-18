@@ -1,0 +1,9 @@
+# Node and environment
+node_modules/
+.DS_Store
+
+# Generated files
+*.log
+
+# VS Code
+.vscode/
