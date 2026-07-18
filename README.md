@@ -21,7 +21,15 @@ A static kids website built with a single `index.html`, external CSS, and JavaSc
 > Note: This workflow deploys the repository root directly, so no build step is required for this static site.
 
 ### Custom domain
-If you want to use `whizzywiggles.in`, the repo now includes a `CNAME` file. After the first successful Pages deployment, add a DNS `A` record for GitHub Pages or use the provider's domain settings to point your domain to the GitHub Pages site.
+If you want to use `whizzywiggles.in`, the repo now includes a `CNAME` file. After the first successful Pages deployment, add DNS records for GitHub Pages and then enable HTTPS in repository Settings > Pages.
+
+For an apex domain like `whizzywiggles.in`, use these GitHub Pages A records:
+- `185.199.108.153`
+- `185.199.109.153`
+- `185.199.110.153`
+- `185.199.111.153`
+
+After DNS is configured and the domain is verified, enable `Enforce HTTPS` in GitHub Pages settings. It may take a few minutes for SSL to provision.
 
 ### Netlify
 1. Log in to Netlify and create a new site from Git.
