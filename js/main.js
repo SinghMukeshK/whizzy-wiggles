@@ -508,11 +508,11 @@
       if (type === 'animals') {
         const baseUrl = window.location.href.replace(/\/[^/]*$/, '');
         const pages = [
-          { img: baseUrl + '/coloring-pages/safari.png', title: 'Safari Friends', desc: 'Lion \u2022 Giraffe \u2022 Elephant \u2022 Turtle' },
-          { img: baseUrl + '/coloring-pages/zoo.png', title: 'At the Zoo!', desc: 'Giraffe \u2022 Elephant \u2022 Lion \u2022 Zebra' },
-          { img: baseUrl + '/coloring-pages/farm.png', title: 'Fun on the Farm', desc: 'Cow \u2022 Horse \u2022 Sheep \u2022 Pig \u2022 Chicken' },
-          { img: baseUrl + '/coloring-pages/cute-chars.png', title: 'Cute Characters!', desc: 'Bear \u2022 Penguin \u2022 Bunny \u2022 Cat \u2022 Elephant \u2022 and more!' },
-          { img: baseUrl + '/coloring-pages/space.png', title: 'Space Adventure!', desc: 'Rocket \u2022 Dinosaur \u2022 Race Car \u2022 Stars' }
+          { img: baseUrl + '/images/safari.png', title: 'Safari Friends', desc: 'Lion \u2022 Giraffe \u2022 Elephant \u2022 Turtle' },
+          { img: baseUrl + '/images/zoo.png', title: 'At the Zoo!', desc: 'Giraffe \u2022 Elephant \u2022 Lion \u2022 Zebra' },
+          { img: baseUrl + '/images/farm.png', title: 'Fun on the Farm', desc: 'Cow \u2022 Horse \u2022 Sheep \u2022 Pig \u2022 Chicken' },
+          { img: baseUrl + '/images/cute-chars.png', title: 'Cute Characters!', desc: 'Bear \u2022 Penguin \u2022 Bunny \u2022 Cat \u2022 Elephant \u2022 and more!' },
+          { img: baseUrl + '/images/space.png', title: 'Space Adventure!', desc: 'Rocket \u2022 Dinosaur \u2022 Race Car \u2022 Stars' }
         ];
         const win = window.open('', '_blank');
         win.document.write(`<!DOCTYPE html><html><head><title>Animal Coloring Book &ndash; Whizzy Wiggles</title>
@@ -701,7 +701,7 @@
           '</div>' +
           '<div class="board-page">' +
           '<div class="board-header"><span class="board-title">&#x1F3B2; Ludo Board &mdash; Whizzy Wiggles Edition</span><span style="font-size:0.8rem;color:#aaa;">whizzywiggles.in</span></div>' +
-          '<img class="board-img" src="' + baseUrl + '/coloring-pages/ww-ludo.png" alt="Whizzy Wiggles Ludo Board" />' +
+          '<img class="board-img" src="' + baseUrl + '/images/ludo.png" alt="Whizzy Wiggles Ludo Board" />' +
           '<div class="board-footer">&#x1F308; Whizzy Wiggles Official &mdash; Free Printable &mdash; whizzywiggles.in</div>' +
           '</div>' +
           '<div class="board-page" style="page-break-before:always;">' +
@@ -785,7 +785,7 @@
           '</div>' +
           '<div class="board-page">' +
           '<div class="board-header"><span class="board-title">&#x1F40D; Snakes &amp; Ladders &mdash; Whizzy Wiggles Edition</span><span style="font-size:0.8rem;color:#aaa;">whizzywiggles.in</span></div>' +
-          '<img class="board-img" src="' + baseUrl + '/coloring-pages/ww-snakes-ladders.png" alt="Whizzy Wiggles Snakes and Ladders Board" />' +
+          '<img class="board-img" src="' + baseUrl + '/images/snakes.png" alt="Whizzy Wiggles Snakes and Ladders Board" />' +
           '<div class="board-footer">&#x1F308; Whizzy Wiggles Official &mdash; Free Printable &mdash; whizzywiggles.in</div>' +
           '</div>' +
           '<div class="board-page" style="page-break-before:always;">' +
@@ -2432,11 +2432,11 @@
     function openVehiclesColoringBook() {
       const base = window.location.href.replace(/[^\/]*$/, '');
       const imgs = {
-        car: base + 'coloring-pages/vehicle-car.png',
-        motorcycle: base + 'coloring-pages/vehicle-motorcycle.png',
-        train: base + 'coloring-pages/vehicle-train.png',
-        bus: base + 'coloring-pages/vehicle-bus.png',
-        airplane: base + 'coloring-pages/vehicle-airplane.png'
+        car: base + 'images/vehicle-car.png',
+        motorcycle: base + 'images/vehicle-motorcycle.png',
+        train: base + 'images/vehicle-train.png',
+        bus: base + 'images/vehicle-bus.png',
+        airplane: base + 'images/vehicle-airplane.png'
       };
       const win = window.open('', '_blank');
       if (!win) return;
