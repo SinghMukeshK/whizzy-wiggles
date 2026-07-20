@@ -661,7 +661,7 @@
           '<style>' +
           '* { box-sizing: border-box; margin: 0; padding: 0; }' +
           'body { font-family: Arial, sans-serif; background: #fff; color: #1A0A3C; }' +
-          '.cover { min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; background:linear-gradient(135deg,#F3E8FF,#EEF4FF,#FFF9E6); padding:40px 20px; page-break-after:always; }' +
+          '.cover { display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; background:linear-gradient(135deg,#F3E8FF,#EEF4FF,#FFF9E6); padding:40px 20px; page-break-after:always; }' +
           '.cover-title { font-size:2.6rem; font-weight:900; color:#A855F7; margin-bottom:8px; }' +
           '.cover-sub { font-size:1.1rem; color:#888; margin-bottom:6px; }' +
           '.ww-badge { display:inline-block; background:linear-gradient(135deg,#A855F7,#38BDF8); color:white; padding:7px 20px; border-radius:50px; font-size:0.9rem; font-weight:bold; margin:12px 0; }' +
@@ -670,7 +670,7 @@
           '.rules-box li { color:#555; font-size:0.88rem; margin-bottom:6px; padding-left:4px; }' +
           '.name-box { display:flex; align-items:center; gap:10px; margin-top:14px; font-size:0.95rem; color:#888; width:320px; }' +
           '.name-line { flex:1; height:2px; background:#ddd; border-radius:99px; }' +
-          '.board-page { min-height:100vh; display:flex; flex-direction:column; align-items:center; padding:24px; background:#fff; }' +
+          '.board-page { display:flex; flex-direction:column; align-items:center; padding:24px; background:#fff; }' +
           '.board-header { width:100%; display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; padding-bottom:10px; border-bottom:3px solid rgba(168,85,247,0.25); }' +
           '.board-title { font-size:1.4rem; font-weight:900; color:#A855F7; }' +
           '.board-img { width:100%; max-width:680px; height:auto; border:3px solid rgba(168,85,247,0.2); border-radius:16px; display:block; margin:0 auto; }' +
@@ -704,29 +704,6 @@
           '<img class="board-img" src="' + baseUrl + '/images/ludo.png" alt="Whizzy Wiggles Ludo Board" />' +
           '<div class="board-footer">&#x1F308; Whizzy Wiggles Official &mdash; Free Printable &mdash; whizzywiggles.in</div>' +
           '</div>' +
-          '<div class="board-page" style="page-break-before:always;">' +
-          '<div class="board-header"><span class="board-title">&#x1F3AE; Tokens &amp; Dice Tracker</span></div>' +
-          '<div class="tokens-section">' +
-          '<p style="color:#888;font-size:0.9rem;margin-bottom:12px;">Cut out these token circles! Use coins or draw your own on paper.</p>' +
-          '<div class="tokens-grid">' +
-          '<div class="token" style="background:rgba(255,100,100,0.15);border-color:#FF6464;">&#x1F534;</div>' +
-          '<div class="token" style="background:rgba(100,100,255,0.15);border-color:#6464FF;">&#x1F535;</div>' +
-          '<div class="token" style="background:rgba(100,200,100,0.15);border-color:#64C864;">&#x1F7E2;</div>' +
-          '<div class="token" style="background:rgba(255,200,50,0.15);border-color:#FFC832;">&#x1F7E1;</div>' +
-          '<div class="token" style="background:rgba(255,100,100,0.15);border-color:#FF6464;">&#x1F534;</div>' +
-          '<div class="token" style="background:rgba(100,100,255,0.15);border-color:#6464FF;">&#x1F535;</div>' +
-          '<div class="token" style="background:rgba(100,200,100,0.15);border-color:#64C864;">&#x1F7E2;</div>' +
-          '<div class="token" style="background:rgba(255,200,50,0.15);border-color:#FFC832;">&#x1F7E1;</div>' +
-          '<div class="token" style="background:rgba(255,100,100,0.15);border-color:#FF6464;">&#x1F534;</div>' +
-          '<div class="token" style="background:rgba(100,100,255,0.15);border-color:#6464FF;">&#x1F535;</div>' +
-          '<div class="token" style="background:rgba(100,200,100,0.15);border-color:#64C864;">&#x1F7E2;</div>' +
-          '<div class="token" style="background:rgba(255,200,50,0.15);border-color:#FFC832;">&#x1F7E1;</div>' +
-          '<div class="token" style="background:rgba(255,100,100,0.15);border-color:#FF6464;">&#x1F534;</div>' +
-          '<div class="token" style="background:rgba(100,100,255,0.15);border-color:#6464FF;">&#x1F535;</div>' +
-          '<div class="token" style="background:rgba(100,200,100,0.15);border-color:#64C864;">&#x1F7E2;</div>' +
-          '<div class="token" style="background:rgba(255,200,50,0.15);border-color:#FFC832;">&#x1F7E1;</div>' +
-          '</div></div>' +
-          '<div class="board-footer" style="margin-top:40px;">&#x1F308; Whizzy Wiggles Official &mdash; whizzywiggles.in</div>' +
           '</div>' +
           '<div class="toolbar"><button class="btn-print" onclick="window.print()">&#x1F5A8;&#xFE0F; Print Now!</button></div>' +
           '</body></html>'
@@ -743,7 +720,7 @@
           '<style>' +
           '* { box-sizing: border-box; margin: 0; padding: 0; }' +
           'body { font-family: Arial, sans-serif; background: #fff; color: #1A0A3C; }' +
-          '.cover { min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; background:linear-gradient(135deg,#FFF9E6,#F0FFF4,#EEF4FF); padding:40px 20px; page-break-after:always; }' +
+          '.cover { display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; background:linear-gradient(135deg,#FFF9E6,#F0FFF4,#EEF4FF); padding:40px 20px; page-break-after:always; }' +
           '.cover-title { font-size:2.6rem; font-weight:900; color:#22C55E; margin-bottom:8px; }' +
           '.cover-sub { font-size:1.1rem; color:#888; margin-bottom:6px; }' +
           '.ww-badge { display:inline-block; background:linear-gradient(135deg,#FF70B8,#A855F7); color:white; padding:7px 20px; border-radius:50px; font-size:0.9rem; font-weight:bold; margin:12px 0; }' +
@@ -785,35 +762,8 @@
           '</div>' +
           '<div class="board-page">' +
           '<div class="board-header"><span class="board-title">&#x1F40D; Snakes &amp; Ladders &mdash; Whizzy Wiggles Edition</span><span style="font-size:0.8rem;color:#aaa;">whizzywiggles.in</span></div>' +
-          '<img class="board-img" src="' + baseUrl + '/images/snakes.png" alt="Whizzy Wiggles Snakes and Ladders Board" />' +
+          '<img class="board-img" src="' + baseUrl + '/images/snakes.jpg" alt="Whizzy Wiggles Snakes and Ladders Board" />' +
           '<div class="board-footer">&#x1F308; Whizzy Wiggles Official &mdash; Free Printable &mdash; whizzywiggles.in</div>' +
-          '</div>' +
-          '<div class="board-page" style="page-break-before:always;">' +
-          '<div class="board-header"><span class="board-title">&#x1F4CB; Quick Reference &amp; Score Card</span></div>' +
-          '<div class="ref-grid">' +
-          '<div class="ref-box"><h4>&#x1FAA4; Ladders (Climb Up!)</h4><ul>' +
-          '<li>Square 4 &#x2192; 14 &#x1FAA4;</li><li>Square 9 &#x2192; 31 &#x1FAA4;</li>' +
-          '<li>Square 20 &#x2192; 38 &#x1FAA4;</li><li>Square 28 &#x2192; 84 &#x1FAA4;</li>' +
-          '<li>Square 40 &#x2192; 59 &#x1FAA4;</li><li>Square 51 &#x2192; 67 &#x1FAA4;</li>' +
-          '<li>Square 63 &#x2192; 81 &#x1FAA4;</li><li>Square 71 &#x2192; 91 &#x1FAA4;</li>' +
-          '</ul></div>' +
-          '<div class="ref-box"><h4>&#x1F40D; Snakes (Slide Down!)</h4><ul>' +
-          '<li>Square 17 &#x2192; 7 &#x1F40D;</li><li>Square 54 &#x2192; 34 &#x1F40D;</li>' +
-          '<li>Square 62 &#x2192; 19 &#x1F40D;</li><li>Square 64 &#x2192; 60 &#x1F40D;</li>' +
-          '<li>Square 87 &#x2192; 24 &#x1F40D;</li><li>Square 93 &#x2192; 73 &#x1F40D;</li>' +
-          '<li>Square 95 &#x2192; 75 &#x1F40D;</li><li>Square 99 &#x2192; 78 &#x1F40D;</li>' +
-          '</ul></div>' +
-          '</div>' +
-          '<div style="max-width:680px;margin:20px auto;background:#F0FFF4;border:2px solid rgba(34,197,94,0.2);border-radius:14px;padding:16px;">' +
-          '<h4 style="color:#22C55E;margin-bottom:10px;">&#x1F3C6; Score Card</h4>' +
-          '<table style="width:100%;border-collapse:collapse;font-size:0.85rem;">' +
-          '<tr style="background:rgba(34,197,94,0.1);"><th style="padding:8px;border:1px solid rgba(34,197,94,0.2);">Player</th><th style="padding:8px;border:1px solid rgba(34,197,94,0.2);">Colour</th><th style="padding:8px;border:1px solid rgba(34,197,94,0.2);">Round 1</th><th style="padding:8px;border:1px solid rgba(34,197,94,0.2);">Round 2</th><th style="padding:8px;border:1px solid rgba(34,197,94,0.2);">Winner?</th></tr>' +
-          '<tr><td style="padding:8px;border:1px solid #eee;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td style="padding:8px;border:1px solid #eee;"></td><td style="padding:8px;border:1px solid #eee;"></td><td style="padding:8px;border:1px solid #eee;"></td><td style="padding:8px;border:1px solid #eee;"></td></tr>' +
-          '<tr><td style="padding:8px;border:1px solid #eee;">&nbsp;</td><td style="padding:8px;border:1px solid #eee;"></td><td style="padding:8px;border:1px solid #eee;"></td><td style="padding:8px;border:1px solid #eee;"></td><td style="padding:8px;border:1px solid #eee;"></td></tr>' +
-          '<tr><td style="padding:8px;border:1px solid #eee;">&nbsp;</td><td style="padding:8px;border:1px solid #eee;"></td><td style="padding:8px;border:1px solid #eee;"></td><td style="padding:8px;border:1px solid #eee;"></td><td style="padding:8px;border:1px solid #eee;"></td></tr>' +
-          '<tr><td style="padding:8px;border:1px solid #eee;">&nbsp;</td><td style="padding:8px;border:1px solid #eee;"></td><td style="padding:8px;border:1px solid #eee;"></td><td style="padding:8px;border:1px solid #eee;"></td><td style="padding:8px;border:1px solid #eee;"></td></tr>' +
-          '</table></div>' +
-          '<div class="board-footer" style="margin-top:40px;">&#x1F308; Whizzy Wiggles Official &mdash; whizzywiggles.in</div>' +
           '</div>' +
           '<div class="toolbar"><button class="btn-print" onclick="window.print()">&#x1F5A8;&#xFE0F; Print Now!</button></div>' +
           '</body></html>'
