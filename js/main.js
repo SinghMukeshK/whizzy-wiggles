@@ -2317,11 +2317,7 @@
     }
 
 
-    // ===== MOBILE MENU UPDATES =====
-    document.getElementById('mobileMenu').innerHTML += `
-      <a href="#soundboard" onclick="toggleMobileMenu()">🔊 Soundboard</a>
-      <a href="#fanzone" onclick="toggleMobileMenu()">🌟 Friends Zone</a>
-    `;
+
 
     // ===== PROGRESS TRACKER INIT =====
     (function initProgressTracker() {
