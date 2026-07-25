@@ -1,0 +1,6 @@
+# robots.txt for https://www.whizzywiggles.in/
+User-agent: *
+Allow: /
+
+# Sitemap URL
+Sitemap: https://www.whizzywiggles.in/sitemap.xml

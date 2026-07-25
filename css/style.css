@@ -3455,3 +3455,42 @@
         font-size: 3rem;
       }
     }
+
+    /* ===== GOOGLE ADSENSE PLACEMENT STYLES ===== */
+    .ad-container {
+      max-width: 1200px;
+      margin: 30px auto;
+      padding: 12px;
+      background: var(--card-bg);
+      border: 2px dashed rgba(168, 85, 247, 0.3);
+      border-radius: var(--radius);
+      text-align: center;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    body.night-mode .ad-container {
+      background: rgba(30, 27, 75, 0.6);
+      border-color: rgba(168, 85, 247, 0.4);
+    }
+
+    .ad-disclaimer {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: rgba(168, 85, 247, 0.6);
+      margin-bottom: 6px;
+      display: block;
+    }
+
+    .ad-slot-wrapper {
+      min-height: 90px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+    }
+
