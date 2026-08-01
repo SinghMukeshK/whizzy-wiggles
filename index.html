@@ -118,25 +118,25 @@
     <h1>🌈 Welcome to Whizzy Wiggles!</h1>
     <p>Choose your Whizzy Guide to explore the site with you! 🎉</p>
     <div class="av-grid">
-      <div class="av-card" onclick="selectAvatar('🧸','Teddy Bear')">
+      <div class="av-card" onclick="selectAvatar('🧸','Whizzy Teddy Bear')">
         <span class="av-emoji">🧸</span>
-        <span class="av-name">Teddy Bear</span>
+        <span class="av-name">Whizzy Teddy Bear</span>
       </div>
-      <div class="av-card" onclick="selectAvatar('🦖','Dino')">
+      <div class="av-card" onclick="selectAvatar('🦖','Whizzy Dino Roar')">
         <span class="av-emoji">🦖</span>
-        <span class="av-name">Dino Roar</span>
+        <span class="av-name">Whizzy Dino Roar</span>
       </div>
-      <div class="av-card" onclick="selectAvatar('🦄','Unicorn')">
+      <div class="av-card" onclick="selectAvatar('🦄','Whizzy Unicorn')">
         <span class="av-emoji">🦄</span>
-        <span class="av-name">Unicorn</span>
+        <span class="av-name">Whizzy Unicorn</span>
       </div>
-      <div class="av-card" onclick="selectAvatar('🐼','Panda')">
+      <div class="av-card" onclick="selectAvatar('🐼','Whizzy Panda Pal')">
         <span class="av-emoji">🐼</span>
-        <span class="av-name">Panda Pal</span>
+        <span class="av-name">Whizzy Panda Pal</span>
       </div>
-      <div class="av-card" onclick="selectAvatar('⭐','Star')">
+      <div class="av-card" onclick="selectAvatar('⭐','Whizzy Shooting Star')">
         <span class="av-emoji">⭐</span>
-        <span class="av-name">Shooting Star</span>
+        <span class="av-name">Whizzy Shooting Star</span>
       </div>
     </div>
   </div>
@@ -192,7 +192,7 @@
       <li><a href="#emoji-maker">😃 Emoji Maker</a></li>
       <li><a href="#secret-decoder">🕵️ Decoder</a></li>
       <li><a href="#origami-crafts">🦢 Origami</a></li>
-      <li><a href="#whizzy-teddy">🧸 Whizzy Bear</a></li>
+      <li><a href="#whizzy-teddy">🧸 Whizzy Characters</a></li>
       <li><a href="#soundboard">🔊 Soundboard</a></li>
       <li><a href="#fanzone">🌟 Friends Zone</a></li>
       <li><a href="#parents">👪 Parents</a></li>
@@ -219,7 +219,7 @@
     <a href="#emoji-maker" onclick="toggleMobileMenu()">😃 Emoji Maker</a>
     <a href="#secret-decoder" onclick="toggleMobileMenu()">🕵️ Secret Decoder</a>
     <a href="#origami-crafts" onclick="toggleMobileMenu()">🦢 Origami Crafts</a>
-    <a href="#whizzy-teddy" onclick="toggleMobileMenu()">🧸 Whizzy Bear</a>
+    <a href="#whizzy-teddy" onclick="toggleMobileMenu()">🧸 Whizzy Characters</a>
     <a href="#soundboard" onclick="toggleMobileMenu()">🔊 Soundboard</a>
     <a href="#fanzone" onclick="toggleMobileMenu()">🌟 Friends Zone</a>
     <a href="#parents" onclick="toggleMobileMenu()">👪 Parent Corner</a>
@@ -272,7 +272,7 @@
         </div>
         <div class="hero-img-badge badge-subs">
           <span class="badge-icon" aria-hidden="true">👥</span>
-          <div><strong>28</strong><br><span style="font-size:0.75rem;font-weight:700;color:#888;">Subscribers</span>
+          <div><strong>31</strong><br><span style="font-size:0.75rem;font-weight:700;color:#888;">Subscribers</span>
           </div>
         </div>
         <div class="hero-img-badge badge-vids">
@@ -354,9 +354,8 @@
       </div>
       <div class="about-card">
         <span class="about-icon" aria-hidden="true">🧸</span>
-        <h3>Whizzy Bear Teddy</h3>
-        <p>Meet Whizzy Bear Teddy, our cuddly and smartest friend! Always ready for fun games, learning, and magical
-          hugs!</p>
+        <h3>Whizzy Characters</h3>
+        <p>Meet Whizzy Teddy Bear, Whizzy Dino Roar, Whizzy Unicorn, Whizzy Panda Pal, and Whizzy Shooting Star! Our 5 friendly Whizzy Guides!</p>
       </div>
     </div>
   </section>
@@ -1406,24 +1405,30 @@
     </div>
   </section>
 
-  <!-- ===== WHIZZY TEDDY SECTION ===== -->
+  <!-- ===== WHIZZY CHARACTERS SECTION ===== -->
   <section id="whizzy-teddy" aria-labelledby="teddy-heading">
     <div class="section-header">
-      <span class="section-eyebrow">Meet Our Mascot</span>
-      <h2 class="section-title" id="teddy-heading">🧸 Meet <em>Whizzy Bear Teddy</em>!</h2>
-      <p class="section-subtitle">Our fluffy, magical, rainbow-loving bear friend who goes on adventures with every
-        episode! 💛🌈</p>
+      <span class="section-eyebrow">Meet Our Whizzy Guides</span>
+      <h2 class="section-title" id="teddy-heading">🧸 Meet Our <em>Whizzy Characters</em>!</h2>
+      <p class="section-subtitle">Meet the 5 magical friends who guide you on adventures across Whizzy Wiggles! Pick any character below to explore their profile! 🌈✨</p>
     </div>
-    <div class="teddy-container reveal">
+
+    <!-- Character Selector Tabs -->
+    <div class="char-tabs">
+      <button class="char-tab active" id="char-tab-teddy" onclick="switchWhizzyChar('teddy')">🧸 Whizzy Teddy Bear</button>
+      <button class="char-tab" id="char-tab-dino" onclick="switchWhizzyChar('dino')">🦖 Whizzy Dino Roar</button>
+      <button class="char-tab" id="char-tab-unicorn" onclick="switchWhizzyChar('unicorn')">🦄 Whizzy Unicorn</button>
+      <button class="char-tab" id="char-tab-panda" onclick="switchWhizzyChar('panda')">🐼 Whizzy Panda Pal</button>
+      <button class="char-tab" id="char-tab-star" onclick="switchWhizzyChar('star')">⭐ Whizzy Shooting Star</button>
+    </div>
+
+    <div class="teddy-container reveal" id="whizzyCharDisplay">
       <div class="teddy-hero">
         <div class="teddy-emoji-big">🧸</div>
         <div class="teddy-intro">
-          <h2>Hello, I'm Whizzy!</h2>
-          <p>I'm Whizzy Bear Teddy — the silliest, fluffiest, most curious bear you'll ever meet! I love rainbows 🌈,
-            learning new things 📚, making friends 🤝, and going on adventures every single week on the Whizzy Wiggles
-            channel!</p>
-          <p>I believe every child is SUPER SPECIAL ✨ and that learning is the best adventure of all! Come join me —
-            let's explore, play, and grow together!</p>
+          <h2>Hello, I'm Whizzy Teddy Bear!</h2>
+          <p>I'm Whizzy Teddy Bear — the silliest, fluffiest, most curious bear you'll ever meet! I love rainbows 🌈, learning new things 📚, making friends 🤝, and going on adventures every single week on the Whizzy Wiggles channel!</p>
+          <p>I believe every child is SUPER SPECIAL ✨ and that learning is the best adventure of all! Come join me — let's explore, play, and grow together!</p>
           <div>
             <span class="teddy-badge">🌈 Rainbow Lover</span>
             <span class="teddy-badge">📚 Lifelong Learner</span>
@@ -1437,7 +1442,7 @@
         <div class="teddy-card">
           <span class="teddy-card-emoji">🎂</span>
           <h4>Birthday</h4>
-          <p>Born on a rainbow day! Whizzy celebrates with all his friends every year! 🎉</p>
+          <p>Born on a rainbow day! Whizzy Teddy Bear celebrates with all his friends every year! 🎉</p>
         </div>
         <div class="teddy-card">
           <span class="teddy-card-emoji">🍯</span>
@@ -1447,7 +1452,7 @@
         <div class="teddy-card">
           <span class="teddy-card-emoji">🌈</span>
           <h4>Favourite Colour</h4>
-          <p>ALL OF THEM! Whizzy can't choose — every colour makes the world more beautiful! 🎨</p>
+          <p>ALL OF THEM! Whizzy Teddy Bear can't choose — every colour makes the world more beautiful! 🎨</p>
         </div>
         <div class="teddy-card">
           <span class="teddy-card-emoji">🎮</span>
@@ -1457,12 +1462,12 @@
         <div class="teddy-card">
           <span class="teddy-card-emoji">🏆</span>
           <h4>Superpower</h4>
-          <p>Whizzy can make anyone smile! One hug from Whizzy and all sadness disappears! 💛</p>
+          <p>Whizzy Teddy Bear can make anyone smile! One hug from Whizzy Teddy Bear and all sadness disappears! 💛</p>
         </div>
         <div class="teddy-card">
           <span class="teddy-card-emoji">💌</span>
           <h4>Message to Kids</h4>
-          <p>"You are amazing, wonderful, and capable of anything! Keep learning & smiling!" 🌟</p>
+          <p>"Whizzy Teddy Bear says: You are amazing, wonderful, and capable of anything! Keep learning & smiling!" 🌟</p>
         </div>
       </div>
     </div>

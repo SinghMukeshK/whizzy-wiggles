@@ -3224,6 +3224,38 @@
       background: rgba(168, 85, 247, 0.08);
     }
 
+    /* ===== WHIZZY CHARACTERS TABS ===== */
+    .char-tabs {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 32px;
+    }
+    .char-tab {
+      padding: 12px 24px;
+      border-radius: 50px;
+      border: 2px solid #FF4455;
+      background: white;
+      color: #333;
+      font-family: 'Fredoka One', cursive, sans-serif;
+      font-size: 1.05rem;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.06);
+    }
+    .char-tab:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(255,68,85,0.25);
+      background: #FFF5F5;
+    }
+    .char-tab.active {
+      background: linear-gradient(135deg, #FF4455, #FF8C00);
+      color: white;
+      border-color: transparent;
+      box-shadow: 0 8px 24px rgba(255,68,85,0.4);
+    }
+
     /* ===== WHIZZY TEDDY SECTION ===== */
     #whizzy-teddy {
       padding: 100px 40px;

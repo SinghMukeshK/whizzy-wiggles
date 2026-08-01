@@ -1691,6 +1691,122 @@
       }
     });
 
+    // ===== WHIZZY CHARACTERS SWITCHER =====
+    const WHIZZY_CHARACTERS_DATA = {
+      teddy: {
+        emoji: '🧸',
+        name: 'Whizzy Teddy Bear',
+        bio: `<p>I'm Whizzy Teddy Bear — the silliest, fluffiest, most curious bear you'll ever meet! I love rainbows 🌈, learning new things 📚, making friends 🤝, and going on adventures every single week on the Whizzy Wiggles channel!</p>
+              <p>I believe every child is SUPER SPECIAL ✨ and that learning is the best adventure of all! Come join me — let's explore, play, and grow together!</p>`,
+        badges: ['🌈 Rainbow Lover', '📚 Lifelong Learner', '🎵 Music Fan', '🚀 Adventurer', '💛 Friend to All'],
+        facts: [
+          { emoji: '🎂', title: 'Birthday', text: 'Born on a rainbow day! Whizzy Teddy Bear celebrates with all his friends every year! 🎉' },
+          { emoji: '🍯', title: 'Favourite Food', text: 'Honey on toast 🍞 and rainbow lollipops! Don\'t tell mama! 🤫' },
+          { emoji: '🌈', title: 'Favourite Colour', text: 'ALL OF THEM! Whizzy Teddy Bear can\'t choose — every colour makes the world more beautiful! 🎨' },
+          { emoji: '🎮', title: 'Hobby', text: 'Playing games with friends, reading storybooks, and making up silly songs! 🎵' },
+          { emoji: '🏆', title: 'Superpower', text: 'Whizzy Teddy Bear can make anyone smile! One hug from Whizzy Teddy Bear and all sadness disappears! 💛' },
+          { emoji: '💌', title: 'Message to Kids', text: '"Whizzy Teddy Bear says: You are amazing, wonderful, and capable of anything! Keep learning & smiling!" 🌟' }
+        ]
+      },
+      dino: {
+        emoji: '🦖',
+        name: 'Whizzy Dino Roar',
+        bio: `<p>I'm Whizzy Dino Roar — the friendly, energetic dinosaur who loves big adventures, stomping beats, and loud happy roars! 🌿</p>
+              <p>I explore prehistoric jungle trails, discover new colors and shapes, and teach little ones to be brave, curious, and kind-hearted!</p>`,
+        badges: ['🌿 Leaf Cruncher', '🦕 Prehistoric Pal', '⚡ Super Fast', '🎉 Party Dino', '💚 Big Hearted'],
+        facts: [
+          { emoji: '🎂', title: 'Birthday', text: 'Dino Discovery Day! Whizzy Dino Roar throws the biggest jungle fiesta every year! 🌴' },
+          { emoji: '🍉', title: 'Favourite Food', text: 'Juicy green apples 🍏 and giant watermelon slices! 🍉' },
+          { emoji: '🟩', title: 'Favourite Colour', text: 'Emerald Green & Jungle Yellow! 🌿' },
+          { emoji: '🎮', title: 'Hobby', text: 'Playing hide and seek in the prehistoric forest and dancing to fun drum beats! 🥁' },
+          { emoji: '🏆', title: 'Superpower', text: 'Whizzy Dino Roar has a Mighty Happy Roar that fills everyone with extra courage! ⚡' },
+          { emoji: '💌', title: 'Message to Kids', text: '"Whizzy Dino Roar says: Be bold, be brave, and roar with joy every single day!" 🦖✨' }
+        ]
+      },
+      unicorn: {
+        emoji: '🦄',
+        name: 'Whizzy Unicorn',
+        bio: `<p>I'm Whizzy Unicorn — the sparkly, magical friend who brings stardust, sweet dreams, and rainbow colors wherever I trot! 💖</p>
+              <p>I love singing happy tunes, painting sky art, and reminding every little friend that magic happens when you believe in yourself!</p>`,
+        badges: ['✨ Stardust Sprinkles', '🌈 Cloud Jumper', '🎨 Creative Genius', '🌸 Sweet Heart', '💖 Magic Spreader'],
+        facts: [
+          { emoji: '🎂', title: 'Birthday', text: 'Starry Magic Night! Whizzy Unicorn dances under glowing shooting stars! ✨' },
+          { emoji: '🍦', title: 'Favourite Food', text: 'Fluffy cotton candy clouds ☁️ and fresh strawberry smoothies! 🍓' },
+          { emoji: '💖', title: 'Favourite Colour', text: 'Pastel Pink, Purple & Golden Sparkle! 🎨' },
+          { emoji: '🎮', title: 'Hobby', text: 'Drawing colorful artwork, painting sky rainbows, and singing sweet lullabies! 🎵' },
+          { emoji: '🏆', title: 'Superpower', text: 'Whizzy Unicorn can turn any gloomy day into a sparkling rainbow celebration! 🌈' },
+          { emoji: '💌', title: 'Message to Kids', text: '"Whizzy Unicorn says: Never stop dreaming and spreading magic wherever you go!" 💫' }
+        ]
+      },
+      panda: {
+        emoji: '🐼',
+        name: 'Whizzy Panda Pal',
+        bio: `<p>I'm Whizzy Panda Pal — the calm, wise, and super cuddly panda who loves solving puzzles and sharing warm hugs! 🎋</p>
+              <p>Whether we are learning numbers, exploring mazes, or taking gentle quiet breaks, I\'m always here as your loyal companion!</p>`,
+        badges: ['🎋 Bamboo Master', '🧠 Puzzle Solver', '🧘 Calm Leader', '🐼 Hug Expert', '⭐ Kind Spirit'],
+        facts: [
+          { emoji: '🎂', title: 'Birthday', text: 'Bamboo Grove Celebration! Whizzy Panda Pal shares delicious baked treats with friends! 🎋' },
+          { emoji: '🥟', title: 'Favourite Food', text: 'Crisp bamboo shoots 🎋 and warm sweet dumplings! 🥟' },
+          { emoji: '🖤', title: 'Favourite Colour', text: 'Classic Black, Crisp White & Fresh Mint Green! 🍃' },
+          { emoji: '🎮', title: 'Hobby', text: 'Solving brainy maze puzzles, reading storybooks, and stargazing! 📖' },
+          { emoji: '🏆', title: 'Superpower', text: 'Whizzy Panda Pal has Super Patience & Kindness that solves any puzzle or problem! 🧠' },
+          { emoji: '💌', title: 'Message to Kids', text: '"Whizzy Panda Pal says: Take a deep breath, be patient, and always be kind to others!" 🐼💛' }
+        ]
+      },
+      star: {
+        emoji: '⭐',
+        name: 'Whizzy Shooting Star',
+        bio: `<p>I'm Whizzy Shooting Star — the fast, bright, and cheerful star who zooms across space to light up your imagination! 🚀</p>
+              <p>I love floating through space loops, discovering shiny constellations, and granting happy wishes to every curious learner!</p>`,
+        badges: ['🚀 Cosmic Flyer', '✨ Wish Granter', '💡 Bright Idea', '🌟 Night Light', '🎶 Joyful Spark'],
+        facts: [
+          { emoji: '🎂', title: 'Birthday', text: 'Cosmic Galactic Night! Whizzy Shooting Star lights up the galaxy! 🌌' },
+          { emoji: '🍍', title: 'Favourite Food', text: 'Tropical starfruit ⭐️ and sparkling mango ice pops! 🥭' },
+          { emoji: '💛', title: 'Favourite Colour', text: 'Golden Sunshine & Cosmic Neon Blue! ⚡' },
+          { emoji: '🎮', title: 'Hobby', text: 'Zooming through space loops, collecting glowing stardust, and making wishes! 💫' },
+          { emoji: '🏆', title: 'Superpower', text: 'Whizzy Shooting Star brings instant bright ideas and creative inspiration to all! 💡' },
+          { emoji: '💌', title: 'Message to Kids', text: '"Whizzy Shooting Star says: Shine bright like a star — your light makes the whole world glow!" ⭐✨' }
+        ]
+      }
+    };
+
+    function switchWhizzyChar(charKey) {
+      const data = WHIZZY_CHARACTERS_DATA[charKey];
+      if (!data) return;
+
+      document.querySelectorAll('.char-tab').forEach(tab => tab.classList.remove('active'));
+      const activeTab = document.getElementById(`char-tab-${charKey}`);
+      if (activeTab) activeTab.classList.add('active');
+
+      const display = document.getElementById('whizzyCharDisplay');
+      if (!display) return;
+
+      const badgesHtml = data.badges.map(b => `<span class="teddy-badge">${b}</span>`).join('\n');
+      const factsHtml = data.facts.map(f => `
+        <div class="teddy-card">
+          <span class="teddy-card-emoji">${f.emoji}</span>
+          <h4>${f.title}</h4>
+          <p>${f.text}</p>
+        </div>`).join('\n');
+
+      display.innerHTML = `
+        <div class="teddy-hero">
+          <div class="teddy-emoji-big">${data.emoji}</div>
+          <div class="teddy-intro">
+            <h2>Hello, I'm ${data.name}!</h2>
+            ${data.bio}
+            <div>
+              ${badgesHtml}
+            </div>
+          </div>
+        </div>
+        <div class="teddy-facts">
+          ${factsHtml}
+        </div>
+      `;
+    }
+    window.switchWhizzyChar = switchWhizzyChar;
+
     // ===== FRIENDS ZONE SUBMIT =====
     let selectedFriendEmoji = '🦁';
     document.querySelectorAll('.fz-ep-btn').forEach(btn => {
