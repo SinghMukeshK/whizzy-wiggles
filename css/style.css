@@ -2827,6 +2827,212 @@
       transform: scale(1.05);
     }
 
+    /* ===== EMOJI LAB (GOOGLE EMOJI KITCHEN) ===== */
+    .el-container {
+      max-width: 1050px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+    .el-mixer-card {
+      background: white;
+      border-radius: 28px;
+      padding: 32px;
+      box-shadow: 0 16px 40px rgba(168, 85, 247, 0.12);
+      border: 3px solid rgba(168, 85, 247, 0.15);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
+    }
+    .el-slots-header {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .el-slot-box {
+      background: #F9FAFB;
+      border: 3px solid #E5E7EB;
+      border-radius: 20px;
+      padding: 16px 28px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      min-width: 140px;
+    }
+    .el-slot-box:hover {
+      border-color: #A855F7;
+      transform: translateY(-2px);
+    }
+    .el-slot-box.active {
+      background: #F3E8FF;
+      border-color: #A855F7;
+      box-shadow: 0 8px 20px rgba(168, 85, 247, 0.25);
+    }
+    .el-slot-label {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #6B7280;
+      margin-bottom: 6px;
+    }
+    .el-slot-emoji {
+      font-size: 3.5rem;
+    }
+    .el-plus-icon {
+      font-size: 1.8rem;
+      color: #A855F7;
+      font-weight: bold;
+    }
+    .el-fusion-preview {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+    .el-fusion-canvas-wrapper {
+      position: relative;
+      width: 260px;
+      height: 260px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #FFF9E6 0%, #F3E8FF 70%, #EEF4FF 100%);
+      box-shadow: inset 0 -8px 20px rgba(0,0,0,0.06), 0 12px 36px rgba(168,85,247,0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 4px solid white;
+    }
+    #emoji-mix-canvas {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+    }
+    .el-mashup-title {
+      font-family: 'Fredoka One', cursive, sans-serif;
+      font-size: 1.4rem;
+      color: #7C3AED;
+      text-align: center;
+    }
+    .el-action-bar {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .el-action-btn {
+      padding: 12px 24px;
+      border-radius: 50px;
+      border: none;
+      font-family: 'Fredoka One', cursive, sans-serif;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+    }
+    .el-btn-surprise {
+      background: linear-gradient(135deg, #FF4455, #FF8C00);
+      color: white;
+    }
+    .el-btn-swap {
+      background: white;
+      border: 2px solid #A855F7;
+      color: #A855F7;
+    }
+    .el-btn-download {
+      background: linear-gradient(135deg, #22C55E, #10B981);
+      color: white;
+    }
+    .el-action-btn:hover {
+      transform: translateY(-2px) scale(1.03);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+    }
+    .el-picker-card {
+      background: white;
+      border-radius: 28px;
+      padding: 28px;
+      box-shadow: 0 12px 36px rgba(0,0,0,0.06);
+      border: 2px solid #F3E8FF;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .el-search-input {
+      width: 100%;
+      padding: 14px 22px;
+      border-radius: 50px;
+      border: 2px solid #E5E7EB;
+      font-family: inherit;
+      font-size: 1rem;
+      outline: none;
+      transition: all 0.2s ease;
+    }
+    .el-search-input:focus {
+      border-color: #A855F7;
+      box-shadow: 0 0 0 4px rgba(168,85,247,0.15);
+    }
+    .el-tabs {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 6px;
+    }
+    .el-tab {
+      padding: 8px 18px;
+      border-radius: 50px;
+      border: 2px solid #E5E7EB;
+      background: white;
+      color: #4B5563;
+      font-family: 'Fredoka One', cursive, sans-serif;
+      font-size: 0.85rem;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s ease;
+    }
+    .el-tab:hover {
+      border-color: #A855F7;
+      color: #A855F7;
+    }
+    .el-tab.active {
+      background: #A855F7;
+      color: white;
+      border-color: #A855F7;
+      box-shadow: 0 4px 12px rgba(168,85,247,0.3);
+    }
+    .el-emoji-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(52px, 1fr));
+      gap: 10px;
+      max-height: 380px;
+      overflow-y: auto;
+      padding: 10px;
+      background: #FAF5FF;
+      border-radius: 20px;
+      border: 1px solid #F3E8FF;
+    }
+    .el-emoji-item {
+      font-size: 2.2rem;
+      height: 54px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 14px;
+      cursor: pointer;
+      background: white;
+      border: 1px solid #E5E7EB;
+      transition: all 0.18s ease;
+      user-select: none;
+    }
+    .el-emoji-item:hover {
+      transform: scale(1.22);
+      box-shadow: 0 6px 16px rgba(168,85,247,0.25);
+      border-color: #A855F7;
+      z-index: 2;
+    }
+
     /* ===== RESPONSIVE ADDITIONS ===== */
     @media (max-width: 768px) {
       .hamburger {

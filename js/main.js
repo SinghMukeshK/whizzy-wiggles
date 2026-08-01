@@ -3015,6 +3015,521 @@
       setTimeout(() => { win.print(); }, 500);
     }
 
+    // ===== EMOJI LAB (GOOGLE EMOJI KITCHEN) ENGINE =====
+    const EMOJI_LAB_DATA = [
+      // People & Fantasy
+      { char: "👶", name: "Baby", category: "people" },
+      { char: "👧", name: "Girl", category: "people" },
+      { char: "👦", name: "Boy", category: "people" },
+      { char: "🧒", name: "Child", category: "people" },
+      { char: "👼", name: "Angel", category: "people" },
+      { char: "🦸‍♂️", name: "Superhero", category: "people" },
+      { char: "🦸‍♀️", name: "Superwoman", category: "people" },
+      { char: "🧚‍♂️", name: "Fairy Boy", category: "people" },
+      { char: "🧚‍♀️", name: "Fairy Girl", category: "people" },
+      { char: "🧜‍♂️", name: "Merman", category: "people" },
+      { char: "🧜‍♀️", name: "Mermaid", category: "people" },
+      { char: "🧛‍♂️", name: "Vampire", category: "people" },
+      { char: "🧛‍♀️", name: "Vampire Lady", category: "people" },
+      { char: "🧞‍♂️", name: "Genie Man", category: "people" },
+      { char: "🧞‍♀️", name: "Genie Woman", category: "people" },
+      { char: "🧝‍♂️", name: "Elf", category: "people" },
+      { char: "🧙‍♂️", name: "Wizard", category: "people" },
+      { char: "🧙‍♀️", name: "Witch", category: "people" },
+      { char: "🎅", name: "Santa", category: "people" },
+      { char: "🤶", name: "Mrs Claus", category: "people" },
+      { char: "🦸", name: "Hero", category: "people" },
+      { char: "🦹", name: "Villain", category: "people" },
+      { char: "🥷", name: "Ninja", category: "people" },
+      { char: "👤", name: "Silhouette", category: "people" },
+      { char: "👥", name: "Friends", category: "people" },
+      { char: "🫂", name: "Hug", category: "people" },
+      { char: "👣", name: "Footprints", category: "people" },
+      { char: "🧠", name: "Brain", category: "people" },
+
+      // Toys & Games
+      { char: "🧸", name: "Teddy Bear", category: "toys" },
+      { char: "🪀", name: "Yo-Yo", category: "toys" },
+      { char: "🪁", name: "Kite", category: "toys" },
+      { char: "🧩", name: "Puzzle Piece", category: "toys" },
+      { char: "🎮", name: "Video Game", category: "toys" },
+      { char: "🕹️", name: "Joystick", category: "toys" },
+      { char: "🎯", name: "Bullseye Target", category: "toys" },
+      { char: "🎲", name: "Dice", category: "toys" },
+      { char: "🎰", name: "Slot Machine", category: "toys" },
+      { char: "🎳", name: "Bowling", category: "toys" },
+      { char: "🎨", name: "Artist Palette", category: "toys" },
+      { char: "🖍️", name: "Crayon", category: "toys" },
+      { char: "🖌️", name: "Paintbrush", category: "toys" },
+      { char: "✏️", name: "Pencil", category: "toys" },
+      { char: "📐", name: "Triangle Ruler", category: "toys" },
+      { char: "📏", name: "Straight Ruler", category: "toys" },
+      { char: "🛹", name: "Skateboard", category: "toys" },
+      { char: "🛼", name: "Roller Skate", category: "toys" },
+      { char: "🚲", name: "Bicycle", category: "toys" },
+      { char: "🛴", name: "Scooter", category: "toys" },
+      { char: "🛵", name: "Motor Scooter", category: "toys" },
+      { char: "🏎️", name: "Racing Car", category: "toys" },
+      { char: "🚂", name: "Steam Locomotive Train", category: "toys" },
+      { char: "🚆", name: "High Speed Train", category: "toys" },
+      { char: "🚗", name: "Red Car", category: "toys" },
+      { char: "🚕", name: "Yellow Taxi", category: "toys" },
+      { char: "🚌", name: "Bus", category: "toys" },
+      { char: "🚑", name: "Ambulance", category: "toys" },
+      { char: "🚒", name: "Fire Engine", category: "toys" },
+      { char: "🚓", name: "Police Car", category: "toys" },
+      { char: "🚚", name: "Delivery Truck", category: "toys" },
+      { char: "🚜", name: "Tractor", category: "toys" },
+      { char: "✈️", name: "Airplane", category: "toys" },
+      { char: "🚀", name: "Rocket", category: "toys" },
+      { char: "🚁", name: "Helicopter", category: "toys" },
+      { char: "⛵", name: "Sailboat", category: "toys" },
+      { char: "🚤", name: "Speedboat", category: "toys" },
+      { char: "🚢", name: "Ship", category: "toys" },
+      { char: "⚓", name: "Anchor", category: "toys" },
+      { char: "🎪", name: "Circus Tent", category: "toys" },
+      { char: "🎭", name: "Performing Arts", category: "toys" },
+      { char: "🎟️", name: "Admission Ticket", category: "toys" },
+      { char: "🎫", name: "Ticket", category: "toys" },
+      { char: "🏆", name: "Trophy", category: "toys" },
+      { char: "🥇", name: "1st Place Gold Medal", category: "toys" },
+      { char: "🥈", name: "2nd Place Silver Medal", category: "toys" },
+      { char: "🥉", name: "3rd Place Bronze Medal", category: "toys" },
+      { char: "🏅", name: "Sports Medal", category: "toys" },
+      { char: "🎖️", name: "Military Medal", category: "toys" },
+      { char: "🤹", name: "Juggling", category: "toys" },
+      { char: "🪄", name: "Magic Wand", category: "toys" },
+      { char: "🔮", name: "Crystal Ball", category: "toys" },
+
+      // Sports
+      { char: "⚽", name: "Soccer Ball", category: "sports" },
+      { char: "🏀", name: "Basketball", category: "sports" },
+      { char: "🏈", name: "American Football", category: "sports" },
+      { char: "⚾", name: "Baseball", category: "sports" },
+      { char: "🥎", name: "Softball", category: "sports" },
+      { char: "🎾", name: "Tennis", category: "sports" },
+      { char: "🏐", name: "Volleyball", category: "sports" },
+      { char: "🏉", name: "Rugby Ball", category: "sports" },
+      { char: "🥏", name: "Flying Disc Frisbee", category: "sports" },
+      { char: "🎱", name: "8 Ball Pool", category: "sports" },
+      { char: "🪃", name: "Boomerang", category: "sports" },
+      { char: "🏓", name: "Ping Pong Paddle", category: "sports" },
+      { char: "🏸", name: "Badminton", category: "sports" },
+      { char: "🏒", name: "Ice Hockey", category: "sports" },
+      { char: "🏑", name: "Field Hockey", category: "sports" },
+      { char: "🏏", name: "Cricket Bat", category: "sports" },
+      { char: "🥍", name: "Lacrosse", category: "sports" },
+      { char: "🏹", name: "Bow and Arrow", category: "sports" },
+      { char: "🎣", name: "Fishing Pole", category: "sports" },
+      { char: "🤿", name: "Diving Mask", category: "sports" },
+      { char: "🥊", name: "Boxing Glove", category: "sports" },
+      { char: "🥋", name: "Martial Arts Uniform", category: "sports" },
+      { char: "🎽", name: "Running Shirt", category: "sports" },
+      { char: "🛷", name: "Sled", category: "sports" },
+      { char: "⛸️", name: "Ice Skate", category: "sports" },
+      { char: "🥌", name: "Curling Stone", category: "sports" },
+      { char: "🎿", name: "Skis", category: "sports" },
+      { char: "⛷️", name: "Skier", category: "sports" },
+      { char: "🏂", name: "Snowboarder", category: "sports" },
+      { char: "🪂", name: "Parachute", category: "sports" },
+      { char: "🏋️", name: "Weightlifter", category: "sports" },
+      { char: "🤼", name: "Wrestlers", category: "sports" },
+      { char: "🤸", name: "Cartwheel", category: "sports" },
+      { char: "⛹️", name: "Bouncing Ball Person", category: "sports" },
+      { char: "🤺", name: "Fencer", category: "sports" },
+      { char: "🤾", name: "Handball", category: "sports" },
+      { char: "🏌️", name: "Golfer", category: "sports" },
+      { char: "🏇", name: "Horse Racing", category: "sports" },
+      { char: "🧘", name: "Yoga Lotus Pose", category: "sports" },
+      { char: "🏄", name: "Surfer", category: "sports" },
+      { char: "🏊", name: "Swimmer", category: "sports" },
+      { char: "🤽", name: "Water Polo", category: "sports" },
+      { char: "🚣", name: "Rowing Boat", category: "sports" },
+      { char: "🧗", name: "Climber", category: "sports" },
+      { char: "🚴", name: "Bicyclist", category: "sports" },
+      { char: "🚵", name: "Mountain Biker", category: "sports" },
+
+      // Animals & Nature
+      { char: "🦄", name: "Unicorn", category: "animals" },
+      { char: "🦖", name: "T-Rex Dino", category: "animals" },
+      { char: "🦕", name: "Sauropod Dino", category: "animals" },
+      { char: "🐳", name: "Spouting Whale", category: "animals" },
+      { char: "🐋", name: "Whale", category: "animals" },
+      { char: "🐬", name: "Dolphin", category: "animals" },
+      { char: "🦭", name: "Seal", category: "animals" },
+      { char: "🦈", name: "Shark", category: "animals" },
+      { char: "🐙", name: "Octopus", category: "animals" },
+      { char: "🐚", name: "Spiral Shell", category: "animals" },
+      { char: "🦀", name: "Crab", category: "animals" },
+      { char: "🦞", name: "Lobster", category: "animals" },
+      { char: "🦐", name: "Shrimp", category: "animals" },
+      { char: "🦑", name: "Squid", category: "animals" },
+      { char: "🦪", name: "Oyster", category: "animals" },
+      { char: "🐠", name: "Tropical Fish", category: "animals" },
+      { char: "🐟", name: "Fish", category: "animals" },
+      { char: "🐡", name: "Blowfish", category: "animals" },
+      { char: "🐢", name: "Turtle", category: "animals" },
+      { char: "🦆", name: "Duck", category: "animals" },
+      { char: "🦢", name: "Swan", category: "animals" },
+      { char: "🦚", name: "Peacock", category: "animals" },
+      { char: "🦜", name: "Parrot", category: "animals" },
+      { char: "🐧", name: "Penguin", category: "animals" },
+      { char: "🐦", name: "Bird", category: "animals" },
+      { char: "🦅", name: "Eagle", category: "animals" },
+      { char: "🦉", name: "Owl", category: "animals" },
+      { char: "🦇", name: "Bat", category: "animals" },
+      { char: "🐺", name: "Wolf", category: "animals" },
+      { char: "🐗", name: "Boar", category: "animals" },
+      { char: "🐴", name: "Horse Face", category: "animals" },
+      { char: "🐝", name: "Honeybee", category: "animals" },
+      { char: "🐛", name: "Bug Caterpillar", category: "animals" },
+      { char: "🦋", name: "Butterfly", category: "animals" },
+      { char: "🐌", name: "Snail", category: "animals" },
+      { char: "🐞", name: "Ladybug", category: "animals" },
+      { char: "🐜", name: "Ant", category: "animals" },
+      { char: "🪲", name: "Beetle", category: "animals" },
+      { char: "🦗", name: "Cricket Bug", category: "animals" },
+      { char: "🕷️", name: "Spider", category: "animals" },
+      { char: "🦂", name: "Scorpion", category: "animals" },
+      { char: "🐍", name: "Snake", category: "animals" },
+      { char: "🦎", name: "Lizard", category: "animals" },
+      { char: "🐅", name: "Tiger", category: "animals" },
+      { char: "🐆", name: "Leopard", category: "animals" },
+      { char: "🦓", name: "Zebra", category: "animals" },
+      { char: "🦍", name: "Gorilla", category: "animals" },
+      { char: "🦧", name: "Orangutan", category: "animals" },
+      { char: "🐘", name: "Elephant", category: "animals" },
+      { char: "🦛", name: "Hippo", category: "animals" },
+      { char: "🦏", name: "Rhino", category: "animals" },
+      { char: "🐪", name: "Camel", category: "animals" },
+      { char: "🦒", name: "Giraffe", category: "animals" },
+      { char: "🦘", name: "Kangaroo", category: "animals" },
+      { char: "🐄", name: "Cow", category: "animals" },
+      { char: "🐎", name: "Galloping Horse", category: "animals" },
+      { char: "🐖", name: "Pig", category: "animals" },
+      { char: "🐏", name: "Ram", category: "animals" },
+      { char: "🐑", name: "Ewe Sheep", category: "animals" },
+      { char: "🦙", name: "Llama", category: "animals" },
+      { char: "🐐", name: "Goat", category: "animals" },
+      { char: "🦌", name: "Deer", category: "animals" },
+      { char: "🐕", name: "Dog", category: "animals" },
+      { char: "🐩", name: "Poodle", category: "animals" },
+      { char: "🐈", name: "Cat", category: "animals" },
+      { char: "🐓", name: "Rooster", category: "animals" },
+      { char: "🦃", name: "Turkey", category: "animals" },
+      { char: "🕊️", name: "Dove", category: "animals" },
+      { char: "🐇", name: "Rabbit", category: "animals" },
+      { char: "🦝", name: "Raccoon", category: "animals" },
+      { char: "🦦", name: "Otter", category: "animals" },
+      { char: "🦥", name: "Sloth", category: "animals" },
+      { char: "🐁", name: "Mouse", category: "animals" },
+      { char: "🐀", name: "Rat", category: "animals" },
+      { char: "🐿️", name: "Chipmunk", category: "animals" },
+      { char: "🦔", name: "Hedgehog", category: "animals" },
+      { char: "🐾", name: "Paw Prints", category: "animals" },
+      { char: "🐉", name: "Dragon", category: "animals" },
+      { char: "🌵", name: "Cactus", category: "animals" },
+      { char: "🎄", name: "Christmas Tree", category: "animals" },
+      { char: "🌲", name: "Evergreen Tree", category: "animals" },
+      { char: "🌳", name: "Deciduous Tree", category: "animals" },
+      { char: "🌴", name: "Palm Tree", category: "animals" },
+      { char: "🌱", name: "Seedling Sprout", category: "animals" },
+      { char: "🌿", name: "Herb Leaf", category: "animals" },
+      { char: "☘️", name: "Shamrock", category: "animals" },
+      { char: "🍀", name: "Four Leaf Clover", category: "animals" },
+      { char: "🍁", name: "Maple Leaf", category: "animals" },
+      { char: "🍄", name: "Mushroom", category: "animals" },
+      { char: "💐", name: "Bouquet Flowers", category: "animals" },
+      { char: "🌷", name: "Tulip", category: "animals" },
+      { char: "🌹", name: "Rose", category: "animals" },
+      { char: "🌺", name: "Hibiscus", category: "animals" },
+      { char: "🌸", name: "Cherry Blossom", category: "animals" },
+      { char: "🌼", name: "Blossom Flower", category: "animals" },
+      { char: "🌻", name: "Sunflower", category: "animals" },
+      { char: "🌞", name: "Sun with Face", category: "animals" },
+      { char: "🌝", name: "Full Moon Face", category: "animals" },
+      { char: "⭐", name: "Star", category: "animals" },
+      { char: "🌟", name: "Glowing Star", category: "animals" },
+      { char: "✨", name: "Sparkles", category: "animals" },
+      { char: "⚡", name: "High Voltage Lightning", category: "animals" },
+      { char: "🔥", name: "Fire Flame", category: "animals" },
+      { char: "🌈", name: "Rainbow", category: "animals" },
+      { char: "☀️", name: "Sun", category: "animals" },
+      { char: "☁️", name: "Cloud", category: "animals" },
+      { char: "🌧️", name: "Rain Cloud", category: "animals" },
+      { char: "❄️", name: "Snowflake", category: "animals" },
+      { char: "☃️", name: "Snowman", category: "animals" },
+      { char: "💧", name: "Droplet", category: "animals" },
+
+      // Food & Drinks
+      { char: "🍭", name: "Lollipop", category: "food" },
+      { char: "🍬", name: "Candy", category: "food" },
+      { char: "🍫", name: "Chocolate Bar", category: "food" },
+      { char: "🍿", name: "Popcorn", category: "food" },
+      { char: "🍩", name: "Doughnut", category: "food" },
+      { char: "🍪", name: "Cookie", category: "food" },
+      { char: "🧁", name: "Cupcake", category: "food" },
+      { char: "🍰", name: "Shortcake Slice", category: "food" },
+      { char: "🍦", name: "Soft Ice Cream", category: "food" },
+      { char: "🍧", name: "Shaved Ice", category: "food" },
+      { char: "🍨", name: "Ice Cream Bowl", category: "food" },
+      { char: "🍮", name: "Custard Pudding", category: "food" },
+      { char: "🍯", name: "Honey Pot", category: "food" },
+      { char: "🍎", name: "Red Apple", category: "food" },
+      { char: "🍏", name: "Green Apple", category: "food" },
+      { char: "🍊", name: "Tangerine Orange", category: "food" },
+      { char: "🍋", name: "Lemon", category: "food" },
+      { char: "🍌", name: "Banana", category: "food" },
+      { char: "🍉", name: "Watermelon", category: "food" },
+      { char: "🍇", name: "Grapes", category: "food" },
+      { char: "🍓", name: "Strawberry", category: "food" },
+      { char: "🫐", name: "Blueberries", category: "food" },
+      { char: "🍒", name: "Cherries", category: "food" },
+      { char: "🍑", name: "Peach", category: "food" },
+      { char: "🥭", name: "Mango", category: "food" },
+      { char: "🍍", name: "Pineapple", category: "food" },
+      { char: "🥥", name: "Coconut", category: "food" },
+      { char: "🥝", name: "Kiwi Fruit", category: "food" },
+      { char: "🍅", name: "Tomato", category: "food" },
+      { char: "🥑", name: "Avocado", category: "food" },
+      { char: "🥦", name: "Broccoli", category: "food" },
+      { char: "🥒", name: "Cucumber", category: "food" },
+      { char: "🌽", name: "Ear of Corn", category: "food" },
+      { char: "🥕", name: "Carrot", category: "food" },
+      { char: "🍞", name: "Bread", category: "food" },
+      { char: "🥐", name: "Croissant", category: "food" },
+      { char: "🥨", name: "Pretzel", category: "food" },
+      { char: "🥯", name: "Bagel", category: "food" },
+      { char: "🥞", name: "Pancakes", category: "food" },
+      { char: "🧇", name: "Waffle", category: "food" },
+      { char: "🧀", name: "Cheese Wedge", category: "food" },
+      { char: "🍗", name: "Poultry Leg", category: "food" },
+      { char: "🥩", name: "Cut of Meat", category: "food" },
+      { char: "🍔", name: "Hamburger", category: "food" },
+      { char: "🍟", name: "French Fries", category: "food" },
+      { char: "🍕", name: "Pizza Slice", category: "food" },
+      { char: "🌭", name: "Hot Dog", category: "food" },
+      { char: "🥪", name: "Sandwich", category: "food" },
+      { char: "🌮", name: "Taco", category: "food" },
+      { char: "🌯", name: "Burrito", category: "food" },
+      { char: "🍳", name: "Cooking Egg", category: "food" },
+      { char: "🥘", name: "Pan of Food", category: "food" },
+      { char: "🍲", name: "Pot of Food", category: "food" },
+      { char: "🥣", name: "Bowl with Spoon", category: "food" },
+      { char: "🥗", name: "Green Salad", category: "food" },
+      { char: "🍱", name: "Bento Box", category: "food" },
+      { char: "🍙", name: "Rice Ball", category: "food" },
+      { char: "🍚", name: "Cooked Rice", category: "food" },
+      { char: "🍛", name: "Curry Rice", category: "food" },
+      { char: "🍜", name: "Steaming Noodle Bowl", category: "food" },
+      { char: "🍝", name: "Spaghetti", category: "food" },
+      { char: "🍣", name: "Sushi", category: "food" },
+      { char: "🍤", name: "Fried Shrimp", category: "food" },
+      { char: "🎂", name: "Birthday Cake", category: "food" },
+      { char: "🥛", name: "Glass of Milk", category: "food" },
+      { char: "🍼", name: "Baby Bottle", category: "food" },
+      { char: "🧃", name: "Juice Box", category: "food" },
+      { char: "🥤", name: "Cup with Straw", category: "food" },
+      { char: "🧋", name: "Boba Bubble Tea", category: "food" },
+
+      // Objects & Celebrations
+      { char: "🎈", name: "Balloon", category: "objects" },
+      { char: "🎉", name: "Party Popper", category: "objects" },
+      { char: "🎊", name: "Confetti Ball", category: "objects" },
+      { char: "🎁", name: "Wrapped Gift", category: "objects" },
+      { char: "🎃", name: "Jack-O-Lantern Pumpkin", category: "objects" },
+      { char: "🎆", name: "Fireworks", category: "objects" },
+      { char: "🎇", name: "Sparkler", category: "objects" },
+      { char: "🧨", name: "Firecracker", category: "objects" },
+      { char: "🎠", name: "Carousel Horse", category: "objects" },
+      { char: "🎡", name: "Ferris Wheel", category: "objects" },
+      { char: "🎢", name: "Roller Coaster", category: "objects" },
+      { char: "🎤", name: "Microphone", category: "objects" },
+      { char: "🎧", name: "Headphones", category: "objects" },
+      { char: "🎼", name: "Musical Scores", category: "objects" },
+      { char: "🎹", name: "Musical Keyboard Piano", category: "objects" },
+      { char: "🎷", name: "Saxophone", category: "objects" },
+      { char: "🎸", name: "Guitar", category: "objects" },
+      { char: "🎺", name: "Trumpet", category: "objects" },
+      { char: "🥁", name: "Drum", category: "objects" },
+      { char: "🎬", name: "Clapper Board", category: "objects" },
+      { char: "🪙", name: "Coin", category: "objects" },
+      { char: "💰", name: "Money Bag", category: "objects" },
+      { char: "💳", name: "Credit Card", category: "objects" },
+      { char: "💎", name: "Gem Stone Diamond", category: "objects" },
+      { char: "🧿", name: "Nazar Amulet", category: "objects" },
+      { char: "🔭", name: "Telescope", category: "objects" },
+      { char: "🔬", name: "Microscope", category: "objects" },
+      { char: "🧪", name: "Test Tube", category: "objects" },
+      { char: "🌡️", name: "Thermometer", category: "objects" },
+      { char: "🧹", name: "Broom", category: "objects" },
+      { char: "🧺", name: "Basket", category: "objects" },
+      { char: "🧼", name: "Bar of Soap", category: "objects" },
+      { char: "🧽", name: "Sponge", category: "objects" },
+      { char: "🧰", name: "Toolbox", category: "objects" },
+      { char: "🛒", name: "Shopping Cart", category: "objects" },
+      { char: "🛍️", name: "Shopping Bags", category: "objects" }
+    ];
+
+    let elActiveSlot = 'A'; // 'A' or 'B'
+    let elSelectedA = EMOJI_LAB_DATA.find(e => e.char === '🦄') || EMOJI_LAB_DATA[0];
+    let elSelectedB = EMOJI_LAB_DATA.find(e => e.char === '🚀') || EMOJI_LAB_DATA[1];
+    let elCurrentCategory = 'all';
+
+    function initEmojiLab() {
+      const grid = document.getElementById('elEmojiGrid');
+      if (!grid) return;
+
+      renderEmojiLabGrid();
+      renderEmojiMixCanvas();
+    }
+
+    function renderEmojiLabGrid(filterCategory = 'all', searchQuery = '') {
+      const grid = document.getElementById('elEmojiGrid');
+      if (!grid) return;
+
+      const filtered = EMOJI_LAB_DATA.filter(item => {
+        const matchesCat = (filterCategory === 'all' || item.category === filterCategory);
+        const matchesSearch = searchQuery === '' || item.name.toLowerCase().includes(searchQuery.toLowerCase()) || item.char.includes(searchQuery);
+        return matchesCat && matchesSearch;
+      });
+
+      grid.innerHTML = filtered.map(item => `
+        <div class="el-emoji-item" title="${item.name}" onclick="pickEmojiLabEmoji('${item.char}', '${item.name.replace(/'/g, "\\'")}')">
+          ${item.char}
+        </div>
+      `).join('');
+    }
+
+    function selectEmojiLabSlot(slot) {
+      elActiveSlot = slot;
+      document.getElementById('elSlotA').classList.toggle('active', slot === 'A');
+      document.getElementById('elSlotB').classList.toggle('active', slot === 'B');
+      const labelA = document.querySelector('#elSlotA .el-slot-label');
+      const labelB = document.querySelector('#elSlotB .el-slot-label');
+      if (labelA) labelA.textContent = slot === 'A' ? 'Emoji 1 (Active)' : 'Emoji 1';
+      if (labelB) labelB.textContent = slot === 'B' ? 'Emoji 2 (Active)' : 'Emoji 2';
+    }
+
+    function pickEmojiLabEmoji(emojiChar, name) {
+      const found = EMOJI_LAB_DATA.find(e => e.char === emojiChar) || { char: emojiChar, name: name || 'Emoji' };
+      if (elActiveSlot === 'A') {
+        elSelectedA = found;
+        document.getElementById('elSlotAEmoji').textContent = found.char;
+        selectEmojiLabSlot('B');
+      } else {
+        elSelectedB = found;
+        document.getElementById('elSlotBEmoji').textContent = found.char;
+      }
+      renderEmojiMixCanvas();
+    }
+
+    function swapEmojiLabSlots() {
+      const temp = elSelectedA;
+      elSelectedA = elSelectedB;
+      elSelectedB = temp;
+      document.getElementById('elSlotAEmoji').textContent = elSelectedA.char;
+      document.getElementById('elSlotBEmoji').textContent = elSelectedB.char;
+      renderEmojiMixCanvas();
+    }
+
+    function surpriseEmojiMix() {
+      const randA = EMOJI_LAB_DATA[Math.floor(Math.random() * EMOJI_LAB_DATA.length)];
+      const randB = EMOJI_LAB_DATA[Math.floor(Math.random() * EMOJI_LAB_DATA.length)];
+      elSelectedA = randA;
+      elSelectedB = randB;
+      document.getElementById('elSlotAEmoji').textContent = randA.char;
+      document.getElementById('elSlotBEmoji').textContent = randB.char;
+      renderEmojiMixCanvas();
+    }
+
+    function renderEmojiMixCanvas() {
+      const canvas = document.getElementById('emoji-mix-canvas');
+      const titleEl = document.getElementById('elMashupTitle');
+      if (!canvas) return;
+
+      const ctx = canvas.getContext('2d');
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Background Aura Glow
+      const grad = ctx.createRadialGradient(160, 160, 10, 160, 160, 150);
+      grad.addColorStop(0, '#FFFFFF');
+      grad.addColorStop(0.5, '#F3E8FF');
+      grad.addColorStop(1, '#FFF9E6');
+      ctx.fillStyle = grad;
+      ctx.beginPath();
+      ctx.arc(160, 160, 150, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Floating Sparkle Particles around border
+      const sparkles = ['✨', '🌟', '💫', '⚡'];
+      ctx.font = '22px sans-serif';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      for (let i = 0; i < 8; i++) {
+        const angle = (i / 8) * Math.PI * 2;
+        const rx = 160 + Math.cos(angle) * 125;
+        const ry = 160 + Math.sin(angle) * 125;
+        ctx.fillText(sparkles[i % sparkles.length], rx, ry);
+      }
+
+      // Draw Composite Emojis
+      ctx.font = '115px "Segoe UI Emoji", "Apple Color Emoji", sans-serif';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.save();
+      ctx.translate(130, 145);
+      ctx.rotate(-0.08);
+      ctx.fillText(elSelectedA.char, 0, 0);
+      ctx.restore();
+
+      ctx.font = '95px "Segoe UI Emoji", "Apple Color Emoji", sans-serif';
+      ctx.save();
+      ctx.translate(195, 175);
+      ctx.rotate(0.12);
+      ctx.shadowColor = 'rgba(168, 85, 247, 0.4)';
+      ctx.shadowBlur = 15;
+      ctx.fillText(elSelectedB.char, 0, 0);
+      ctx.restore();
+
+      const mashupName = `${elSelectedA.char} ${elSelectedA.name} + ${elSelectedB.name} ${elSelectedB.char} ✨`;
+      if (titleEl) titleEl.textContent = mashupName;
+    }
+
+    function downloadEmojiMix() {
+      const canvas = document.getElementById('emoji-mix-canvas');
+      if (!canvas) return;
+      const link = document.createElement('a');
+      link.download = `whizzy-emoji-mix-${Date.now()}.png`;
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+      showToast('Downloaded!', 'Your combined emoji sticker is saved! 🎨', '📥');
+    }
+
+    function filterEmojiLabCategory(category, btnEl) {
+      elCurrentCategory = category;
+      document.querySelectorAll('#elTabs .el-tab').forEach(b => b.classList.remove('active'));
+      if (btnEl) btnEl.classList.add('active');
+      const searchVal = document.getElementById('elSearchInput').value || '';
+      renderEmojiLabGrid(category, searchVal);
+    }
+
+    function searchEmojiLab(query) {
+      renderEmojiLabGrid(elCurrentCategory, query);
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      initEmojiLab();
+    });
+
+    window.selectEmojiLabSlot = selectEmojiLabSlot;
+    window.pickEmojiLabEmoji = pickEmojiLabEmoji;
+    window.swapEmojiLabSlots = swapEmojiLabSlots;
+    window.surpriseEmojiMix = surpriseEmojiMix;
+    window.downloadEmojiMix = downloadEmojiMix;
+    window.filterEmojiLabCategory = filterEmojiLabCategory;
+    window.searchEmojiLab = searchEmojiLab;
+
 // ===== FIREBASE CONFIG =====
     // TODO: PASTE YOUR FIREBASE CONFIG HERE
     const firebaseConfig = {
