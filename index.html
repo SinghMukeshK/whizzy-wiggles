@@ -1336,9 +1336,9 @@
   <!-- ===== RHYMES SECTION ===== -->
   <section id="rhymes" aria-labelledby="rhymes-heading">
     <div class="section-header">
-      <span class="section-eyebrow">Read Along!</span>
+      <span class="section-eyebrow">Read & Sing Along!</span>
       <h2 class="section-title" id="rhymes-heading">🎶 Nursery <em>Rhymes</em> Corner!</h2>
-      <p class="section-subtitle">Read the lyrics of your favourite rhymes together! 📖🌟</p>
+      <p class="section-subtitle">Read complete full lyrics and press 🎤 Sing Along to follow along line-by-line! 📖🌟</p>
     </div>
     <div class="rhymes-grid reveal">
 
@@ -1348,7 +1348,19 @@
         <div class="rhyme-body">
           <h3>⭐ Twinkle Twinkle</h3>
           <p>The classic star rhyme all kids adore!</p>
-          <div class="rhyme-lyrics" style="max-height: none; display: block;">Twinkle twinkle little star 🌟<br>How I wonder what you are 🤔<br>Up above the world so high 🌍<br>Like a diamond in the sky 💎<br>Twinkle twinkle little star ⭐<br>How I wonder what you are 🌙</div>
+          <div class="rhyme-lyrics">
+            Twinkle, twinkle, little star 🌟<br>
+            How I wonder what you are! 🤔<br>
+            Up above the world so high 🌍<br>
+            Like a diamond in the sky 💎<br>
+            When the blazing sun is gone ☀️<br>
+            When he nothing shines upon 🌙<br>
+            Then you show your little light ✨<br>
+            Twinkle, twinkle, all the night 🌟<br>
+            Twinkle, twinkle, little star ⭐<br>
+            How I wonder what you are! 🤔
+          </div>
+          <button class="btn-sing-along" onclick="startSingAlong(0)">🎤 Sing Along!</button>
         </div>
       </div>
 
@@ -1358,7 +1370,25 @@
         <div class="rhyme-body">
           <h3>🚌 Wheels on the Bus</h3>
           <p>Everyone's favourite bus ride song!</p>
-          <div class="rhyme-lyrics" style="max-height: none; display: block;">The wheels on the bus go round and round 🔄<br>Round and round, round and round 🌀<br>The wheels on the bus go round and round 🚌<br>All through the town! 🏙️<br>The horn on the bus goes beep beep beep 📯<br>All through the town! 🏘️</div>
+          <div class="rhyme-lyrics">
+            The wheels on the bus go round and round 🔄<br>
+            Round and round, round and round 🌀<br>
+            The wheels on the bus go round and round 🚌<br>
+            All through the town! 🏙️<br>
+            The wipers on the bus go Swish, swish, swish 🌧️<br>
+            Swish, swish, swish, swish, swish, swish 🧹<br>
+            The wipers on the bus go Swish, swish, swish 🌧️<br>
+            All through the town! 🏙️<br>
+            The horn on the bus goes Beep, beep, beep 📯<br>
+            Beep, beep, beep, beep, beep, beep 📢<br>
+            The horn on the bus goes Beep, beep, beep 📯<br>
+            All through the town! 🏙️<br>
+            The babies on the bus go Wah, wah, wah 👶<br>
+            Wah, wah, wah, wah, wah, wah 🍼<br>
+            The parents on the bus go Shh, shh, shh 🤫<br>
+            All through the town! 🏙️
+          </div>
+          <button class="btn-sing-along" onclick="startSingAlong(1)">🎤 Sing Along!</button>
         </div>
       </div>
 
@@ -1368,7 +1398,55 @@
         <div class="rhyme-body">
           <h3>👶 Johny Johny Yes Papa</h3>
           <p>The most popular kids rhyme ever!</p>
-          <div class="rhyme-lyrics" style="max-height: none; display: block;">Johny Johny, Yes Papa 👶<br>Eating sugar? No Papa 🍬<br>Telling lies? No Papa ❌<br>Open your mouth! Ha ha ha! 😄<br>Johny Johny, Yes Papa 🌟<br>Eating sugar? No Papa 💛</div>
+          <div class="rhyme-lyrics">
+            Johny, Johny, Yes Papa? 👶<br>
+            Eating sugar? No, Papa! 🍬<br>
+            Telling lies? No, Papa! ❌<br>
+            Open your mouth, Ha! Ha! Ha! 😄<br>
+            Johny, Johny, Yes Papa? 👶<br>
+            Playing games? Yes, Papa! 🎮<br>
+            Done your homework? Yes, Papa! 📚<br>
+            Open your arms, Hug Papa! 🤗
+          </div>
+          <button class="btn-sing-along" onclick="startSingAlong(2)">🎤 Sing Along!</button>
+        </div>
+      </div>
+
+      <!-- English Rhyme 4 -->
+      <div class="rhyme-card">
+        <div class="rhyme-thumb" style="background:linear-gradient(135deg,#FFF9E6,#F3E8FF);">🐑</div>
+        <div class="rhyme-body">
+          <h3>🐑 Baa Baa Black Sheep</h3>
+          <p>A fluffy and sweet traditional rhyme!</p>
+          <div class="rhyme-lyrics">
+            Baa, baa, black sheep, have you any wool? 🐑<br>
+            Yes sir, yes sir, three bags full! 🎒<br>
+            One for the master, and one for the dame 🎩<br>
+            And one for the little boy who lives down the lane 👦<br>
+            Baa, baa, black sheep, have you any wool? 🐑<br>
+            Yes sir, yes sir, three bags full! 🎒
+          </div>
+          <button class="btn-sing-along" onclick="startSingAlong(3)">🎤 Sing Along!</button>
+        </div>
+      </div>
+
+      <!-- English Rhyme 5 -->
+      <div class="rhyme-card">
+        <div class="rhyme-thumb" style="background:linear-gradient(135deg,#EEF4FF,#F0FFF4);">🌧️</div>
+        <div class="rhyme-body">
+          <h3>🌧️ Rain Rain Go Away</h3>
+          <p>Fun rainy day song for cheerful kids!</p>
+          <div class="rhyme-lyrics">
+            Rain, rain, go away 🌧️<br>
+            Come again another day ☀️<br>
+            Little Johnny wants to play ⚽<br>
+            Rain, rain, go away! 🌈<br>
+            Rain, rain, go to Spain 🇪🇸<br>
+            Never show your face again 🌞<br>
+            Little Johnny wants to play 🏃<br>
+            Rain, rain, go away! 🌈
+          </div>
+          <button class="btn-sing-along" onclick="startSingAlong(4)">🎤 Sing Along!</button>
         </div>
       </div>
 
@@ -1378,7 +1456,18 @@
         <div class="rhyme-body">
           <h3>🐎 Lakdi Ki Kathi</h3>
           <p>A fun Hindi rhyme for everyone!</p>
-          <div class="rhyme-lyrics" style="max-height: none; display: block;">Lakdi ki kathi, kathi pe ghoda 🐎<br>Ghode ki dum pe jo mara hathoda 🔨<br>Dauda dauda dauda ghoda 🏃<br>Dum uthake dauda! 🌟</div>
+          <div class="rhyme-lyrics">
+            Lakdi ki kathi, kathi pe ghoda 🐎<br>
+            Ghode ki dum pe jo mara hathoda 🔨<br>
+            Dauda dauda dauda ghoda dum utha ke dauda! 🏃<br>
+            Ghoda pahuncha chawk mein, chawk mein tha naai ✂️<br>
+            Ghodeji ki naai ne hajamad jo banai 💈<br>
+            Chhag-bag chhag-bag dauda ghoda dum utha ke dauda! 🐎<br>
+            Ghoda tha ghamandi, pahuncha sabji mandi 🥬<br>
+            Sabji mandi baraf padi thi, ghode ko lag gayi thand ❄️<br>
+            Dauda dauda dauda ghoda dum utha ke dauda! 🏃
+          </div>
+          <button class="btn-sing-along" onclick="startSingAlong(5)">🎤 Sing Along!</button>
         </div>
       </div>
 
@@ -1388,7 +1477,17 @@
         <div class="rhyme-body">
           <h3>🦚 Nani Teri Morni</h3>
           <p>Sing along with Nani's favourite peacock!</p>
-          <div class="rhyme-lyrics" style="max-height: none; display: block;">Nani teri morni ko mor le gaye 🦚<br>Baki jo bacha tha kaale chor le gaye 🏃‍♂️<br>Khaake peeke mote hoke 🍎<br>Chor baithe rail mein! 🚂</div>
+          <div class="rhyme-lyrics">
+            Nani teri morni ko mor le gaye 🦚<br>
+            Baki jo bacha tha kaale chor le gaye 🏃‍♂️<br>
+            Khaake peeke mote hoke chor baithe rail mein 🚂<br>
+            Choron wala dabba kat ke pahuncha seedha jail mein 🏛️<br>
+            Unn choron ki khoob khabar li motey thanedaar ne 👮<br>
+            Moron ko bhi khoob nachaya jungle ke sardar ne 🕺<br>
+            Achi nani pyari nani roosam-roosi chhode de 💖<br>
+            Jaldi se ek paisa de de, tu kanjoosi chhode de! 😄
+          </div>
+          <button class="btn-sing-along" onclick="startSingAlong(6)">🎤 Sing Along!</button>
         </div>
       </div>
 
@@ -1398,12 +1497,53 @@
         <div class="rhyme-body">
           <h3>🐟 Machli Jal Ki Rani</h3>
           <p>The most famous Hindi fish rhyme!</p>
-          <div class="rhyme-lyrics" style="max-height: none; display: block;">Machli jal ki rani hai 🐟<br>Jeevan uska pani hai 💧<br>Haath lagao dar jayegi 👐<br>Bahar nikalo mar jayegi 🌊</div>
+          <div class="rhyme-lyrics">
+            Machli jal ki rani hai 🐟<br>
+            Jeevan uska pani hai 💧<br>
+            Haath lagao dar jayegi 👐<br>
+            Bahar nikalo mar jayegi 🌊<br>
+            Paani mein dalo jee jayegi 💦<br>
+            Sab khana vo kha jayegi 🍽️<br>
+            Maza bada usko aayega 😄<br>
+            Khushi se vo tair jayegi! 🏊‍♀️
+          </div>
+          <button class="btn-sing-along" onclick="startSingAlong(7)">🎤 Sing Along!</button>
         </div>
       </div>
 
     </div>
   </section>
+
+  <!-- ===== SING ALONG KARAOKE MODAL ===== -->
+  <div id="sing-along-modal" class="sa-modal-overlay">
+    <div class="sa-modal-card">
+      <button class="sa-close-btn" onclick="closeSingAlong()" title="Close Sing Along">✖</button>
+
+      <div class="sa-header">
+        <span class="sa-badge">🎤 SING ALONG KARAOKE</span>
+        <h2 id="sa-song-title">⭐ Twinkle Twinkle Little Star</h2>
+        <p id="sa-song-sub">Watch the lyrics highlight as you sing!</p>
+      </div>
+
+      <div class="sa-progress-wrapper">
+        <div class="sa-progress-bar">
+          <div class="sa-progress-fill" id="saProgressFill"></div>
+        </div>
+        <span class="sa-line-counter" id="saLineCounter">Line 1 of 8</span>
+      </div>
+
+      <div class="sa-lyrics-display" id="saLyricsDisplay">
+        <!-- Dynamic active lyrics lines -->
+      </div>
+
+      <div class="sa-controls-bar">
+        <button class="sa-ctrl-btn" onclick="singAlongPrev()" title="Previous Song">⏮️ Prev</button>
+        <button class="sa-ctrl-btn sa-play-btn" id="saPlayPauseBtn" onclick="toggleSingAlongPlayPause()" title="Play / Pause">⏸️ Pause</button>
+        <button class="sa-ctrl-btn" onclick="singAlongRestart()" title="Restart Song">🔄 Restart</button>
+        <button class="sa-ctrl-btn" onclick="singAlongNext()" title="Next Song">Next ⏭️</button>
+      </div>
+    </div>
+  </div>
 
   <!-- ===== WHIZZY CHARACTERS SECTION ===== -->
   <section id="whizzy-teddy" aria-labelledby="teddy-heading">
