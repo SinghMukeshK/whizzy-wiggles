@@ -517,36 +517,47 @@
         const win = window.open('', '_blank');
         win.document.write(`<!DOCTYPE html><html><head><title>Animal Coloring Book &ndash; Whizzy Wiggles</title>
         <style>
+          @page { size: portrait; margin: 8mm; }
           * { box-sizing: border-box; margin: 0; padding: 0; }
           body { font-family: Arial, sans-serif; background: #fff; color: #1A0A3C; }
           .cover {
-            min-height: 100vh; display: flex; flex-direction: column; align-items: center;
+            display: flex; flex-direction: column; align-items: center;
             justify-content: center; text-align: center;
             background: linear-gradient(135deg, #FFF9E6, #F3E8FF);
-            padding: 40px 20px; page-break-after: always;
+            padding: 24px 16px; page-break-after: always; break-after: page; page-break-inside: avoid; break-inside: avoid; box-sizing: border-box;
+            width: 100%; max-width: 750px; margin: 0 auto;
           }
-          .cover-emoji { font-size: 5rem; margin-bottom: 20px; }
-          .cover h1 { font-size: 3rem; margin-bottom: 12px; color: #A855F7; }
-          .cover .subtitle { font-size: 1.2rem; color: #666; margin-bottom: 8px; }
-          .cover .channel { font-size: 1rem; color: #A855F7; font-weight: bold; margin-top: 16px; }
-          .cover .pages-list { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 20px; }
-          .cover .page-chip { background: white; border: 2px solid #F3E8FF; border-radius: 50px; padding: 7px 16px; font-size: 0.88rem; font-weight: bold; color: #A855F7; }
-          .name-box { display: flex; align-items: center; gap: 10px; margin-top: 14px; font-size: 0.95rem; color: #888; width: 320px; }
+          .cover-emoji { font-size: 3.5rem; margin-bottom: 8px; }
+          .cover h1 { font-size: 2.2rem; margin-bottom: 6px; color: #A855F7; }
+          .cover .subtitle { font-size: 1rem; color: #666; margin-bottom: 4px; }
+          .cover .channel { font-size: 0.9rem; color: #A855F7; font-weight: bold; margin-top: 10px; }
+          .cover .pages-list { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; margin-top: 12px; }
+          .cover .page-chip { background: white; border: 2px solid #F3E8FF; border-radius: 50px; padding: 5px 12px; font-size: 0.8rem; font-weight: bold; color: #A855F7; }
+          .name-box { display: flex; align-items: center; gap: 8px; margin-top: 10px; font-size: 0.85rem; color: #888; width: 280px; }
           .name-line { flex: 1; height: 2px; background: #ddd; border-radius: 99px; }
           .coloring-page {
-            page-break-before: always; display: flex; flex-direction: column;
-            align-items: center; padding: 20px 20px 14px; min-height: 100vh;
+            page-break-before: always; break-before: page; page-break-inside: avoid; break-inside: avoid;
+            page-break-after: always; break-after: page;
+            display: flex; flex-direction: column; justify-content: space-between;
+            align-items: center; padding: 12px 16px; box-sizing: border-box;
+            width: 100%; max-width: 750px; margin: 0 auto;
           }
-          .page-header { width: 100%; display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; border-bottom: 3px solid #F3E8FF; padding-bottom: 8px; }
-          .page-title { font-size: 1.5rem; font-weight: bold; color: #A855F7; }
-          .page-num { font-size: 0.85rem; color: #aaa; font-weight: bold; }
-          .page-desc { font-size: 0.88rem; color: #888; margin-bottom: 14px; text-align: center; }
-          .coloring-img { width: 100%; max-width: 560px; height: auto; border: 3px dashed #F3E8FF; border-radius: 14px; }
-          .page-footer { margin-top: auto; padding-top: 10px; font-size: 0.72rem; color: #ccc; text-align: center; width: 100%; border-top: 1px solid #F3E8FF; }
+          .page-header { width: 100%; display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; border-bottom: 2px solid #F3E8FF; padding-bottom: 4px; }
+          .page-title { font-size: 1.2rem; font-weight: bold; color: #A855F7; }
+          .page-num { font-size: 0.8rem; color: #aaa; font-weight: bold; }
+          .page-desc { font-size: 0.82rem; color: #888; margin-bottom: 6px; text-align: center; }
+          .coloring-img { width: auto; max-width: 100%; max-height: 16cm; object-fit: contain; height: auto; border: 2px dashed #F3E8FF; border-radius: 12px; display: block; margin: 0 auto; }
+          .page-footer { margin-top: 8px; padding-top: 4px; font-size: 0.7rem; color: #ccc; text-align: center; width: 100%; border-top: 1px solid #F3E8FF; }
           .toolbar { position: fixed; bottom: 20px; right: 20px; z-index: 999; }
-          .btn-print { padding: 14px 28px; border-radius: 50px; border: none; font-size: 1rem; font-weight: bold; cursor: pointer; background: #A855F7; color: white; box-shadow: 0 4px 18px rgba(168,85,247,0.4); transition: all 0.2s; }
+          .btn-print { padding: 14px 28px; border-radius: 50px; border: none; font-size: 1rem; font-weight: bold; cursor: pointer; background: #A855F7; color: white; box-shadow: 0 4px 18px rgba(168,85,247,0.4); }
           .btn-print:hover { background: #9333EA; transform: scale(1.05); }
-          @media print { .toolbar { display: none !important; } }
+          @media print {
+            @page { size: portrait; margin: 8mm; }
+            .toolbar { display: none !important; }
+            body { padding: 0; margin: 0; background: #fff; }
+            .cover, .coloring-page { width: 100%; max-width: 100%; padding: 4px 0; margin: 0 auto; page-break-inside: avoid; break-inside: avoid; }
+            .coloring-img { max-height: 15.5cm; }
+          }
         </style></head><body>
         <div class="cover">
           <div class="cover-emoji">&#127912;</div>
@@ -591,36 +602,47 @@
         const win = window.open('', '_blank');
         win.document.write(`<!DOCTYPE html><html><head><title>Maze Puzzles &ndash; Whizzy Wiggles</title>
         <style>
+          @page { size: portrait; margin: 8mm; }
           * { box-sizing: border-box; margin: 0; padding: 0; }
           body { font-family: Arial, sans-serif; background: #fff; color: #1A0A3C; }
           .cover {
-            min-height: 100vh; display: flex; flex-direction: column; align-items: center;
+            display: flex; flex-direction: column; align-items: center;
             justify-content: center; text-align: center;
             background: linear-gradient(135deg, #E8F5E9, #FFF9E6);
-            padding: 40px 20px; page-break-after: always;
+            padding: 24px 16px; page-break-after: always; break-after: page; page-break-inside: avoid; break-inside: avoid; box-sizing: border-box;
+            width: 100%; max-width: 750px; margin: 0 auto;
           }
-          .cover-emoji { font-size: 5rem; margin-bottom: 20px; }
-          .cover h1 { font-size: 3rem; margin-bottom: 12px; color: #4ADE80; }
-          .cover .subtitle { font-size: 1.2rem; color: #666; margin-bottom: 8px; }
-          .cover .channel { font-size: 1rem; color: #22C55E; font-weight: bold; margin-top: 16px; }
-          .cover .pages-list { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 20px; }
-          .cover .page-chip { background: white; border: 2px solid #E8F5E9; border-radius: 50px; padding: 7px 16px; font-size: 0.88rem; font-weight: bold; color: #22C55E; }
-          .name-box { display: flex; align-items: center; gap: 10px; margin-top: 14px; font-size: 0.95rem; color: #888; width: 320px; }
+          .cover-emoji { font-size: 3.5rem; margin-bottom: 8px; }
+          .cover h1 { font-size: 2.2rem; margin-bottom: 6px; color: #4ADE80; }
+          .cover .subtitle { font-size: 1rem; color: #666; margin-bottom: 4px; }
+          .cover .channel { font-size: 0.9rem; color: #22C55E; font-weight: bold; margin-top: 10px; }
+          .cover .pages-list { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; margin-top: 12px; }
+          .cover .page-chip { background: white; border: 2px solid #E8F5E9; border-radius: 50px; padding: 5px 12px; font-size: 0.8rem; font-weight: bold; color: #22C55E; }
+          .name-box { display: flex; align-items: center; gap: 8px; margin-top: 10px; font-size: 0.85rem; color: #888; width: 280px; }
           .name-line { flex: 1; height: 2px; background: #ddd; border-radius: 99px; }
           .maze-page {
-            page-break-before: always; display: flex; flex-direction: column;
-            align-items: center; padding: 20px 20px 14px; min-height: 100vh;
+            page-break-before: always; break-before: page; page-break-inside: avoid; break-inside: avoid;
+            page-break-after: always; break-after: page;
+            display: flex; flex-direction: column; justify-content: space-between;
+            align-items: center; padding: 12px 16px; box-sizing: border-box;
+            width: 100%; max-width: 750px; margin: 0 auto;
           }
-          .page-header { width: 100%; display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; border-bottom: 3px solid #E8F5E9; padding-bottom: 8px; }
-          .page-title { font-size: 1.5rem; font-weight: bold; color: #22C55E; }
-          .page-num { font-size: 0.85rem; color: #aaa; font-weight: bold; }
-          .page-desc { font-size: 0.88rem; color: #888; margin-bottom: 14px; text-align: center; }
-          .maze-img { width: 100%; max-width: 750px; height: auto; border: 3px dashed #4ADE80; border-radius: 14px; }
-          .page-footer { margin-top: auto; padding-top: 10px; font-size: 0.72rem; color: #ccc; text-align: center; width: 100%; border-top: 1px solid #E8F5E9; }
+          .page-header { width: 100%; display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; border-bottom: 2px solid #E8F5E9; padding-bottom: 4px; }
+          .page-title { font-size: 1.2rem; font-weight: bold; color: #22C55E; }
+          .page-num { font-size: 0.8rem; color: #aaa; font-weight: bold; }
+          .page-desc { font-size: 0.82rem; color: #888; margin-bottom: 6px; text-align: center; }
+          .maze-img { width: auto; max-width: 100%; max-height: 16cm; object-fit: contain; height: auto; border: 2px dashed #4ADE80; border-radius: 12px; display: block; margin: 0 auto; }
+          .page-footer { margin-top: 8px; padding-top: 4px; font-size: 0.7rem; color: #ccc; text-align: center; width: 100%; border-top: 1px solid #E8F5E9; }
           .toolbar { position: fixed; bottom: 20px; right: 20px; z-index: 999; }
-          .btn-print { padding: 14px 28px; border-radius: 50px; border: none; font-size: 1rem; font-weight: bold; cursor: pointer; background: #4ADE80; color: white; box-shadow: 0 4px 18px rgba(74,222,128,0.4); transition: all 0.2s; }
+          .btn-print { padding: 14px 28px; border-radius: 50px; border: none; font-size: 1rem; font-weight: bold; cursor: pointer; background: #4ADE80; color: white; box-shadow: 0 4px 18px rgba(74,222,128,0.4); }
           .btn-print:hover { background: #22C55E; transform: scale(1.05); }
-          @media print { .toolbar { display: none !important; } }
+          @media print {
+            @page { size: portrait; margin: 8mm; }
+            .toolbar { display: none !important; }
+            body { padding: 0; margin: 0; background: #fff; }
+            .cover, .maze-page { width: 100%; max-width: 100%; padding: 4px 0; margin: 0 auto; page-break-inside: avoid; break-inside: avoid; }
+            .maze-img { max-height: 15.5cm; }
+          }
         </style></head><body>
         <div class="cover">
           <div class="cover-emoji">🌀</div>
@@ -659,31 +681,32 @@
         win.document.write(
           '<!DOCTYPE html><html><head><title>Whizzy Wiggles Ludo Edition</title>' +
           '<style>' +
+          '@page { size: portrait; margin: 8mm; }' +
           '* { box-sizing: border-box; margin: 0; padding: 0; }' +
           'body { font-family: Arial, sans-serif; background: #fff; color: #1A0A3C; }' +
-          '.cover { display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; background:linear-gradient(135deg,#F3E8FF,#EEF4FF,#FFF9E6); padding:40px 20px; page-break-after:always; }' +
-          '.cover-title { font-size:2.6rem; font-weight:900; color:#A855F7; margin-bottom:8px; }' +
-          '.cover-sub { font-size:1.1rem; color:#888; margin-bottom:6px; }' +
-          '.ww-badge { display:inline-block; background:linear-gradient(135deg,#A855F7,#38BDF8); color:white; padding:7px 20px; border-radius:50px; font-size:0.9rem; font-weight:bold; margin:12px 0; }' +
-          '.rules-box { background:linear-gradient(135deg,#F3E8FF,#EEF4FF); border:2px solid rgba(168,85,247,0.2); border-radius:16px; padding:20px; max-width:520px; text-align:left; margin-top:16px; }' +
-          '.rules-box h3 { color:#A855F7; margin-bottom:10px; font-size:1rem; }' +
-          '.rules-box li { color:#555; font-size:0.88rem; margin-bottom:6px; padding-left:4px; }' +
-          '.name-box { display:flex; align-items:center; gap:10px; margin-top:14px; font-size:0.95rem; color:#888; width:320px; }' +
+          '.cover { display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; background:linear-gradient(135deg,#F3E8FF,#EEF4FF,#FFF9E6); padding:24px 16px; page-break-after:always; break-after:page; page-break-inside:avoid; break-inside:avoid; box-sizing:border-box; width:100%; max-width:750px; margin:0 auto; }' +
+          '.cover-title { font-size:2.2rem; font-weight:900; color:#A855F7; margin-bottom:6px; }' +
+          '.cover-sub { font-size:1rem; color:#888; margin-bottom:4px; }' +
+          '.ww-badge { display:inline-block; background:linear-gradient(135deg,#A855F7,#38BDF8); color:white; padding:5px 16px; border-radius:50px; font-size:0.8rem; font-weight:bold; margin:6px 0; }' +
+          '.rules-box { background:linear-gradient(135deg,#F3E8FF,#EEF4FF); border:2px solid rgba(168,85,247,0.2); border-radius:14px; padding:12px; max-width:480px; text-align:left; margin-top:8px; }' +
+          '.rules-box h3 { color:#A855F7; margin-bottom:6px; font-size:0.9rem; }' +
+          '.rules-box li { color:#555; font-size:0.8rem; margin-bottom:3px; padding-left:4px; }' +
+          '.name-box { display:flex; align-items:center; gap:8px; margin-top:8px; font-size:0.85rem; color:#888; width:280px; }' +
           '.name-line { flex:1; height:2px; background:#ddd; border-radius:99px; }' +
-          '.board-page { display:flex; flex-direction:column; align-items:center; padding:24px; background:#fff; }' +
-          '.board-header { width:100%; display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; padding-bottom:10px; border-bottom:3px solid rgba(168,85,247,0.25); }' +
-          '.board-title { font-size:1.4rem; font-weight:900; color:#A855F7; }' +
-          '.board-img { width:100%; max-width:680px; height:auto; border:3px solid rgba(168,85,247,0.2); border-radius:16px; display:block; margin:0 auto; }' +
-          '.tokens-section { width:100%; max-width:680px; margin:20px auto 0; }' +
-          '.tokens-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-top:10px; }' +
-          '.token { height:80px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:2rem; font-weight:bold; border:3px dashed rgba(0,0,0,0.15); }' +
-          '.board-footer { margin-top:auto; padding-top:10px; font-size:0.72rem; color:#ccc; text-align:center; width:100%; border-top:1px solid #F3E8FF; }' +
+          '.board-page { page-break-before:always; break-before:page; page-break-inside:avoid; break-inside:avoid; display:flex; flex-direction:column; justify-content:space-between; align-items:center; padding:12px 16px; box-sizing:border-box; background:#fff; width:100%; max-width:750px; margin:0 auto; }' +
+          '.board-header { width:100%; display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; padding-bottom:4px; border-bottom:2px solid rgba(168,85,247,0.25); }' +
+          '.board-title { font-size:1.2rem; font-weight:900; color:#A855F7; }' +
+          '.board-img { width:auto; max-width:100%; max-height:15cm; object-fit:contain; height:auto; border:2px solid rgba(168,85,247,0.2); border-radius:14px; display:block; margin:0 auto; }' +
+          '.tokens-section { width:100%; max-width:650px; margin:8px auto 0; }' +
+          '.tokens-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:8px; margin-top:4px; }' +
+          '.token { height:50px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.3rem; font-weight:bold; border:2px dashed rgba(0,0,0,0.15); }' +
+          '.board-footer { margin-top:8px; padding-top:4px; font-size:0.7rem; color:#ccc; text-align:center; width:100%; border-top:1px solid #F3E8FF; }' +
           '.toolbar { position:fixed; bottom:20px; right:20px; z-index:999; }' +
           '.btn-print { padding:14px 28px; border-radius:50px; border:none; font-size:1rem; font-weight:bold; cursor:pointer; background:linear-gradient(135deg,#A855F7,#38BDF8); color:white; box-shadow:0 4px 18px rgba(168,85,247,0.4); }' +
-          '@media print { .toolbar { display:none!important; } }' +
+          '@media print { @page { size: portrait; margin: 8mm; } .toolbar { display:none!important; } body { padding:0; margin:0; background:#fff; } .cover, .board-page { width:100%; max-width:100%; padding:4px 0; margin:0 auto; page-break-inside:avoid; break-inside:avoid; } .board-img { max-height:14.5cm; } }' +
           '</style></head><body>' +
           '<div class="cover">' +
-          '<div style="font-size:5rem">&#x1F3B2;&#x1F308;&#x1F9F8;</div>' +
+          '<div style="font-size:4rem">&#x1F3B2;&#x1F308;&#x1F9F8;</div>' +
           '<div class="cover-title">Whizzy Wiggles Ludo!</div>' +
           '<p class="cover-sub">The most magical Ludo game ever! &#x1F31F;</p>' +
           '<span class="ww-badge">&#x1F308; Whizzy Wiggles Official Edition</span>' +
@@ -718,32 +741,29 @@
         win.document.write(
           '<!DOCTYPE html><html><head><title>Whizzy Wiggles Snakes &amp; Ladders</title>' +
           '<style>' +
+          '@page { size: portrait; margin: 8mm; }' +
           '* { box-sizing: border-box; margin: 0; padding: 0; }' +
           'body { font-family: Arial, sans-serif; background: #fff; color: #1A0A3C; }' +
-          '.cover { display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; background:linear-gradient(135deg,#FFF9E6,#F0FFF4,#EEF4FF); padding:40px 20px; page-break-after:always; }' +
-          '.cover-title { font-size:2.6rem; font-weight:900; color:#22C55E; margin-bottom:8px; }' +
-          '.cover-sub { font-size:1.1rem; color:#888; margin-bottom:6px; }' +
-          '.ww-badge { display:inline-block; background:linear-gradient(135deg,#FF70B8,#A855F7); color:white; padding:7px 20px; border-radius:50px; font-size:0.9rem; font-weight:bold; margin:12px 0; }' +
-          '.rules-box { background:linear-gradient(135deg,#F0FFF4,#FFF9E6); border:2px solid rgba(34,197,94,0.2); border-radius:16px; padding:20px; max-width:520px; text-align:left; margin-top:16px; }' +
-          '.rules-box h3 { color:#22C55E; margin-bottom:10px; font-size:1rem; }' +
-          '.rules-box li { color:#555; font-size:0.88rem; margin-bottom:6px; padding-left:4px; }' +
-          '.name-box { display:flex; align-items:center; gap:10px; margin-top:14px; font-size:0.95rem; color:#888; width:320px; }' +
+          '.cover { display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; background:linear-gradient(135deg,#FFF9E6,#F0FFF4,#EEF4FF); padding:24px 16px; page-break-after:always; break-after:page; page-break-inside:avoid; break-inside:avoid; box-sizing:border-box; width:100%; max-width:750px; margin:0 auto; }' +
+          '.cover-title { font-size:2.2rem; font-weight:900; color:#22C55E; margin-bottom:6px; }' +
+          '.cover-sub { font-size:1rem; color:#888; margin-bottom:4px; }' +
+          '.ww-badge { display:inline-block; background:linear-gradient(135deg,#FF70B8,#A855F7); color:white; padding:5px 16px; border-radius:50px; font-size:0.8rem; font-weight:bold; margin:6px 0; }' +
+          '.rules-box { background:linear-gradient(135deg,#F0FFF4,#FFF9E6); border:2px solid rgba(34,197,94,0.2); border-radius:14px; padding:12px; max-width:480px; text-align:left; margin-top:8px; }' +
+          '.rules-box h3 { color:#22C55E; margin-bottom:6px; font-size:0.9rem; }' +
+          '.rules-box li { color:#555; font-size:0.8rem; margin-bottom:3px; padding-left:4px; }' +
+          '.name-box { display:flex; align-items:center; gap:8px; margin-top:8px; font-size:0.85rem; color:#888; width:280px; }' +
           '.name-line { flex:1; height:2px; background:#ddd; border-radius:99px; }' +
-          '.board-page { min-height:100vh; display:flex; flex-direction:column; align-items:center; padding:24px; background:#fff; }' +
-          '.board-header { width:100%; display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; padding-bottom:10px; border-bottom:3px solid rgba(34,197,94,0.25); }' +
-          '.board-title { font-size:1.4rem; font-weight:900; color:#22C55E; }' +
-          '.board-img { width:100%; max-width:700px; height:auto; border:3px solid rgba(34,197,94,0.2); border-radius:16px; display:block; margin:0 auto; }' +
-          '.board-footer { margin-top:auto; padding-top:10px; font-size:0.72rem; color:#ccc; text-align:center; width:100%; border-top:1px solid #F0FFF4; }' +
-          '.ref-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; max-width:680px; margin:20px auto; }' +
-          '.ref-box { background:linear-gradient(135deg,#F0FFF4,#FFF9E6); border:2px solid rgba(34,197,94,0.2); border-radius:14px; padding:16px; }' +
-          '.ref-box h4 { color:#22C55E; font-size:0.9rem; margin-bottom:8px; }' +
-          '.ref-box li { font-size:0.82rem; color:#555; margin-bottom:5px; }' +
+          '.board-page { page-break-before:always; break-before:page; page-break-inside:avoid; break-inside:avoid; display:flex; flex-direction:column; justify-content:space-between; align-items:center; padding:12px 16px; box-sizing:border-box; background:#fff; width:100%; max-width:750px; margin:0 auto; }' +
+          '.board-header { width:100%; display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; padding-bottom:4px; border-bottom:2px solid rgba(34,197,94,0.25); }' +
+          '.board-title { font-size:1.2rem; font-weight:900; color:#22C55E; }' +
+          '.board-img { width:auto; max-width:100%; max-height:15cm; object-fit:contain; height:auto; border:2px solid rgba(34,197,94,0.2); border-radius:14px; display:block; margin:0 auto; }' +
+          '.board-footer { margin-top:8px; padding-top:4px; font-size:0.7rem; color:#ccc; text-align:center; width:100%; border-top:1px solid #F0FFF4; }' +
           '.toolbar { position:fixed; bottom:20px; right:20px; z-index:999; }' +
           '.btn-print { padding:14px 28px; border-radius:50px; border:none; font-size:1rem; font-weight:bold; cursor:pointer; background:linear-gradient(135deg,#22C55E,#A855F7); color:white; box-shadow:0 4px 18px rgba(34,197,94,0.4); }' +
-          '@media print { .toolbar { display:none!important; } }' +
+          '@media print { @page { size: portrait; margin: 8mm; } .toolbar { display:none!important; } body { padding:0; margin:0; background:#fff; } .cover, .board-page { width:100%; max-width:100%; padding:4px 0; margin:0 auto; page-break-inside:avoid; break-inside:avoid; } .board-img { max-height:14.5cm; } }' +
           '</style></head><body>' +
           '<div class="cover">' +
-          '<div style="font-size:5rem">&#x1F40D;&#x1F308;&#x1FAA4;</div>' +
+          '<div style="font-size:4rem">&#x1F40D;&#x1F308;&#x1FAA4;</div>' +
           '<div class="cover-title">Snakes &amp; Ladders!</div>' +
           '<p class="cover-sub">Whizzy Wiggles Rainbow Edition &#x1F31F;</p>' +
           '<span class="ww-badge">&#x1F308; Whizzy Wiggles Official Edition</span>' +
@@ -780,13 +800,20 @@
       const cfg = configs[type];
       const win = window.open('', '_blank');
       win.document.write(`<!DOCTYPE html><html><head><title>${cfg.title} &ndash; Whizzy Wiggles</title>
-      <style>body{font-family:Arial,sans-serif;max-width:700px;margin:30px auto;padding:20px;color:#1A0A3C;}
-      h1{font-size:2rem;text-align:center;margin-bottom:4px;}.sub{text-align:center;color:#888;margin-bottom:24px;font-size:1rem;}
-      .logo{text-align:center;font-size:2.5rem;margin-bottom:8px;}.border-top{border-top:4px solid ${cfg.color};border-radius:4px;margin-bottom:28px;}
-      .item{display:flex;align-items:center;gap:16px;margin-bottom:20px;}.item-emoji{font-size:2.2rem;flex-shrink:0;}
-      .trace-line{flex:1;height:48px;border:2px dashed #ddd;border-radius:8px;display:flex;align-items:center;padding:0 14px;font-size:1.6rem;color:#e0e0e0;letter-spacing:4px;}
-      .footer{text-align:center;margin-top:40px;font-size:0.8rem;color:#bbb;border-top:1px solid #eee;padding-top:16px;}
-      @media print{button{display:none!important;}}</style></head><body>
+      <style>
+        @page { size: portrait; margin: 8mm; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: Arial, sans-serif; max-width: 700px; margin: 0 auto; padding: 12px; color: #1A0A3C; page-break-inside: avoid; break-inside: avoid; }
+        h1 { font-size: 1.6rem; text-align: center; margin-bottom: 4px; }
+        .sub { text-align: center; color: #888; margin-bottom: 12px; font-size: 0.9rem; }
+        .logo { text-align: center; font-size: 2rem; margin-bottom: 4px; }
+        .border-top { border-top: 3px solid ${cfg.color}; border-radius: 4px; margin-bottom: 16px; }
+        .item { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+        .item-emoji { font-size: 1.8rem; flex-shrink: 0; }
+        .trace-line { flex: 1; height: 38px; border: 2px dashed #ddd; border-radius: 8px; display: flex; align-items: center; padding: 0 10px; font-size: 1.3rem; color: #e0e0e0; letter-spacing: 4px; }
+        .footer { text-align: center; margin-top: 16px; font-size: 0.75rem; color: #bbb; border-top: 1px solid #eee; padding-top: 8px; }
+        @media print { @page { size: portrait; margin: 8mm; } button { display: none !important; } body { padding: 0; margin: 0 auto; page-break-inside: avoid; break-inside: avoid; } }
+      </style></head><body>
       <div class="logo">${cfg.emoji}</div>
       <h1>${cfg.title}</h1>
       <p class="sub">By Whizzy Wiggles &#127752; | whizzywiggles.in</p>
@@ -2505,26 +2532,27 @@
       const win = window.open('', '_blank');
       if (!win) return;
       const html = '<!DOCTYPE html><html><head><title>Vehicle Coloring Book - Whizzy Wiggles</title><style>'
+        + '@page{size:portrait;margin:8mm;}'
         + '*{box-sizing:border-box;margin:0;padding:0;}body{font-family:Arial,sans-serif;background:#fff;}'
-        + '.cover{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:linear-gradient(135deg,#EEF4FF,#FFF9E6);padding:40px 20px;page-break-after:always;}'
-        + '.cover h1{font-size:2.8rem;margin-bottom:10px;color:#38BDF8;font-weight:900;}'
-        + '.cover .sub{color:#888;font-size:1.05rem;margin-bottom:6px;}'
-        + '.cover .brand{font-size:0.95rem;color:#38BDF8;font-weight:bold;margin-top:14px;}'
-        + '.cover .pages-list{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:20px;}'
-        + '.cover .page-chip{background:white;border:2px solid #EEF4FF;border-radius:50px;padding:7px 16px;font-size:0.88rem;font-weight:bold;color:#38BDF8;}'
-        + '.name-box{display:flex;align-items:center;gap:10px;margin-top:14px;font-size:0.95rem;color:#888;width:320px;}'
+        + '.cover{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:linear-gradient(135deg,#EEF4FF,#FFF9E6);padding:24px 16px;page-break-after:always;break-after:page;page-break-inside:avoid;break-inside:avoid;box-sizing:border-box;width:100%;max-width:750px;margin:0 auto;}'
+        + '.cover h1{font-size:2.2rem;margin-bottom:6px;color:#38BDF8;font-weight:900;}'
+        + '.cover .sub{color:#888;font-size:1rem;margin-bottom:4px;}'
+        + '.cover .brand{font-size:0.9rem;color:#38BDF8;font-weight:bold;margin-top:10px;}'
+        + '.cover .pages-list{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-top:12px;}'
+        + '.cover .page-chip{background:white;border:2px solid #EEF4FF;border-radius:50px;padding:5px 12px;font-size:0.8rem;font-weight:bold;color:#38BDF8;}'
+        + '.name-box{display:flex;align-items:center;gap:8px;margin-top:10px;font-size:0.85rem;color:#888;width:280px;}'
         + '.name-line{flex:1;height:2px;background:#ddd;border-radius:99px;}'
-        + '.col-page{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:32px 24px;page-break-after:always;background:#fff;position:relative;}'
-        + '.col-page .page-num{position:absolute;top:16px;left:20px;font-size:0.8rem;color:#bbb;font-weight:bold;}'
-        + '.col-page .col-title{font-size:1.5rem;font-weight:900;color:#38BDF8;margin-bottom:6px;text-align:center;}'
-        + '.col-page .col-desc{font-size:0.9rem;color:#aaa;margin-bottom:16px;text-align:center;}'
-        + '.col-page .col-img{width:100%;max-width:560px;height:auto;border:3px solid #F0F8FF;border-radius:16px;display:block;margin:0 auto;}'
-        + '.col-page .page-footer{margin-top:24px;padding-top:14px;font-size:0.72rem;color:#ccc;text-align:center;width:100%;border-top:1px solid #EEF4FF;}'
+        + '.col-page{page-break-before:always;break-before:page;page-break-inside:avoid;break-inside:avoid;page-break-after:always;break-after:page;display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:12px 16px;background:#fff;position:relative;box-sizing:border-box;width:100%;max-width:750px;margin:0 auto;}'
+        + '.col-page .page-num{position:absolute;top:12px;left:16px;font-size:0.8rem;color:#bbb;font-weight:bold;}'
+        + '.col-page .col-title{font-size:1.2rem;font-weight:900;color:#38BDF8;margin-bottom:4px;text-align:center;}'
+        + '.col-page .col-desc{font-size:0.82rem;color:#aaa;margin-bottom:6px;text-align:center;}'
+        + '.col-page .col-img{width:auto;max-width:100%;max-height:16cm;object-fit:contain;height:auto;border:2px solid #F0F8FF;border-radius:14px;display:block;margin:0 auto;}'
+        + '.col-page .page-footer{margin-top:8px;padding-top:4px;font-size:0.7rem;color:#ccc;text-align:center;width:100%;border-top:1px solid #EEF4FF;}'
         + '.toolbar{position:fixed;bottom:20px;right:20px;z-index:999;}'
         + '.btn-print{padding:14px 28px;border-radius:50px;border:none;font-size:1rem;font-weight:bold;cursor:pointer;background:#38BDF8;color:white;box-shadow:0 4px 18px rgba(56,189,248,0.4);}'
-        + '@media print{.toolbar{display:none!important;}}'
+        + '@media print{@page{size:portrait;margin:8mm;}.toolbar{display:none!important;}body{padding:0;margin:0;background:#fff;}.cover,.col-page{width:100%;max-width:100%;padding:4px 0;margin:0 auto;page-break-inside:avoid;break-inside:avoid;}.col-page .col-img{max-height:15.5cm;}}'
         + '</style></head><body>'
-        + '<div class="cover"><div style="font-size:5rem">&#x1F697;&#x2708;&#xFE0F;&#x1F682;&#x1F6FA;&#x1F68C;</div>'
+        + '<div class="cover"><div style="font-size:4rem">&#x1F697;&#x2708;&#xFE0F;&#x1F682;&#x1F6FA;&#x1F68C;</div>'
         + '<h1>Vehicle Coloring Book</h1>'
         + '<p class="sub">5 Fun Pages to Color In!</p>'
         + '<p class="sub" style="font-size:0.95rem;">Cars &bull; Motorcycles &bull; Trains &bull; Buses &bull; Airplanes</p>'
@@ -2572,16 +2600,17 @@
           <div class="trace-lines">${[1, 2, 3].map(() => `<div class="trace-line"><span class="dotted">${l} ${l} ${l} ${l} ${l}</span></div>`).join('')}</div>
         </div>`).join('');
       win.document.write(`<!DOCTYPE html><html><head><title>Alphabet Tracing A-Z – Whizzy Wiggles</title><style>
+        @page{size:portrait;margin:8mm;}
         *{box-sizing:border-box;margin:0;padding:0;}body{font-family:Arial,sans-serif;}
-        .cover{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:linear-gradient(135deg,#FFF5FA,#F3E8FF);padding:40px;page-break-after:always;}
-        .cover h1{font-size:2.5rem;color:#A855F7;margin-bottom:12px;}.cover p{color:#888;margin-bottom:8px;}
-        .trace-page{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px;page-break-after:always;}
-        .trace-letter{font-size:7rem;color:#A855F7;font-weight:bold;margin-bottom:10px;}
-        .trace-word{font-size:1.4rem;color:#555;margin-bottom:30px;}
-        .trace-line{border-bottom:3px dashed #ddd;margin-bottom:24px;width:100%;max-width:500px;padding:10px 0;}
-        .dotted{color:#d0c0ff;font-size:2rem;letter-spacing:8px;}
+        .cover{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:linear-gradient(135deg,#FFF5FA,#F3E8FF);padding:24px;page-break-after:always;break-after:page;page-break-inside:avoid;break-inside:avoid;box-sizing:border-box;width:100%;max-width:700px;margin:0 auto;}
+        .cover h1{font-size:2.2rem;color:#A855F7;margin-bottom:8px;}.cover p{color:#888;margin-bottom:6px;}
+        .trace-page{page-break-before:always;break-before:page;page-break-inside:avoid;break-inside:avoid;page-break-after:always;break-after:page;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:16px;box-sizing:border-box;width:100%;max-width:700px;margin:0 auto;}
+        .trace-letter{font-size:5rem;color:#A855F7;font-weight:bold;margin-bottom:6px;}
+        .trace-word{font-size:1.2rem;color:#555;margin-bottom:16px;}
+        .trace-line{border-bottom:2px dashed #ddd;margin-bottom:14px;width:100%;max-width:460px;padding:6px 0;}
+        .dotted{color:#d0c0ff;font-size:1.6rem;letter-spacing:6px;}
         .toolbar{position:fixed;bottom:20px;right:20px;}.btn-print{padding:14px 28px;border-radius:50px;border:none;font-size:1rem;font-weight:bold;cursor:pointer;background:#A855F7;color:white;box-shadow:0 4px 18px rgba(168,85,247,0.4);}
-        @media print{.toolbar{display:none!important;}}
+        @media print{@page{size:portrait;margin:8mm;}.toolbar{display:none!important;}body{padding:0;margin:0;background:#fff;}.cover,.trace-page{width:100%;max-width:100%;padding:4px 0;margin:0 auto;page-break-inside:avoid;break-inside:avoid;}}
       </style></head><body>
       <div class="cover"><div style="font-size:4rem">✏️🔤</div><h1>Alphabet Tracing A–Z</h1><p>Trace every letter from A to Z!</p><p>🌈 Whizzy Wiggles — whizzywiggles.in</p></div>
       ${pages}
@@ -2601,16 +2630,17 @@
           <div class="trace-lines">${[1, 2, 3].map(() => `<div class="trace-line"><span class="dotted">${n}   ${n}   ${n}   ${n}   ${n}</span></div>`).join('')}</div>
         </div>`).join('');
       win.document.write(`<!DOCTYPE html><html><head><title>Number Tracing 1-10 – Whizzy Wiggles</title><style>
+        @page{size:portrait;margin:8mm;}
         *{box-sizing:border-box;margin:0;padding:0;}body{font-family:Arial,sans-serif;}
-        .cover{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:linear-gradient(135deg,#FFF9E6,#EEF4FF);padding:40px;page-break-after:always;}
-        .cover h1{font-size:2.5rem;color:#FF8C00;margin-bottom:12px;}.cover p{color:#888;margin-bottom:8px;}
-        .trace-page{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px;page-break-after:always;background:white;}
-        .trace-num{font-size:8rem;color:#FF8C00;font-weight:bold;margin-bottom:10px;}
-        .emoji-row{font-size:2rem;margin-bottom:30px;letter-spacing:4px;}
-        .trace-line{border-bottom:3px dashed #FFD700;margin-bottom:24px;width:100%;max-width:500px;padding:10px 0;}
-        .dotted{color:#FFD70066;font-size:2.5rem;letter-spacing:16px;font-weight:bold;}
+        .cover{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:linear-gradient(135deg,#FFF9E6,#EEF4FF);padding:24px;page-break-after:always;break-after:page;page-break-inside:avoid;break-inside:avoid;box-sizing:border-box;width:100%;max-width:700px;margin:0 auto;}
+        .cover h1{font-size:2.2rem;color:#FF8C00;margin-bottom:8px;}.cover p{color:#888;margin-bottom:6px;}
+        .trace-page{page-break-before:always;break-before:page;page-break-inside:avoid;break-inside:avoid;page-break-after:always;break-after:page;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:16px;background:white;box-sizing:border-box;width:100%;max-width:700px;margin:0 auto;}
+        .trace-num{font-size:6rem;color:#FF8C00;font-weight:bold;margin-bottom:6px;}
+        .emoji-row{font-size:1.6rem;margin-bottom:16px;letter-spacing:4px;}
+        .trace-line{border-bottom:2px dashed #FFD700;margin-bottom:14px;width:100%;max-width:460px;padding:6px 0;}
+        .dotted{color:#FFD70066;font-size:1.8rem;letter-spacing:12px;font-weight:bold;}
         .toolbar{position:fixed;bottom:20px;right:20px;}.btn-print{padding:14px 28px;border-radius:50px;border:none;font-size:1rem;font-weight:bold;cursor:pointer;background:#FF8C00;color:white;box-shadow:0 4px 18px rgba(255,140,0,0.4);}
-        @media print{.toolbar{display:none!important;}}
+        @media print{@page{size:portrait;margin:8mm;}.toolbar{display:none!important;}body{padding:0;margin:0;background:#fff;}.cover,.trace-page{width:100%;max-width:100%;padding:4px 0;margin:0 auto;page-break-inside:avoid;break-inside:avoid;}}
       </style></head><body>
       <div class="cover"><div style="font-size:4rem">🖊️🔢</div><h1>Number Tracing 1–10</h1><p>Trace the numbers and count!</p><p>🌈 Whizzy Wiggles — whizzywiggles.in</p></div>
       ${pages}
@@ -2622,15 +2652,16 @@
       const win = window.open('', '_blank');
       if (!win) return;
       win.document.write(`<!DOCTYPE html><html><head><title>Dot-to-Dot Fun – Whizzy Wiggles</title><style>
+        @page{size:portrait;margin:8mm;}
         *{box-sizing:border-box;margin:0;padding:0;}body{font-family:Arial,sans-serif;}
-        .cover{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:linear-gradient(135deg,#F0FFF4,#EEF4FF);padding:40px;page-break-after:always;}
-        .cover h1{font-size:2.5rem;color:#22C55E;margin-bottom:12px;}.cover p{color:#888;margin-bottom:8px;}
-        .dot-page{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px;page-break-after:always;text-align:center;}
-        .dot-page h2{font-size:1.8rem;color:#22C55E;margin-bottom:20px;}.dot-page p{color:#888;font-size:1rem;margin-bottom:30px;}
-        .dot-grid{position:relative;width:400px;height:400px;border:2px dashed #ddd;border-radius:20px;margin:0 auto;}
-        .dot{position:absolute;width:24px;height:24px;background:#22C55E;border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-size:0.7rem;font-weight:bold;}
+        .cover{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:linear-gradient(135deg,#F0FFF4,#EEF4FF);padding:24px;page-break-after:always;break-after:page;page-break-inside:avoid;break-inside:avoid;box-sizing:border-box;width:100%;max-width:700px;margin:0 auto;}
+        .cover h1{font-size:2.2rem;color:#22C55E;margin-bottom:8px;}.cover p{color:#888;margin-bottom:6px;}
+        .dot-page{page-break-before:always;break-before:page;page-break-inside:avoid;break-inside:avoid;page-break-after:always;break-after:page;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:16px;text-align:center;box-sizing:border-box;width:100%;max-width:700px;margin:0 auto;}
+        .dot-page h2{font-size:1.4rem;color:#22C55E;margin-bottom:8px;}.dot-page p{color:#888;font-size:0.9rem;margin-bottom:14px;}
+        .dot-grid{position:relative;width:320px;height:320px;border:2px dashed #ddd;border-radius:16px;margin:0 auto;}
+        .dot{position:absolute;width:22px;height:22px;background:#22C55E;border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-size:0.65rem;font-weight:bold;}
         .toolbar{position:fixed;bottom:20px;right:20px;}.btn-print{padding:14px 28px;border-radius:50px;border:none;font-size:1rem;font-weight:bold;cursor:pointer;background:#22C55E;color:white;box-shadow:0 4px 18px rgba(34,197,94,0.4);}
-        @media print{.toolbar{display:none!important;}}
+        @media print{@page{size:portrait;margin:8mm;}.toolbar{display:none!important;}body{padding:0;margin:0;background:#fff;}.cover,.dot-page{width:100%;max-width:100%;padding:4px 0;margin:0 auto;page-break-inside:avoid;break-inside:avoid;}}
       </style></head><body>
       <div class="cover"><div style="font-size:4rem">🔵•••🐬</div><h1>Dot-to-Dot Fun!</h1><p>Connect the dots to reveal the picture!</p><p>🌈 Whizzy Wiggles — whizzywiggles.in</p></div>
       <div class="dot-page"><h2>🐬 The Dolphin</h2><p>Connect dots 1–12 to see the dolphin!</p><div class="dot-grid">
@@ -2968,7 +2999,13 @@
     function printCustomBoardGame() {
       const content = document.getElementById('bg-canvas').outerHTML;
       const win = window.open('', '_blank');
-      win.document.write(`<html><head><title>My Custom Board Game</title></head><body style="display:flex; justify-content:center; align-items:center; height:100vh; margin:0;">${content}</body></html>`);
+      win.document.write(`<html><head><title>My Custom Board Game</title><style>
+        @page { size: landscape; margin: 8mm; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: Arial, sans-serif; background: #fff; padding: 10px; margin: 0 auto; text-align: center; page-break-inside: avoid; break-inside: avoid; }
+        #bg-canvas { max-width: 100%; max-height: 16cm; object-fit: contain; display: block; margin: 0 auto; }
+        @media print { @page { size: landscape; margin: 8mm; } body { padding: 0; margin: 0 auto; } }
+      </style></head><body>${content}</body></html>`);
       win.document.close();
       setTimeout(() => { win.print(); }, 500);
     }
@@ -3010,7 +3047,13 @@
     // Print Origami
     function printOrigami(src) {
       const win = window.open('', '_blank');
-      win.document.write(`<html><head><title>Print Origami</title></head><body style="display:flex; justify-content:center; align-items:center; min-height:100vh; margin:0; padding:20px;"><img src="${src}" style="max-width:100%; max-height:100vh; object-fit:contain;" /></body></html>`);
+      win.document.write(`<html><head><title>Print Origami</title><style>
+        @page { size: portrait; margin: 8mm; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: Arial, sans-serif; background: #fff; padding: 10px; margin: 0 auto; text-align: center; page-break-inside: avoid; break-inside: avoid; }
+        img { max-width: 100%; max-height: 17cm; object-fit: contain; display: block; margin: 0 auto; }
+        @media print { @page { size: portrait; margin: 8mm; } body { padding: 0; margin: 0 auto; } }
+      </style></head><body><img src="${src}" alt="Origami Guide" /></body></html>`);
       win.document.close();
       setTimeout(() => { win.print(); }, 500);
     }
@@ -3558,3 +3601,142 @@
     } catch(e) {
       console.warn("Firebase not properly configured yet.");
     }
+
+// ===== EDUCATIONAL CHARTS SYSTEM =====
+    const CHARTS_DATA = {
+      'yogasan': {
+        title: 'Kids Yogasan Chart',
+        subtitle: '16 fun, healthy, and easy yoga poses for kids with Sanskrit & Hindi names!',
+        img: 'images/chart-yogasan.jpg',
+        emoji: '🧘'
+      },
+      'hindi-varnamala': {
+        title: 'Hindi Varnamala Chart',
+        subtitle: 'Complete Hindi Vowels (स्वर) & Consonants (व्यंजन) learning chart with pronunciation guide!',
+        img: 'images/chart-hindi-varnamala.jpg',
+        emoji: '🇮🇳'
+      },
+      'numbers-1to30': {
+        title: '1 to 30 Kids Numbers Chart',
+        subtitle: 'Vibrant & colorful counting grid chart 1 to 30 for toddlers and preschoolers!',
+        img: 'images/chart-numbers.jpg',
+        emoji: '🔢'
+      },
+      'abcd-chart': {
+        title: 'ABCD Kids Alphabet Chart',
+        subtitle: 'Full A to Z alphabet chart with cute illustrations from Apple to Zebra!',
+        img: 'images/chart-abcd.jpg',
+        emoji: '🔤'
+      }
+    };
+
+    function openChartModal(chartKey) {
+      const chart = CHARTS_DATA[chartKey];
+      if (!chart) return;
+
+      let modal = document.getElementById('chart-modal');
+      if (!modal) {
+        modal = document.createElement('div');
+        modal.id = 'chart-modal';
+        modal.className = 'chart-modal-overlay';
+        document.body.appendChild(modal);
+
+        modal.addEventListener('click', (e) => {
+          if (e.target === modal) closeChartModal();
+        });
+      }
+
+      modal.innerHTML = `
+        <div class="chart-modal-content">
+          <button class="chart-modal-close" onclick="closeChartModal()">&times;</button>
+          <div class="chart-modal-header">
+            <h2>${chart.emoji} ${chart.title}</h2>
+            <p>${chart.subtitle}</p>
+          </div>
+          <div class="chart-modal-body">
+            <img src="${chart.img}" alt="${chart.title}" class="chart-modal-img" />
+          </div>
+          <div class="chart-modal-footer">
+            <a href="${chart.img}" download="${chartKey}-whizzywiggles.jpg" class="chart-btn btn-download">
+              📥 Download Chart
+            </a>
+            <button onclick="printChart('${chartKey}')" class="chart-btn btn-print">
+              🖨️ Print Chart
+            </button>
+          </div>
+        </div>
+      `;
+
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeChartModal() {
+      const modal = document.getElementById('chart-modal');
+      if (modal) modal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    function printChart(chartKey) {
+      const chart = CHARTS_DATA[chartKey];
+      if (!chart) return;
+      const baseUrl = window.location.href.replace(/\/[^/]*$/, '');
+      const imgUrl = baseUrl + '/' + chart.img;
+
+      const win = window.open('', '_blank');
+      if (!win) return;
+      win.document.write(`<!DOCTYPE html>
+<html>
+<head>
+  <title>${chart.title} – Whizzy Wiggles</title>
+  <style>
+    @page { size: portrait; margin: 8mm; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Arial', sans-serif; background: #fff; text-align: center; padding: 12px; color: #1A0A3C; }
+    .print-container {
+      max-width: 800px; margin: 0 auto; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; text-align: center;
+      page-break-inside: avoid; break-inside: avoid;
+    }
+    .print-header { margin-bottom: 8px; }
+    .print-header h1 { font-size: 1.8rem; color: #A855F7; margin-bottom: 4px; font-weight: bold; }
+    .print-header p { font-size: 0.95rem; color: #666; }
+    .chart-img {
+      width: auto; max-width: 100%; max-height: 16cm; object-fit: contain; height: auto;
+      border: 3px solid #A855F7; border-radius: 16px; box-shadow: 0 8px 24px rgba(0,0,0,0.1); margin: 8px auto; display: block;
+    }
+    .print-footer { margin-top: 8px; font-size: 0.85rem; color: #888; font-weight: bold; }
+    .toolbar { position: fixed; bottom: 20px; right: 20px; z-index: 999; }
+    .btn-p { padding: 14px 28px; border-radius: 50px; border: none; font-size: 1rem; font-weight: bold; cursor: pointer; background: #A855F7; color: white; box-shadow: 0 4px 16px rgba(168,85,247,0.4); }
+    @media print {
+      @page { size: portrait; margin: 8mm; }
+      .toolbar { display: none !important; }
+      body { padding: 0; margin: 0; background: #fff; }
+      .print-container { width: 100%; max-width: 100%; margin: 0 auto; page-break-inside: avoid; break-inside: avoid; }
+      .print-header h1 { font-size: 1.5rem; }
+      .print-header p { font-size: 0.85rem; }
+      .chart-img { max-height: 16cm; border-color: #ddd; box-shadow: none; border-width: 2px; margin: 6px auto; }
+      .print-footer { font-size: 0.78rem; margin-top: 6px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="print-container">
+    <div class="print-header">
+      <h1>🌈 Whizzy Wiggles Educational Chart</h1>
+      <p>${chart.title} &bull; ${chart.subtitle}</p>
+    </div>
+    <img src="${imgUrl}" alt="${chart.title}" class="chart-img" />
+    <div class="print-footer">Learn, Laugh & Wiggle with Whizzy Wiggles! &bull; www.whizzywiggles.in</div>
+  </div>
+  <div class="toolbar">
+    <button class="btn-p" onclick="window.print()">🖨️ Click to Print Chart</button>
+  </div>
+</body>
+</html>`);
+      win.document.close();
+    }
+
+    window.openChartModal = openChartModal;
+    window.closeChartModal = closeChartModal;
+    window.printChart = printChart;

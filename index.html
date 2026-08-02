@@ -180,6 +180,7 @@
       <li><a href="#flashcards">🔤 Flashcards</a></li>
       <li><a href="#learn-shapes">🌈 Shapes</a></li>
       <li><a href="#printables">🖨️ Printables</a></li>
+      <li><a href="#charts">📊 Charts</a></li>
       <li><a href="#badge-wall">🏆 Badges</a></li>
       <li><a href="#boardgame-generator">🎲 Board Game</a></li>
       <li><a href="#emoji-lab">🧪 Emoji Lab</a></li>
@@ -206,6 +207,7 @@
     <a href="#flashcards" onclick="toggleMobileMenu()">🔤 Flashcards</a>
     <a href="#learn-shapes" onclick="toggleMobileMenu()">🌈 Colors &amp; Shapes</a>
     <a href="#printables" onclick="toggleMobileMenu()">🖨️ Printables</a>
+    <a href="#charts" onclick="toggleMobileMenu()">📊 Educational Charts</a>
     <a href="#badge-wall" onclick="toggleMobileMenu()">🏆 My Badges</a>
     <a href="#boardgame-generator" onclick="toggleMobileMenu()">🎲 Board Game</a>
     <a href="#emoji-lab" onclick="toggleMobileMenu()">🧪 Emoji Lab</a>
@@ -857,6 +859,103 @@
           <h3>🔵 Dot-to-Dot Fun</h3>
           <p>Connect the dots to reveal cute animal pictures! 4 puzzles: dolphin, bunny, star & elephant!</p>
           <button class="btn-download-big" onclick="printActivity('dotdot')">📥 Click to Print (Free)</button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- EDUCATIONAL CHARTS SECTION -->
+  <section id="charts" aria-labelledby="charts-heading" style="padding: 80px 20px; background: linear-gradient(180deg, #FFFBEF 0%, #EEF4FF 100%);">
+    <div class="section-header">
+      <span class="section-eyebrow">Interactive Learning</span>
+      <h2 class="section-title" id="charts-heading">Educational <em>Kids Charts</em> 📊</h2>
+      <p class="section-subtitle">High-quality printable educational charts for toddlers and kids — Yoga, Hindi Varnamala, 1-30 Numbers &amp; ABC Alphabet!</p>
+    </div>
+
+    <div class="charts-grid reveal" style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 30px;">
+      
+      <!-- Yogasan Chart -->
+      <div class="chart-card">
+        <div class="chart-badge" style="background: linear-gradient(135deg, #4ADE80, #2DD4BF);">🧘 Fitness &amp; Yoga</div>
+        <div class="chart-thumb" onclick="openChartModal('yogasan')">
+          <img src="images/chart-yogasan.jpg" alt="Kids Yogasan Chart Whizzy Wiggles Edition" loading="lazy" />
+          <div class="chart-overlay">
+            <span class="zoom-icon">🔍 View Full Chart</span>
+          </div>
+        </div>
+        <div class="chart-info">
+          <span class="chart-age">All Ages • 16 Poses</span>
+          <h3>🧘 Kids Yogasan Chart</h3>
+          <p>16 fun, healthy, and easy yoga poses for kids with Sanskrit &amp; Hindi pose names!</p>
+          <div class="chart-actions">
+            <button class="btn-chart-secondary" onclick="openChartModal('yogasan')">👁️ Preview</button>
+            <a href="images/chart-yogasan.jpg" download="yogasan-chart-whizzywiggles.jpg" class="btn-chart-primary">📥 Download</a>
+            <button class="btn-chart-print" onclick="printChart('yogasan')">🖨️ Print</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hindi Varnamala Chart -->
+      <div class="chart-card">
+        <div class="chart-badge" style="background: linear-gradient(135deg, #FF70B8, #A855F7);">🇮🇳 Hindi Alphabets</div>
+        <div class="chart-thumb" onclick="openChartModal('hindi-varnamala')">
+          <img src="images/chart-hindi-varnamala.jpg" alt="Hindi Varnamala Chart Whizzy Wiggles Edition" loading="lazy" />
+          <div class="chart-overlay">
+            <span class="zoom-icon">🔍 View Full Chart</span>
+          </div>
+        </div>
+        <div class="chart-info">
+          <span class="chart-age">Ages 3–8 • Swar &amp; Vyanjan</span>
+          <h3>🇮🇳 Hindi Varnamala Chart</h3>
+          <p>Complete Hindi Vowels (स्वर) and Consonants (व्यंजन) chart with clear pronunciation guides!</p>
+          <div class="chart-actions">
+            <button class="btn-chart-secondary" onclick="openChartModal('hindi-varnamala')">👁️ Preview</button>
+            <a href="images/chart-hindi-varnamala.jpg" download="hindi-varnamala-chart-whizzywiggles.jpg" class="btn-chart-primary">📥 Download</a>
+            <button class="btn-chart-print" onclick="printChart('hindi-varnamala')">🖨️ Print</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 1 to 30 Numbers Chart -->
+      <div class="chart-card">
+        <div class="chart-badge" style="background: linear-gradient(135deg, #38BDF8, #A855F7);">🔢 Early Math</div>
+        <div class="chart-thumb" onclick="openChartModal('numbers-1to30')">
+          <img src="images/chart-numbers.jpg" alt="1 to 30 Kids Chart Whizzy Wiggles Edition" loading="lazy" />
+          <div class="chart-overlay">
+            <span class="zoom-icon">🔍 View Full Chart</span>
+          </div>
+        </div>
+        <div class="chart-info">
+          <span class="chart-age">Ages 2–6 • Numbers 1–30</span>
+          <h3>🔢 1 to 30 Kids Chart</h3>
+          <p>Bright, colorful counting chart from 1 to 30 designed to make numbers fun for early learners!</p>
+          <div class="chart-actions">
+            <button class="btn-chart-secondary" onclick="openChartModal('numbers-1to30')">👁️ Preview</button>
+            <a href="images/chart-numbers.jpg" download="1-to-30-chart-whizzywiggles.jpg" class="btn-chart-primary">📥 Download</a>
+            <button class="btn-chart-print" onclick="printChart('numbers-1to30')">🖨️ Print</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ABCD Kids Chart -->
+      <div class="chart-card">
+        <div class="chart-badge" style="background: linear-gradient(135deg, #FF8C00, #FF4455);">🔤 English Literacy</div>
+        <div class="chart-thumb" onclick="openChartModal('abcd-chart')">
+          <img src="images/chart-abcd.jpg" alt="ABCD Kids Chart Whizzy Wiggles Edition" loading="lazy" />
+          <div class="chart-overlay">
+            <span class="zoom-icon">🔍 View Full Chart</span>
+          </div>
+        </div>
+        <div class="chart-info">
+          <span class="chart-age">Ages 2–6 • A to Z Alphabets</span>
+          <h3>🔤 ABCD Kids Chart</h3>
+          <p>Complete English Alphabet chart from A to Z paired with vibrant animal &amp; object illustrations!</p>
+          <div class="chart-actions">
+            <button class="btn-chart-secondary" onclick="openChartModal('abcd-chart')">👁️ Preview</button>
+            <a href="images/chart-abcd.jpg" download="abcd-chart-whizzywiggles.jpg" class="btn-chart-primary">📥 Download</a>
+            <button class="btn-chart-print" onclick="printChart('abcd-chart')">🖨️ Print</button>
+          </div>
         </div>
       </div>
 
