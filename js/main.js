@@ -1080,6 +1080,7 @@
 
       document.querySelector('.draw-clear').onclick = () => {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.beginPath();
         playBipSound(180, 'sawtooth', 0.2);
       };
 

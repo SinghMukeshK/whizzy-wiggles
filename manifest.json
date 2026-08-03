@@ -1,0 +1,26 @@
+{
+  "name": "Whizzy Wiggles Juniors - Kids Learning & Play",
+  "short_name": "WhizzyJuniors",
+  "description": "Fun, interactive preschool learning app with ABCs, 123s, Drawing Canvas, Animal Sounds, and Mini Games!",
+  "start_url": "./WhizzyWigglesJuniors.html",
+  "display": "standalone",
+  "background_color": "#4a00e0",
+  "theme_color": "#ff6f91",
+  "orientation": "any",
+  "scope": "./",
+  "icons": [
+    {
+      "src": "images/favicon.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "images/whizzywiggles-logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["education", "kids", "entertainment", "games"]
+}
