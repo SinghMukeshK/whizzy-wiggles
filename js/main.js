@@ -2243,6 +2243,7 @@
             <button class="bp-lvl-btn active" id="bp-l1" onclick="bpSetLevel(1)">🔴 Colors</button>
             <button class="bp-lvl-btn" id="bp-l2" onclick="bpSetLevel(2)">🔠 Alphabet</button>
             <button class="bp-lvl-btn" id="bp-l3" onclick="bpSetLevel(3)">✨ Characters</button>
+            <button class="bp-lvl-btn" id="bp-l4" onclick="bpSetLevel(4)">🔢 Numbers (1-20)</button>
           </div>
           <div class="bp-hud">
             <span id="bpScore">Score: 0</span>
@@ -2265,6 +2266,7 @@
     let bpLives = 3;
     let bpSpeed = 1;
     let bpAlphaIdx = 0;
+    let bpNumIdx = 1;
     const BP_COLORS = [
       { name: 'Red', emoji: '🔴', col: '#FF4455' },
       { name: 'Blue', emoji: '🔵', col: '#38BDF8' },
@@ -2278,14 +2280,17 @@
 
     function bpSetLevel(lvl) {
       bpLevel = lvl;
-      [1, 2, 3].forEach(l => document.getElementById(`bp-l${l}`).classList.toggle('active', l === lvl));
+      [1, 2, 3, 4].forEach(l => {
+        const btn = document.getElementById(`bp-l${l}`);
+        if (btn) btn.classList.toggle('active', l === lvl);
+      });
       initBalloonPop();
     }
 
     function initBalloonPop() {
       if (bpIntervalId) clearInterval(bpIntervalId);
       bpBalloons = [];
-      bpScore = 0; bpLives = 3; bpSpeed = 1; bpAlphaIdx = 0;
+      bpScore = 0; bpLives = 3; bpSpeed = 1; bpAlphaIdx = 0; bpNumIdx = 1;
       bpGameActive = true;
       const stage = document.getElementById('bpStage');
       if (!stage) return;
@@ -2299,8 +2304,10 @@
         document.getElementById('bpTargetBar').textContent = `Pop the ${targetColor.name.toUpperCase()} balloon! ${targetColor.emoji}`;
       } else if (bpLevel === 2) {
         document.getElementById('bpTargetBar').textContent = `Pop: "${BP_ALPHABET[bpAlphaIdx]}" 🔠`;
-      } else {
+      } else if (bpLevel === 3) {
         document.getElementById('bpTargetBar').textContent = 'Pop any Whizzy character! ✨';
+      } else if (bpLevel === 4) {
+        document.getElementById('bpTargetBar').textContent = `Pop Number: "${bpNumIdx}" 🔢`;
       }
 
       function spawnBalloon() {
@@ -2318,9 +2325,13 @@
         } else if (bpLevel === 2) {
           const letter = BP_ALPHABET[Math.floor(Math.random() * 26)];
           emoji = letter; isTarget = (letter === BP_ALPHABET[bpAlphaIdx]); label = letter;
-        } else {
+        } else if (bpLevel === 3) {
           const pick = BP_CHARS[Math.floor(Math.random() * BP_CHARS.length)];
           emoji = pick; isTarget = true; label = '';
+        } else if (bpLevel === 4) {
+          const isT = Math.random() > 0.4;
+          const num = isT ? bpNumIdx : (Math.floor(Math.random() * 20) + 1);
+          emoji = num; isTarget = (num === bpNumIdx); label = num;
         }
 
         const size = 48 + Math.random() * 20;
@@ -2371,8 +2382,17 @@
               }
               const tBar = document.getElementById('bpTargetBar');
               if (tBar) tBar.textContent = `Pop: "${BP_ALPHABET[bpAlphaIdx]}" 🔠`;
-            }
-            if (bpLevel === 1) {
+            } else if (bpLevel === 4) {
+              bpNumIdx++;
+              if (bpNumIdx > 20) {
+                bpGameActive = false;
+                clearInterval(bpIntervalId);
+                showToast('1-20 Complete! 🏆', 'You are a Math Master!', '🔢');
+                return;
+              }
+              const tBar = document.getElementById('bpTargetBar');
+              if (tBar) tBar.textContent = `Pop Number: "${bpNumIdx}" 🔢`;
+            } else if (bpLevel === 1) {
               targetColor = BP_COLORS[Math.floor(Math.random() * BP_COLORS.length)];
               const tBar = document.getElementById('bpTargetBar');
               if (tBar) tBar.textContent = `Pop the ${targetColor.name.toUpperCase()} balloon! ${targetColor.emoji}`;

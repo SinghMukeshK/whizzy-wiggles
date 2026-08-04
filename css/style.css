@@ -1423,6 +1423,21 @@
       padding-top: 56.25%;
       position: relative;
       overflow: hidden;
+      border-top-left-radius: 18px;
+      border-top-right-radius: 18px;
+    }
+
+    .game-poster-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+
+    .game-card:hover .game-poster-img {
+      transform: scale(1.08);
     }
 
     .game-thumb-inner {
